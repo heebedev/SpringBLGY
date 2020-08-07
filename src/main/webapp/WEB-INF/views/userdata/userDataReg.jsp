@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:useBean id="userdata" class="com.springblgy.dto.UserDataDto" scope="session"></jsp:useBean>
+<jsp:useBean id="userdata" class="com.springblgy.dto.UserDto" scope="session"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
