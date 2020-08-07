@@ -44,7 +44,39 @@
 	
 </script>
 
+
 <style> /* produt Detail style */
+
+	.dropbtn {
+	  font-size: 16px;
+	  cursor: pointer;
+	}
+	 
+	.dropdown {
+	  position: relative;
+	}
+	 
+	.dropdown-content {
+	  display: none;
+	  position: relative;
+	  top: -20px;
+      left: 500px;
+      width: 120px;
+	  overflow: auto;
+	  box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2);
+	  background-color: white;
+	}
+	 
+	.dropdown-content a {
+	  color: black;
+	  text-decoration: none;
+	  font-family : sans-serif;
+	  display: block;
+	}
+	 
+	.dropdown a:hover {background-color: #ddd;}
+	 
+	.show {display: block;}
 
 	.prdDetail {
 		border: solid 2px black;
@@ -107,9 +139,7 @@
 	
 	.price {
 		flex: 1;
-		margin-top:5px;
-		
-		
+		margin-top:5px;	
 	}
 	
 	.etcInfo {
@@ -258,15 +288,11 @@
 </head>
 <body>
 	
+	
+
 	<jsp:include page="../../views/header.jsp"/>
 	
-	
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	
+	<br><br><br><br><br>
 	
 	<div class="prdDetail">
 		<div class="title">
