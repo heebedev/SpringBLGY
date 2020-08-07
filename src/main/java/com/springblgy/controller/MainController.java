@@ -1,6 +1,5 @@
 package com.springblgy.controller;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,10 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.blgy.dao.LikeDAO;
 import com.springblgy.dao.MainDao;
 import com.springblgy.dto.MainDto;
-import com.springblgy.dto.SearchDto;
 
 @Controller
 public class MainController {
@@ -25,7 +22,7 @@ public class MainController {
 	@RequestMapping("/mainForm.bill")
 	public String mainPage(HttpServletRequest request, Model model) {
 		int userseq = -1;
-if(request.getParameter("userseq")==null || request.getParameter("userseq").equals("0") || request.getParameter("userseq").equals("null")) {
+		if(request.getParameter("userseq")==null || request.getParameter("userseq").equals("0") || request.getParameter("userseq").equals("null")) {
 			
 		}
 		else {
@@ -48,7 +45,7 @@ if(request.getParameter("userseq")==null || request.getParameter("userseq").equa
 		String date1 = request.getParameter("date1");
 		String date2 = request.getParameter("date2");
 		String select = request.getParameter("selectsearch");
-		String liked2 = null;
+		
 		if(date1.length()<5) {
 			date1 = "2100-12-12";
 		}if(date2.length()<5) {
@@ -74,25 +71,24 @@ if(request.getParameter("userseq")==null || request.getParameter("userseq").equa
 		return "mainPage/searchAfter";
 	}
 	
-//	@RequestMapping("/like.bill")
-//	public String like(HttpServletRequest request, Model model) {
-//		MainDao dao = sqlSession.getMapper(MainDao.class);
-//		int prdseq = Integer.parseInt(request.getParameter("prdseq"));
-//		int userseq = Integer.parseInt(request.getParameter("userseq"));
-//		int liked = Integer.parseInt(request.getParameter("liked"));
-//		String search = request.getParameter("search");
-//		if(userseq == 0 || userseq == -1) {
-//			return "likeForm.jsp";
-//		}else {
-//			if(liked == 1) {
-//		dao.likeInsert(userseq, prdseq, liked);
-//		}else {
-//			dao.
-//		}
-//		request.setAttribute("search", search); 
-//		request.setAttribute("userseq", userseq); 
-//		
-//		return "redirect:searchAfter";
-//	}
-
+	@RequestMapping("/like.bill")
+	public String like(HttpServletRequest request, Model model) {
+		MainDao dao = sqlSession.getMapper(MainDao.class);
+		int prdseq = Integer.parseInt(request.getParameter("prdseq"));
+		int userseq = Integer.parseInt(request.getParameter("userseq"));
+		int liked = Integer.parseInt(request.getParameter("liked"));
+		String search = request.getParameter("search");
+		request.setAttribute("search", search); 
+		request.setAttribute("userseq", userseq); 
+		if(userseq == 0 || userseq == -1) {
+			
+		}else {
+			if(liked == 1) {
+				dao.likeDelete(userseq, prdseq, liked);
+			}else {
+				dao.likeInsert(userseq, prdseq, liked);
+			}
+		}
+		return "mainPage/likeForm";
+	}
 }

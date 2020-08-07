@@ -17,17 +17,20 @@ public class ProductController {
 	@Autowired 
 	private SqlSession sqlSession;
 	
-	@RequestMapping("/productDetatil")
+	@RequestMapping("/productDetail")
 	public String list(HttpServletRequest request, Model model) {
 		
 		int prdseq = Integer.parseInt(request.getParameter("prdseq"));
-		int myseq = Integer.parseInt(request.getParameter("myseq"));
+		int userseq = Integer.parseInt(request.getParameter("userseq"));
+		
+		System.out.println(prdseq);
+		System.out.println(userseq);
 		
 		ProductDao dao = sqlSession.getMapper(ProductDao.class); // 컨트롤러는  xml을 모르기때문에 IDao.java를 만들었다.
-		model.addAttribute("prdDetail", dao.productDetailDao(prdseq, myseq));
-		int userseq = Integer.parseInt(request.getParameter("userseq"));
-		System.out.println(userseq);
+		model.addAttribute("pdDetail", dao.productDetailDao(prdseq, userseq));
+		model.addAttribute("cmtDetail", dao.productCMTDao(prdseq, userseq));
 		request.setAttribute("userseq", userseq);
+
 		
 		return "productDetail/productDetailView";
 	}

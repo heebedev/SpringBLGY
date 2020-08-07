@@ -13,5 +13,11 @@
 		<select id="searchDao2" resultType="com.springblgy.dto.SearchDto">
 			SELECT P.PRDSEQ, P.UPLOADERSEQ, P.TITLE, P.PRICE, P.DATE1, P.DATE2, P.IMAGE1, P.VIEW, I.LIKED FROM PRODUCT P LEFT OUTER JOIN (SELECT PRDSEQ AS INTPRDSEQ, LIKED FROM INTERACTION WHERE USERSEQ = #{param4}) I ON P.PRDSEQ = I.INTPRDSEQ WHERE (P.HASH LIKE CONCAT('%',#{param1},'%') OR P.TITLE LIKE CONCAT('%',#{param1},'%')) AND <![CDATA[DATE(DATE1) <= DATE(#{param2}) AND DATE(DATE2) >= DATE(#{param3})]]> ORDER BY P.INSERTDATE
 		</select>
+		<insert id="likeInsert">
+			INSERT INTO INTERACTION (USERSEQ, PRDSEQ, LIKED, LASTACTION) VALUES(#{param1}, #{param2}, 1, NOW())
+		</insert>
+		<delete id="likeDelete">
+			DELETE FROM INTERACTION WHERE PRDSEQ = #{param2} AND USERSEQ = #{param1}
+		</delete>
 		
 	</mapper>

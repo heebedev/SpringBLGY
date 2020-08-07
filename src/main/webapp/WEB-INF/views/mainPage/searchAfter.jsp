@@ -8,14 +8,43 @@
 <jsp:include page="../../views/header.jsp"/>
 </head>
 <body>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 	<br><br><br><br>
 	
+	<script type="text/javascript">	
+	
+	function unlike(prdseq){
+		var seq =prdseq
+		var divName= "#table"+seq
+		$("#golike").load('like.bill?prdseq='+prdseq+'&userseq=${userseq}&liked=1');
+		if (document.getElementById("like"+prdseq).value==("🖤️")){
+			document.getElementById("like"+prdseq).value = "❤️";
+		}else if((document.getElementById("like"+prdseq).value==("❤️"))){
+			document.getElementById("like"+prdseq).value = "️🖤";
+		}
+		
+	}
+	function like(prdseq){
+		var seq =prdseq
+		var divName= "#table"+seq
+		$("#golike").load('like.bill?prdseq='+prdseq+'&userseq=${userseq}&liked=0');
+		if (document.getElementById("like"+prdseq).value==("🖤️")){
+			document.getElementById("like"+prdseq).value = "❤️";
+		}else if((document.getElementById("like"+prdseq).value==("❤️"))){
+			document.getElementById("like"+prdseq).value = "️🖤";
+		}
+	}
+	</script>
 
 	
 	<c:forEach items="${SearchList}" var="SearchDTO"> <!-- var = 변수이름 -->
+	<div id="table${SearchDTO.prdseq}">
 	<table style ="border: solid gray 1px; border-radius:8px; float: left; width: 500px; height:150px;">
 			<tr>				
-				<td rowspan="3" style="width: 200px;"><a href ="View.bill?prdseq=${SearchDTO.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img src="${SearchDTO.image1}" width=150 height=150 style="border:solid silver 2px; border-radius:4px;"></a></td>										
+				<td rowspan="3" style="width: 200px;"><a href ="View.bill?prdseq=${SearchDTO.prdseq}&userseq=${userseq}"><img src="${SearchDTO.image1}" width=150 height=150 style="border:solid silver 2px; border-radius:4px;"></a></td>										
 				<td colspan="2" style="height:40px; font-size:1.5em;">${SearchDTO.title}</td>		
 			</tr>
 			<tr>
@@ -28,15 +57,20 @@
 				<td style="font-size:0.8em;">조회수 ${SearchDTO.view}</td>
 				<c:choose>
 				<c:when test="${SearchDTO.liked eq 1}">
-				<td><input type="button" value="❤️" onclick="window.open('like.bill?prdseq=${SearchDTO.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>&liked=${SearchDTO.liked}','팝업이름','width=1,height=1');" style="flat:right;border: none; background-color:white";></td>
+
+				<td><input id="like${SearchDTO.prdseq}" type="button"  value="❤️" onclick="unlike(${SearchDTO.prdseq});" style="flat:right;border: none; background-color:white"></td>
 				</c:when>
 				<c:otherwise>
-				<td><input type="button" value="🖤️" onclick="window.open('like.bill?prdseq=${SearchDTO.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>&liked=${SearchDTO.liked}','팝업이름','width=1,height=1');" style="flat:right;border: none; background-color:white";></td>
+
+				<td><input id="like${SearchDTO.prdseq}" type="button" value="🖤️" onclick="like(${SearchDTO.prdseq});" style="flat:right;border: none; background-color:white"></td>
 				</c:otherwise>
 				</c:choose>
 			</tr>
 	</table>
+	</div>
 	</c:forEach>
 	<br><br><br>
+	<div id ="golike" style="width:0px;height:0px;"></div>
+
 </body>
 </html>

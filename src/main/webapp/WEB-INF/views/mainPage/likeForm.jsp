@@ -19,11 +19,7 @@
 			alert("로그인후 찜해주시기 바랍니다.");
 			window.close();
 	</script>
-	<%}else{%>
-		<script>
-			window.opener.location.reload();
-			window.close();
-	</script>
-	<%} %>
+	<%}%>
+
 </body>
 </html>
