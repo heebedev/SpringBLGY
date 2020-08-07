@@ -8,8 +8,6 @@
 <title>Register USERDATA 2 Session</title>
 <jsp:setProperty property="userseq" name="userdata" value="${userData.userseq}"/>
 <jsp:setProperty property="nickname" name="userdata" value="${userData.nickname}"/>
-<jsp:setProperty property="email" name="userdata" value="${userData.email}"/>
-<jsp:setProperty property="telno" name="userdata" value="${userData.telno}"/>
 <jsp:setProperty property="xaxis" name="userdata" value="${userData.xaxis}"/>
 <jsp:setProperty property="yaxis" name="userdata" value="${userData.yaxis}"/>
 <script>
