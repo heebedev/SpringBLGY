@@ -49,42 +49,9 @@ public class ProductDetailDto {
 		this.xaxis = xaxis;
 		this.yaxis = yaxis;
 		this.view = view;
-		this.view = uploaderCheck;
+		this.uploaderCheck = uploaderCheck;
 	}
 	
-	public ProductDetailDto(int prdseq, int uploaderseq, String nickname, String title, String price, String info, String insertdate, String date1,
-			String date2, String image1, String hash,
-			String xaxis, String yaxis) {
-		super();
-		this.prdseq = prdseq;
-		this.uploaderseq = uploaderseq;
-		this.nickname = nickname;
-		this.title = title;
-		this.price = price;
-		this.info = info;
-		this.insertdate = insertdate;
-		this.date1 = date1;
-		this.date2 = date2;
-		this.image1 = image1;
-		this.hash = hash;
-		this.xaxis = xaxis;
-		this.yaxis = yaxis;
-
-	}
-	
-	public ProductDetailDto(int prdseq, int uploaderseq, String title, String price, String info, String date1, String date2,
-			String image1, String hash) {
-		super();
-		this.prdseq = prdseq;
-		this.uploaderseq = uploaderseq;
-		this.title = title;
-		this.price = price;
-		this.info = info;
-		this.date1 = date1;
-		this.date2 = date2;
-		this.image1 = image1;
-		this.hash = hash;
-	}
 
 	public int getPrdseq() {
 		return prdseq;

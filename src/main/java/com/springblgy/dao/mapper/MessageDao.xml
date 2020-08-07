@@ -5,5 +5,18 @@
 	
 	<mapper namespace="com.springblgy.dao.MessageDao" >
 		
+	<insert id="messageSend">
+	INSERT INTO MESSAGE (SEQ_RECEIVE, SEQ_SEND, MESSAGE, INSERTDATE) VALUES ((SELECT USERSEQ FROM USERDATA WHERE NICKNAME = #{param1}), #{param2}, #{param3}, NOW())
+	</insert>
+	
+	<select id="messageList" resultType="com.springblgy.dto.MessageDto">
+	SELECT M.*, R.NICKNAME AS NICK_RECEIVE, S.NICKNAME AS NICK_SEND FROM MESSAGE M, USERDATA R, USERDATA S
+	WHERE R.USERSEQ = M.SEQ_RECEIVE
+		AND S.USERSEQ = M.SEQ_SEND
+		AND (SEQ_RECEIVE = #{param1} OR SEQ_SEND = #{param1})
+		AND M.MESSAGE LIKE '%#{param2}%'
+		AND R.NICKNAME LIKE '%#{param3}%'
+		AND S.NICKNAME LIKE '%#{param4}%'
+	</select>		
 		
 	</mapper>

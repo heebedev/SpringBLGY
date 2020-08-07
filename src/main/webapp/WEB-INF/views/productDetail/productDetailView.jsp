@@ -310,7 +310,7 @@
 			<h5>${pdDetail.date1} ~ ${pdDetail.date2}</h5>
 		</div>
 		<div class="detailInfo">
-			<div class="prImage"><img src="${pdDetail.image1}" width="400" height="400"></div>
+			<div class="prImage"><img src="http://119.207.169.213:8080/blgy/${pdDetail.image1 }" width="400" height="400"></div>
 			<div class="infoText">${pdDetail.info}</div>
 			<div class="borrow">
 				<div class="brwHead">

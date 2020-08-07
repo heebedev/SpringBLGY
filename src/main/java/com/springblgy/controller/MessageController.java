@@ -44,9 +44,8 @@ public class MessageController {
 		
 		MessageDao dao = sqlSession.getMapper(MessageDao.class);
 		
-//		dao.sendMessage(nickname, userseq, message);
-//		
-//		model.addAttribute("msgList", dao.)
+		dao.messageSend(nickname, userseq, message);
+		model.addAttribute("msgList", dao.messageList(userseq));
 		
 		return "message/messageList";
 	}
