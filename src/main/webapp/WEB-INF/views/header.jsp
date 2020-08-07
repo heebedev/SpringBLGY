@@ -98,7 +98,7 @@
 			<li><a class="home" href="mainForm.bill">홈</a></li>
 		<ul style="float:right; list-style-type:none;">
 			<li><a href="login.bill">로그인</a></li>
-			<li><a href="signUp.bill">회원가입</a></li>
+			<li><a href="createAcc.bill">회원가입</a></li>
 		</ul>
 	</ul>
 	

@@ -7,7 +7,7 @@
 <title></title>
 </head>
 <script type="text/javascript">
-alert( '당신의 가입된 이메일은 ${email} 입니다.');
+alert( '해당 정보의 이메일은 ${email} 입니다.');
 self.close();
 </script>
 </body>

@@ -17,7 +17,11 @@
 		SELECT * FROM USERDATA WHERE EMAIL = #{0}
 	</select>
 	
-	<select id = "lookUpAcc" resultType="java.lang.String">
+	<select id = "lookUpAcc" resultType="java.lang.Integer">
+		SELECT COUNT(*) EMAIL FROM USERDATA WHERE NAME = #{0} AND TELNO = #{1}
+	</select>
+	
+	<select id = "getEmail" resultType="java.lang.String">
 		SELECT EMAIL FROM USERDATA WHERE NAME = #{0} AND TELNO = #{1}
 	</select>
 	

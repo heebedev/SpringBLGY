@@ -10,7 +10,9 @@ public interface UserDataDao {
 	
 	public UserDataDto getUserData(String email);
 	
-	public String lookUpAcc(String name, String telno);
+	public int lookUpAcc(String name, String telno);
+	
+	public String getEmail(String name, String telno);
 	
 	public int lookUpPw(String email, String telno);
 

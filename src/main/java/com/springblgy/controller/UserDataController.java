@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.springblgy.dao.UserDataDao;
 
-import jdk.internal.module.IllegalAccessLogger.Mode;
 
 @Controller
 public class UserDataController {
@@ -34,7 +32,7 @@ public class UserDataController {
 			return("alert/userNotFound");
 		}else if (validation == 1) {
 			model.addAttribute("userData", userDataDao.getUserData(request.getParameter("email")));
-			return("userdata/userDatareg");
+			return("userdata/userDataReg");
 		}else {
 			return("alert/unknownError");
 		}
@@ -51,7 +49,7 @@ public class UserDataController {
 			return("alert/userNotFound");
 		}else if (validation == 1) {
 			model.addAttribute("userData", userDataDao.getUserData(request.getParameter("email")));
-			return("userdata/userDatareg");
+			return("userdata/userDataReg");
 		}else {
 			return("alert/unknownError");
 		}
@@ -68,16 +66,15 @@ public class UserDataController {
 		
 		UserDataDao userDataDao = sqlSession.getMapper(UserDataDao.class);
 		
-		try {
-			String email = userDataDao.lookUpAcc(request.getParameter("name"), request.getParameter("tel"));
-			if (email.length()>1) {
-				model.addAttribute("email", email);
-				return("alert/FoundAcc");
-				}else {
-					return ("alert/userNotFound");
-				}
-		}catch (Exception e) {
-			e.printStackTrace();
+		int validation =userDataDao.lookUpAcc(request.getParameter("name"), request.getParameter("tel"));
+		
+		if (validation ==1) {
+			String email = userDataDao.getEmail(request.getParameter("name"), request.getParameter("tel"));
+			model.addAttribute("email", email);
+			return("alert/FoundAcc");
+		}else if(validation==0) {
+			return ("alert/userNotFound");
+		}else {
 			return("alert/unknownError");
 		}
 		
