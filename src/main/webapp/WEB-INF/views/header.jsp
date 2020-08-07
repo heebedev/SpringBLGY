@@ -109,7 +109,7 @@
 	
 	<%}else{ %>
 	<ul>
-			<li><a class="home" href="Mainpage.bill?userseq=33"/>">홈</a></li>
+			<li><a class="home" href="Mainpage.bill?userseq=33"/>홈</a></li>
 			<ul style="float:right; list-style-type:none;">
 			<li><a href="./MyProductList.bill?userseq=33">쯩의 페이지</a></li>
 			<li><a href="logOut.bill">로그아웃</a></li>
@@ -119,7 +119,7 @@
 	<%} %>
 	<center>
 	<form action="SearchAfter.bill"> 
-	<h1 style= "text-align: center;"><a class="home" href="Mainpage.bill?userseq=33"><img src="logo.png" alt="logo" height="130" width="240"></a></h1>
+	<h1 style= "text-align: center;"><a class="home" href="Mainpage.bill?userseq=33"><img src="resources/logo.png" alt="logo" height="130" width="240"></a></h1>
 	<input type="text" placeholder ="상품명, 제품명, 지역명 입력" name="search">
 	<input type="date" placeholder = "대여 시작일" name="date1" id="date1" />
 	<input type="date" placeholder = "대여 만료일" name="date2" id="date2" />

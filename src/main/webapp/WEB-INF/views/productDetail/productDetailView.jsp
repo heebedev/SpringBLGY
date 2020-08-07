@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <jsp:useBean id="userdata" class="com.blgy.dto.UserDto" scope="session"></jsp:useBean> --%>
+<jsp:useBean id="userdata" class="com.springblgy.dto.UserDto" scope="session"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,97 +43,7 @@
 	}
 	
 </script>
-<style>
-	body{			
-		margin:auto;
-		max-width:1000px;
-		padding: auto;
-		
-	}
-	ul {
-		background-color: white;
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
-		overflow: hidden;
-	}
-	li { float: left; }
-	li a {
-		display: block;
-		background-color: white;
-		color: #000000;
-		padding: 8px;
-		text-decoration: none;
-		text-align: center;
-		font-weight: bold;
-	}
-	li a:hover:not(.current) {
-		background-color: silver;
-		color: purple;
-		text-decoration:underline;
-	}
-	li a.home{
-		background-color: black;
-		color: white;
-	}
-	
-	div.search{		
-	}
-	div.logo{
-	}
-	div.posts{
-	}
-	div.posts-items{
-	}
-	div.posts-items-title{
-	}
-	.searchbox {
-		width: 20%;
-		height:20px;
-		padding: 10px 20px; 
-		margin:5px 0;			
-		border: solid 2px black;
-		border-radius: 8px; 
-	}
-	div.banner {position: relative; width: 100%; height: 210px; top: 50px;  margin:0 auto; padding:0; overflow: hidden;}
-	div.banner ul {position: absolute; margin: 0px; padding:0; list-style: none; }
-	div.banner ul li {float: left; width: 1000px; height: 210px; margin:0; padding:0;}
-	
-	.search {
-	  text-align: center;
-	}
-	.dropbtn {
-	  font-size: 16px;
-	  cursor: pointer;
-	}
-	 
-	.dropdown {
-	  position: relative;
-	}
-	 
-	.dropdown-content {
-	  display: none;
-	  position: relative;
-	  top: -20px;
-      left: 450px;
-      width: 120px;
-	  overflow: auto;
-	  box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2);
-	  background-color: white;
-	}
-	 
-	.dropdown-content a {
-	  color: black;
-	  text-decoration: none;
-	  font-family : sans-serif;
-	  display: block;
-	}
-	 
-	.dropdown a:hover {background-color: #ddd;}
-	 
-	.show {display: block;}
-	
-</style>
+
 <style> /* produt Detail style */
 
 	.prdDetail {
@@ -141,7 +51,7 @@
 		border-radius: 8px;
 		margin: auto;
 		font-family: sans-serif;
-		width:860px;
+		width:1000px;
 	}
 	
 	.title {
@@ -252,7 +162,7 @@
 		border: solid 2px black;
 		border-radius: 8px;
 		font-family: sans-serif;
-		width:860px;
+		width:1000px;
 		
 	}
 	
@@ -349,6 +259,14 @@
 <body>
 	
 	<jsp:include page="../../views/header.jsp"/>
+	
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
 	
 	<div class="prdDetail">
 		<div class="title">

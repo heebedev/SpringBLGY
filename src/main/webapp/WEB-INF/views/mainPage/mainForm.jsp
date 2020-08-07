@@ -142,7 +142,7 @@
 					<%for(int i=0; i<=3; i++){ %>
 					<tr height="300">
 				<c:forEach items="${MainList}" var="MainDTO" begin="<%=4*i+1%>" end="<%=4*i+4%>" step="1"> <!-- var = 변수이름 -->
-						<td width="250" align="center" style="top-margin:50px;"><a style="text-decoration: none; color:gray; font-size:20px;"href ="View.bill?prdseq=${MainDTO.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img src="${MainDTO.image1}"  height="200" width="200" style="margin-left:auto; margin-right:auto; border:solid silver 1px; border-radius:4px;"><br>${MainDTO.title}</a><br>${MainDTO.price}원<br></td>										
+						<td width="250" align="center" style="top-margin:50px;"><a style="text-decoration: none; color:gray; font-size:20px;"href ="productDetail?prdseq=${MainDTO.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img src="${MainDTO.image1}"  height="200" width="200" style="margin-left:auto; margin-right:auto; border:solid silver 1px; border-radius:4px;"><br>${MainDTO.title}</a><br>${MainDTO.price}원<br></td>										
 				</c:forEach>
 					</tr>
 					<%}%>
