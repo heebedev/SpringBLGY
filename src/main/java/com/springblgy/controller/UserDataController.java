@@ -34,7 +34,7 @@ public class UserDataController {
 			return("alert/userNotFound");
 		}else if (validation == 1) {
 			model.addAttribute("userData", userDataDao.getUserData(request.getParameter("email")));
-			return("userdata/userDatareg");
+			return("userdata/userDataReg");
 		}else {
 			return("alert/unknownError");
 		}
@@ -51,7 +51,7 @@ public class UserDataController {
 			return("alert/userNotFound");
 		}else if (validation == 1) {
 			model.addAttribute("userData", userDataDao.getUserData(request.getParameter("email")));
-			return("userdata/userDatareg");
+			return("userdata/userDataReg");
 		}else {
 			return("alert/unknownError");
 		}
