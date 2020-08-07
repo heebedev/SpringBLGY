@@ -28,10 +28,10 @@
 				<td style="font-size:0.8em;">조회수 ${SearchDTO.view}</td>
 				<c:choose>
 				<c:when test="${SearchDTO.liked eq 1}">
-				<td><input type="button" value="❤️" onclick="window.open('Like.bill?prdseq=${SearchDTO.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>&liked2=${SearchDTO.liked}','팝업이름','width=1,height=1');" style="flat:right;border: none; background-color:white";></td>
+				<td><input type="button" value="❤️" onclick="window.open('like.bill?prdseq=${SearchDTO.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>&liked=${SearchDTO.liked}','팝업이름','width=1,height=1');" style="flat:right;border: none; background-color:white";></td>
 				</c:when>
 				<c:otherwise>
-				<td><input type="button" value="🖤️" onclick="window.open('Like.bill?prdseq=${SearchDTO.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>&liked2=${SearchDTO.liked}','팝업이름','width=1,height=1');" style="flat:right;border: none; background-color:white";></td>
+				<td><input type="button" value="🖤️" onclick="window.open('like.bill?prdseq=${SearchDTO.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>&liked=${SearchDTO.liked}','팝업이름','width=1,height=1');" style="flat:right;border: none; background-color:white";></td>
 				</c:otherwise>
 				</c:choose>
 			</tr>

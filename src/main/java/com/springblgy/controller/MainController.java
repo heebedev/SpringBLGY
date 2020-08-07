@@ -1,5 +1,6 @@
 package com.springblgy.controller;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.blgy.dao.LikeDAO;
 import com.springblgy.dao.MainDao;
 import com.springblgy.dto.MainDto;
 import com.springblgy.dto.SearchDto;
@@ -71,5 +73,26 @@ if(request.getParameter("userseq")==null || request.getParameter("userseq").equa
 		
 		return "mainPage/searchAfter";
 	}
+	
+//	@RequestMapping("/like.bill")
+//	public String like(HttpServletRequest request, Model model) {
+//		MainDao dao = sqlSession.getMapper(MainDao.class);
+//		int prdseq = Integer.parseInt(request.getParameter("prdseq"));
+//		int userseq = Integer.parseInt(request.getParameter("userseq"));
+//		int liked = Integer.parseInt(request.getParameter("liked"));
+//		String search = request.getParameter("search");
+//		if(userseq == 0 || userseq == -1) {
+//			return "likeForm.jsp";
+//		}else {
+//			if(liked == 1) {
+//		dao.likeInsert(userseq, prdseq, liked);
+//		}else {
+//			dao.
+//		}
+//		request.setAttribute("search", search); 
+//		request.setAttribute("userseq", userseq); 
+//		
+//		return "redirect:searchAfter";
+//	}
 
 }
