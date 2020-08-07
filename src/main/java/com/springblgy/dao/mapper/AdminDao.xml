@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.springblgy.dao.AdminDao">
+
+	<!-- //어드민 메인 회원가입 카운트   -->
+	<select id="AdminMainCountUser" resultType="String">    
+		SELECT COUNT(USERSEQ) AS TODAYUSER FROM USERDATA WHERE DATE(INSERTDATE)= DATE(CURDATE())
+	</select>
+	
+	<!-- //어드민 메인 상품등록 카운트   -->
+	<select id="AdminMainCountProduct" resultType="String">    
+		SELECT COUNT(PRDSEQ) AS TODAYPRODUCT FROM PRODUCT WHERE DATE(INSERTDATE)= DATE(CURDATE())
+	</select>
+	
+	<!-- //어드민 메인 빌린상품 카운트    --> 
+	<select id="AdminMainCountBorrow" resultType="String">    
+		SELECT COUNT(RENTSEQ) AS TODAYBORROW FROM BORROW WHERE DATE(INSERTDATE)= DATE(CURDATE())
+	</select>
+
+	<!-- 회원정보불러오기  -->
+	<select id="AdminUserList" resultType="com.springblgy.dto.AdminUserDto">
+		SELECT U.USERSEQ, U.NAME, U.NICKNAME, COUNT(P.UPLOADERSEQ) AS COUNTPRD FROM USERDATA AS U LEFT OUTER JOIN PRODUCT AS P ON U.USERSEQ = P.UPLOADERSEQ GROUP BY U.USERSEQ
+	</select>
+
+	<!-- //고객검색 결과 -->
+	<select id="AdminUserSearchList" parameterType="String" resultType="com.springblgy.dto.AdminUserDto">
+		SELECT U.USERSEQ, U.NAME, U.NICKNAME, COUNT(P.UPLOADERSEQ) AS COUNTPRD FROM USERDATA AS U LEFT OUTER JOIN PRODUCT AS P ON U.USERSEQ = P.UPLOADERSEQ WHERE ${param1} LIKE CONCAT('%',#{param2},'%') GROUP BY U.USERSEQ
+	</select>
+
+	<!-- //어드민 클릭한 회원정보 불러오기 -->
+	<select id="AdminViewUserInfo" resultType="com.springblgy.dto.AdminUserDto">
+		SELECT * FROM USERDATA WHERE USERSEQ = #{param1}
+	</select>
+	
+	<!-- //어드민 회원정보 수정  -->
+	<update id="AdminUserModify">
+		UPDATE USERDATA SET NAME = #{param1}, NICKNAME = #{param2}, PW=#{param3}, BIRTHDATE=#{param4}, EMAIL=#{param5}, TELNO=#{param6}, ADDRESS=#{param7}, ADDRESSDT=#{param8} WHERE USERSEQ = #{param9}
+	</update>
+
+	<!-- //회원정보 삭제  -->
+	<delete id="AdminUserDelete">
+		DELETE FROM USERDATA WHERE USERSEQ = #{param1}
+	</delete>
+	
+	
+	
+	<!-- //상품 불러오기  -->
+	<select id="AdminProductList" resultType="com.springblgy.dto.AdminPrdDto">
+		SELECT P.*, U.NAME, U.NICKNAME, U.EMAIL FROM PRODUCT AS P LEFT OUTER JOIN USERDATA AS U ON P.UPLOADERSEQ = U.USERSEQ
+	</select>
+	
+	<!-- //상품검색 결과  -->
+	<select id="AdminProductSearchList" parameterType="String" resultType="com.springblgy.dto.AdminPrdDto">
+		SELECT P.*, U.NAME, U.NICKNAME, U.EMAIL FROM PRODUCT AS P LEFT OUTER JOIN USERDATA AS U ON P.UPLOADERSEQ = U.USERSEQ WHERE ${param1} LIKE CONCAT('%',#{param2},'%')
+	</select>
+	
+	<!-- // 클릭한 상품 정보 불러오기  -->
+	<select id="AdminViewPrdInfo" resultType="com.springblgy.dto.AdminPrdDto">
+		SELECT * FROM PRODUCT WHERE PRDSEQ = #{param1}
+	</select>
+	
+	<!-- //상품 정보 수정 -->
+	<update id="AdminPrdModify">
+		UPDATE PRODUCT SET TITLE = #{param1}, PRICE = #{param2}, DATE1=#{param3}, DATE2=#{param4}, INFO=#{param5}, HASH=#{param6} WHERE PRDSEQ = #{param7}
+	</update>
+	
+	<!-- //상품 삭제  -->
+	<delete id="AdminProductDelete">
+		DELETE FROM PRODUCT WHERE PRDSEQ = #{param1}
+	</delete>
+	
+	
+
+	
+	
+
+
+
+</mapper>
+	
