@@ -23,11 +23,14 @@ public class MainController {
 	@RequestMapping("/mainForm.bill")
 	public String mainPage(HttpServletRequest request, Model model) {
 		int userseq = -1;
-		if(request.getParameter("userseq")==null) {
-		}else {
+if(request.getParameter("userseq")==null || request.getParameter("userseq").equals("0") || request.getParameter("userseq").equals("null")) {
+			
+		}
+		else {
 			userseq = Integer.parseInt(request.getParameter("userseq"));
 		}
 		request.setAttribute("userseq", userseq);
+		System.out.println(userseq);
 		MainDao dao = sqlSession.getMapper(MainDao.class);
 		ArrayList<MainDto> maindtios = dao.mainDao();
 		request.setAttribute("MainList", maindtios);
@@ -52,13 +55,14 @@ public class MainController {
 		
 		int userseq = -1;
 		
-		if(request.getParameter("userseq")==null) {
+		if(request.getParameter("userseq")==null || request.getParameter("userseq").equals("0") || request.getParameter("userseq").equals("null")) {
 			
 		}
 		else {
 			userseq = Integer.parseInt(request.getParameter("userseq"));
 		}
-		
+		request.setAttribute("userseq", userseq);
+		System.out.println(userseq);
 		if(select.equals("조회수순")) {
 			request.setAttribute("SearchList", dao.searchDao(keyword, date1, date2, userseq));
 		}else {
