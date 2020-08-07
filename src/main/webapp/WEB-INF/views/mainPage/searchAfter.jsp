@@ -15,7 +15,7 @@
 	<c:forEach items="${SearchList}" var="SearchDTO"> <!-- var = 변수이름 -->
 	<table style ="border: solid gray 1px; border-radius:8px; float: left; width: 500px; height:150px;">
 			<tr>				
-				<td rowspan="3" style="width: 200px;"><a href ="View.bill?prdseq=${SearchDTO.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img src="${SearchDTO.image1}" width=150 height=150 style="border:solid silver 2px; border-radius:4px;"></a></td>										
+				<td rowspan="3" style="width: 200px;"><a href ="productDetail?prdseq=${SearchDTO.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img src="${SearchDTO.image1}" width=150 height=150 style="border:solid silver 2px; border-radius:4px;"></a></td>										
 				<td colspan="2" style="height:40px; font-size:1.5em;">${SearchDTO.title}</td>		
 			</tr>
 			<tr>
