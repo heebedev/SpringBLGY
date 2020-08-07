@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="com.springblgy.dao.MainDao" >
+		<select id="mainDao" resultType="com.springblgy.dto.MainDto">
+			SELECT PRDSEQ, UPLOADERSEQ, IMAGE1, TITLE, PRICE FROM PRODUCT ORDER BY INSERTDATE
+		</select>
+		<select id="searchDao" resultType="com.springblgy.dto.SearchDto">
+			SELECT P.PRDSEQ, P.UPLOADERSEQ, P.TITLE, P.PRICE, P.DATE1, P.DATE2, P.IMAGE1, P.VIEW, I.LIKED FROM PRODUCT P LEFT OUTER JOIN (SELECT PRDSEQ AS INTPRDSEQ, LIKED FROM INTERACTION WHERE USERSEQ = #{param4}) I ON P.PRDSEQ = I.INTPRDSEQ WHERE (P.HASH LIKE CONCAT('%',#{param1},'%') OR P.TITLE LIKE CONCAT('%',#{param1},'%')) AND <![CDATA[DATE(DATE1) <= DATE(#{param2}) AND DATE(DATE2) >= DATE(#{param3})]]> ORDER BY VIEW DESC
+		</select>
+		<select id="searchDao2" resultType="com.springblgy.dto.SearchDto">
+			SELECT P.PRDSEQ, P.UPLOADERSEQ, P.TITLE, P.PRICE, P.DATE1, P.DATE2, P.IMAGE1, P.VIEW, I.LIKED FROM PRODUCT P LEFT OUTER JOIN (SELECT PRDSEQ AS INTPRDSEQ, LIKED FROM INTERACTION WHERE USERSEQ = #{param4}) I ON P.PRDSEQ = I.INTPRDSEQ WHERE (P.HASH LIKE CONCAT('%',#{param1},'%') OR P.TITLE LIKE CONCAT('%',#{param1},'%')) AND <![CDATA[DATE(DATE1) <= DATE(#{param2}) AND DATE(DATE2) >= DATE(#{param3})]]> ORDER BY P.INSERTDATE
+		</select>
+		
+	</mapper>
