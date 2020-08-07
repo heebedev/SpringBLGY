@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <%--  <jsp:useBean id="userdata" class="com.springblgy.dto.UserDto" scope="session"></jsp:useBean> --%>
+ <jsp:useBean id="userdata" class="com.springblgy.dto.UserDto" scope="session"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
