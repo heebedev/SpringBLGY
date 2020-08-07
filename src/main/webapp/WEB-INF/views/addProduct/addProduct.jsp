@@ -63,7 +63,7 @@ function check() {
 <center>
 <h1><a class="home" href="Mainpage.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img src="logo.png" alt="logo" height="130" width="240"></a></h1>
 	
-	<form action="actionAddedProduct.bill" method="post" enctype="multipart/form-data" name="addProduct" onsubmit="return check()" >
+	<form action="actionAddedProduct.bill" method="post" enctype="Multipart/form-data" name="addProduct" onsubmit="return check()" >
 		<table>
 			<tr>
 				<td style="text-align: right;">title :</td>
@@ -92,8 +92,7 @@ function check() {
 			</tr>
 			<tr>
 				<td style="text-align: right;">사진 :</td>
-				<td><input multiple="multiple" type="file" name="productImage">
-				</td>
+				<td><input type="file" name="productImage"></td>
 			</tr>
 			<tr>
 				<td></td>

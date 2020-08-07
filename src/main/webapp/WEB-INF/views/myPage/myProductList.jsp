@@ -147,7 +147,7 @@
 			<ul>
 				<li><a><input type="button" value="개인정보수정" onclick="goPopup();"></a></li>
 				<li><a href="./MyProductList.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>"><input type="button" value="등록 상품 목록" style="background-color: brown; color:white;"></a></li>
-				<li><a href="./MyborrowList.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>"><input type="button" value="대여 상품 목록"></a></li>
+				<li><a href="./MyBorrowList.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>"><input type="button" value="대여 상품 목록"></a></li>
 				<li><a href="./MyInterestList.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>"><input type="button" value="관심 상품 목록"></a></li>
 				<li><a><input type="button" value="쪽지함" onclick="textPopup();"></a></li>
 			</ul>
@@ -161,7 +161,7 @@
 		
 		<c:forEach items="${MyProductList}" var="dto">
 		<tr>
-			<td style="width: 200px; height:200px; padding-left:30px; "><a href="./productDetail.bill?prdseq=${dto.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img src="${dto.image1}" width= "200px" height="200px" style="border: solid gray 1px; border-radius:4px;"></a></td>
+			<td style="width: 200px; height:200px; padding-left:30px; "><a href="./productDetail.bill?prdseq=${dto.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img src="http://119.207.169.213:8080/blgy/${dto.image1}" width= "200px" height="200px" style="border: solid gray 1px; border-radius:4px;"></a></td>
 			<td style="width: 650px; height:200px; padding-right:50px;text-align:right; list-style-type:none;">${dto.title}<br><br>${dto.price}원</td>
 		</tr>
 		
