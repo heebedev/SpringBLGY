@@ -49,11 +49,13 @@ public class HomeController {
 //		return "mainPage/mainForm";
 		public String mainPage(HttpServletRequest request, Model model) {
 			int userseq = -1;
-			if(request.getParameter("userseq")==null) {
+			if(request.getParameter("userseq")==null || request.getParameter("userseq").equals("0") || request.getParameter("userseq").equals("null")) {
+				
 			}else {
 				userseq = Integer.parseInt(request.getParameter("userseq"));
 			}
 			request.setAttribute("userseq", userseq);
+			System.out.println(userseq);
 			MainDao dao = sqlSession.getMapper(MainDao.class);
 			ArrayList<MainDto> maindtios = dao.mainDao();
 			request.setAttribute("MainList", maindtios);

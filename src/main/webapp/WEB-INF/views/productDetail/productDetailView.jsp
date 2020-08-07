@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <jsp:useBean id="userdata" class="com.blgy.dto.UserDto" scope="session"></jsp:useBean> --%>
+<jsp:useBean id="userdata" class="com.springblgy.dto.UserDto" scope="session"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,65 +43,10 @@
 	}
 	
 </script>
-<style>
-	body{			
-		margin:auto;
-		max-width:1000px;
-		padding: auto;
-		
-	}
-	ul {
-		background-color: white;
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
-		overflow: hidden;
-	}
-	li { float: left; }
-	li a {
-		display: block;
-		background-color: white;
-		color: #000000;
-		padding: 8px;
-		text-decoration: none;
-		text-align: center;
-		font-weight: bold;
-	}
-	li a:hover:not(.current) {
-		background-color: silver;
-		color: purple;
-		text-decoration:underline;
-	}
-	li a.home{
-		background-color: black;
-		color: white;
-	}
-	
-	div.search{		
-	}
-	div.logo{
-	}
-	div.posts{
-	}
-	div.posts-items{
-	}
-	div.posts-items-title{
-	}
-	.searchbox {
-		width: 20%;
-		height:20px;
-		padding: 10px 20px; 
-		margin:5px 0;			
-		border: solid 2px black;
-		border-radius: 8px; 
-	}
-	div.banner {position: relative; width: 100%; height: 210px; top: 50px;  margin:0 auto; padding:0; overflow: hidden;}
-	div.banner ul {position: absolute; margin: 0px; padding:0; list-style: none; }
-	div.banner ul li {float: left; width: 1000px; height: 210px; margin:0; padding:0;}
-	
-	.search {
-	  text-align: center;
-	}
+
+
+<style> /* produt Detail style */
+
 	.dropbtn {
 	  font-size: 16px;
 	  cursor: pointer;
@@ -115,7 +60,7 @@
 	  display: none;
 	  position: relative;
 	  top: -20px;
-      left: 450px;
+      left: 500px;
       width: 120px;
 	  overflow: auto;
 	  box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2);
@@ -132,16 +77,13 @@
 	.dropdown a:hover {background-color: #ddd;}
 	 
 	.show {display: block;}
-	
-</style>
-<style> /* produt Detail style */
 
 	.prdDetail {
 		border: solid 2px black;
 		border-radius: 8px;
 		margin: auto;
 		font-family: sans-serif;
-		width:860px;
+		width:1000px;
 	}
 	
 	.title {
@@ -197,9 +139,7 @@
 	
 	.price {
 		flex: 1;
-		margin-top:5px;
-		
-		
+		margin-top:5px;	
 	}
 	
 	.etcInfo {
@@ -252,7 +192,7 @@
 		border: solid 2px black;
 		border-radius: 8px;
 		font-family: sans-serif;
-		width:860px;
+		width:1000px;
 		
 	}
 	
@@ -348,7 +288,11 @@
 </head>
 <body>
 	
+	
+
 	<jsp:include page="../../views/header.jsp"/>
+	
+	<br><br><br><br><br>
 	
 	<div class="prdDetail">
 		<div class="title">
@@ -357,7 +301,7 @@
 				  <button onclick="myFunction()" class="dropbtn" style=" height:30px; border-radius: 8px; background-color: rgba(231, 235, 238, 100);">${pdDetail.nickname}</button>
 				  <div id="myDropdown" class="dropdown-content">
 				    <a href="ProductList.bill?userseq=${pdDetail.uploaderseq}" onclick="window.open(this.href,'${pdDetail.nickname}의 정보','width=1000, height=1000'); return false;">사용자 정보</a>
-				    <a href="dm.bill?nickname=${pdDetail.nickname}" onclick="window.open(this.href,'${pdDetail.nickname}에게 쪽지 보내기','width=850, height=600'); return false;">쪽지 보내기</a>
+				    <a href="messageSend?nickname=${pdDetail.nickname}" onclick="window.open(this.href,'${pdDetail.nickname}에게 쪽지 보내기','width=850, height=600'); return false;">쪽지 보내기</a>
 				  </div>
 				</div>
 		</div>
