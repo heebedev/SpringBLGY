@@ -1,5 +1,7 @@
 package com.springblgy.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,8 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.springblgy.dao.ProductDao;
-
-
+import com.springblgy.dto.ProductCommentDto;
+import com.springblgy.dto.ProductDetailDto;
 
 @Controller
 public class ProductController {
@@ -27,9 +29,10 @@ public class ProductController {
 		System.out.println(userseq);
 		
 		ProductDao dao = sqlSession.getMapper(ProductDao.class); // 컨트롤러는  xml을 모르기때문에 IDao.java를 만들었다.
+		
 		model.addAttribute("pdDetail", dao.productDetailDao(prdseq, userseq));
 		model.addAttribute("cmtDetail", dao.productCMTDao(prdseq, userseq));
-		request.setAttribute("userseq", userseq);
+		model.addAttribute("userseq", userseq);
 
 		
 		return "productDetail/productDetailView";

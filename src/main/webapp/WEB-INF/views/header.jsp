@@ -98,7 +98,7 @@
 			<li><a class="home" href="mainForm.bill">홈</a></li>
 		<ul style="float:right; list-style-type:none;">
 			<li><a href="login.bill">로그인</a></li>
-			<li><a href="signUp.bill">회원가입</a></li>
+			<li><a href="createAcc.bill">회원가입</a></li>
 		</ul>
 	</ul>
 	
@@ -116,11 +116,11 @@
 	<center>
 
 	<form action="searchAfter.bill"> 
-	<h1 style= "text-align: center;"><a class="home" href="mainForm.bill?userseq=33"><img alt="logo" src="resources/logo.png" height="130" width="240"></a></h1>
+	<h1 style= "text-align: center;"><a class="home" href="mainForm.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img alt="logo" src="resources/logo.png" height="130" width="240"></a></h1>
 	<input type="text" placeholder ="상품명, 제품명, 지역명 입력" name="search">
 	<input type="date" placeholder = "대여 시작일" name="date1" id="date1" />
 	<input type="date" placeholder = "대여 만료일" name="date2" id="date2" />
-	<input type="hidden" name="userseq" value ="33">
+	<input type="hidden" name="userseq" value ="<jsp:getProperty property="userseq" name="userdata"/>">
 	<input type="submit" value="검색" style="width: 50px; height:40px; border-radius: 8px; color: white; background-color: black;">
 	<select name="selectsearch" id="selectsearch" style="width:100px;height:40px; alignment:right; font-size:10pt;">
 		<option value="최신순" selected =true>최신순</option>
@@ -141,6 +141,8 @@
 		</div>
 	</center>
 	
-
+<script>
+	console.log(<jsp:getProperty property="userseq" name="userdata"/>);
+</script>
 </body>
 </html>

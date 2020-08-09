@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.springblgy.dao.UserDataDao">
+
+	<select id = "checkUser" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM USERDATA WHERE EMAIL = #{0} AND PW = #{1}
+	</select>
+	
+	<select id = "pass_kakaoUser" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM USERDATA WHERE EMAIL = #{0}
+	</select>
+	
+	<select id = "getUserData" resultType="com.springblgy.dto.UserDataDto">
+		SELECT * FROM USERDATA WHERE EMAIL = #{0}
+	</select>
+	
+	<select id = "lookUpAcc" resultType="java.lang.Integer">
+		SELECT COUNT(*) EMAIL FROM USERDATA WHERE NAME = #{0} AND TELNO = #{1}
+	</select>
+	
+	<select id = "getEmail" resultType="java.lang.String">
+		SELECT EMAIL FROM USERDATA WHERE NAME = #{0} AND TELNO = #{1}
+	</select>
+	
+	<select id = "lookUpPw" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM USERDATA WHERE EMAIL = #{0} AND TELNO = #{1}
+	</select>
+	
+	<update id="changePw">
+		UPDATE USERDATA SET PW = #{0} WHERE EMAIL = #{1} 
+	</update>
+	
+	<select id = "checkEmail" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM USERDATA WHERE EMAIL = #{0}
+	</select>
+	
+	<select id = "checkNickname" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM USERDATA WHERE NICKNAME = #{0}
+	</select>
+	
+	<insert id="uploadUserData">
+		INSERT INTO USERDATA (EMAIL, NAME, NICKNAME, BIRTHDATE, TELNO, ADDRESS, ADDRESSDT, XAXIS, YAXIS, PW, INSERTDATE) VALUES (#{0}, #{1}, #{2}, #{3}, #{4}, #{5} ,#{6}, #{7}, #{8}, #{9}, NOW())
+	</insert>	
+	
+</mapper>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:useBean id="userdata" class="com.springblgy.dto.UserDto" scope="session"></jsp:useBean>
+<jsp:useBean id="userdata" class="com.springblgy.dto.UserDto" scope="session"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +44,39 @@
 	
 </script>
 
+
 <style> /* produt Detail style */
+
+	.dropbtn {
+	  font-size: 16px;
+	  cursor: pointer;
+	}
+	 
+	.dropdown {
+	  position: relative;
+	}
+	 
+	.dropdown-content {
+	  display: none;
+	  position: relative;
+	  top: -20px;
+      left: 500px;
+      width: 120px;
+	  overflow: auto;
+	  box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2);
+	  background-color: white;
+	}
+	 
+	.dropdown-content a {
+	  color: black;
+	  text-decoration: none;
+	  font-family : sans-serif;
+	  display: block;
+	}
+	 
+	.dropdown a:hover {background-color: #ddd;}
+	 
+	.show {display: block;}
 
 	.prdDetail {
 		border: solid 2px black;
@@ -107,9 +139,7 @@
 	
 	.price {
 		flex: 1;
-		margin-top:5px;
-		
-		
+		margin-top:5px;	
 	}
 	
 	.etcInfo {
@@ -258,15 +288,11 @@
 </head>
 <body>
 	
+	
+
 	<jsp:include page="../../views/header.jsp"/>
 	
-	
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	
+	<br><br><br><br><br>
 	
 	<div class="prdDetail">
 		<div class="title">
@@ -275,7 +301,7 @@
 				  <button onclick="myFunction()" class="dropbtn" style=" height:30px; border-radius: 8px; background-color: rgba(231, 235, 238, 100);">${pdDetail.nickname}</button>
 				  <div id="myDropdown" class="dropdown-content">
 				    <a href="ProductList.bill?userseq=${pdDetail.uploaderseq}" onclick="window.open(this.href,'${pdDetail.nickname}의 정보','width=1000, height=1000'); return false;">사용자 정보</a>
-				    <a href="dm.bill?nickname=${pdDetail.nickname}" onclick="window.open(this.href,'${pdDetail.nickname}에게 쪽지 보내기','width=850, height=600'); return false;">쪽지 보내기</a>
+				    <a href="messageSend?nickname=${pdDetail.nickname}" onclick="window.open(this.href,'${pdDetail.nickname}에게 쪽지 보내기','width=850, height=600'); return false;">쪽지 보내기</a>
 				  </div>
 				</div>
 		</div>
