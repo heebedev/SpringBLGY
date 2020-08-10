@@ -20,13 +20,21 @@
 <body>
 
 	<section>
-	
+	<h2>&nbsp;&nbsp;&nbsp;&nbsp;등록 상품 목록</h2>
 		<table>
-		
 			<c:forEach items="${MyProductList}" var="dto">
 				<tr>
-					<td style="width: 200px; height:200px; padding-left:30px; "><a href="./productDetail.bill?prdseq=${dto.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img src="http://119.207.169.213:8080/blgy/${dto.image1}" width= "200px" height="200px" style="border: solid gray 1px; border-radius:4px;"></a></td>
-					<td style="width: 650px; height:200px; padding-right:50px;text-align:right; list-style-type:none;">${dto.title}<br><br>${dto.price}원</td>
+					<td style="width: 200px; height:200px; padding-left:30px;">
+						<a href="./productDetail.bill?prdseq=${dto.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>">
+						<img src="http://119.207.169.213:8080/blgy/${dto.image1}" width= "170px" height="170px"></a>
+					</td>
+					<td style="width: 650px; height:200px; padding-right:50px;text-align:left; list-style-type:none;">
+						<font size="4.5"><b>${dto.title}</b></font><br><br> 
+						${dto.price} 원/day<br><br>
+						${dto.date1 } ~ ${dto.date2 }<br><br>
+						${dto.hash }
+					</td>
+					
 				</tr>
 			</c:forEach>
 				

@@ -11,12 +11,6 @@
 	
 	<style>
 		
-		/* 섹션나눔  */
-		section {
-			border: 1px solid gray;
-			margin-left: 160px;
-		}
-		
 		/* 네비게이션 메뉴  */
 		nav {
 			width: 150px;
@@ -35,7 +29,6 @@
 			display: block;
 			background-color: black;
 			color: #ffffff;
-			padding: 8px;
 			text-align: center;
 			text-decoration: none;
 			font-weight: bold;
@@ -52,6 +45,14 @@
 			color: white;
 			text-decoration:underline;
 		}
+		
+		/* 섹션나눔  */
+		section {
+			border: 1px solid gray;
+			margin-left: 160px;
+		}
+		
+		
 		
 	</style>
 
@@ -82,7 +83,6 @@
 		</ul>
 	</nav>
 	
-		
 		
 </body>
 
