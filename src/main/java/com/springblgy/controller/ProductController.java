@@ -40,7 +40,6 @@ public class ProductController {
 	public void commentAdd(HttpServletRequest request, Model model) {
 		
 		int prdseq = Integer.parseInt(request.getParameter("prdseq"));
-		System.out.println(prdseq);
 		int userseq = Integer.parseInt(request.getParameter("userseq"));
 		String comment = request.getParameter("cmtTxt");
 		
