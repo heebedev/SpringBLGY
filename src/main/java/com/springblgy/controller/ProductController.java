@@ -25,9 +25,6 @@ public class ProductController {
 		int prdseq = Integer.parseInt(request.getParameter("prdseq"));
 		int userseq = Integer.parseInt(request.getParameter("userseq"));
 		
-		System.out.println(prdseq);
-		System.out.println(userseq);
-		
 		ProductDao dao = sqlSession.getMapper(ProductDao.class); // 컨트롤러는  xml을 모르기때문에 IDao.java를 만들었다.
 		dao.updateViewDao(prdseq);
 		
