@@ -11,7 +11,7 @@
 <jsp:setProperty property="xaxis" name="userdata" value="${userData.xaxis}"/>
 <jsp:setProperty property="yaxis" name="userdata" value="${userData.yaxis}"/>
 <script>
-window.location.href = 'mainForm.bill?userseq='+${userData.userseq};
+window.location.href = 'mainForm.bill';
 </script>
 </head>
 <body>
