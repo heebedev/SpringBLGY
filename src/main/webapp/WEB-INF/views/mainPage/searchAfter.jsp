@@ -18,13 +18,16 @@
 
 	<br><br><br><br>
 	
-	<c:forEach items="${SearchList}" var="SearchDTO"> <!-- var = 변수이름 -->
+	<c:forEach items="${SearchList}" var="SearchDTO"> <!— var = 변수이름 —>
 	<div id="table${SearchDTO.prdseq}">
 	<table style ="border: solid gray 1px; border-radius:8px; float: left; width: 500px; height:150px;">
 			<tr>
 				<td rowspan="3" style="width: 200px;"><a href ="productDetail?prdseq=${SearchDTO.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img src="http://119.207.169.213:8080/blgy/${SearchDTO.image1}" width=150 height=150 style="border:solid silver 2px; border-radius:4px;"></a></td>										
 
-				<td colspan="2" style="height:40px; font-size:1.5em;">${SearchDTO.title}</td>		
+				<td colspan="2" style="height:40px; font-size:1.5em;">${SearchDTO.title}</td>
+				<%if(userdata.getUserseq()>0){ %>		
+				<td  style="height:40px;">${SearchDTO.distance} km</td>	
+				<%} %>	
 			</tr>
 			<tr>
 				<td style="width: 70px; font-size:0.8em;">대여가능일  </td>
@@ -84,5 +87,3 @@
 	</script>
 </body>
 </html>
-
-

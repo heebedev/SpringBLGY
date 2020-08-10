@@ -42,6 +42,37 @@
 		
 	}
 	
+	function like(prdseq, userseq, likeBtn) {		
+		console.log(prdseq);
+		console.log(userseq);
+		
+		if(userseq == "" || userseq == 0 || userseq == null){
+			
+			alert("로그인후 이용 가능합니다.");
+		}else{
+		$.ajax({
+			url : "like.bill",
+			type : "GET",
+			dataType : "text", 
+			data : {
+				prdseq : prdseq,
+				userseq : userseq
+			},
+			success:function (args) {
+			}, 
+			error:function (e) {
+				console.log(e);
+			}
+		});
+		
+		if (likeBtn.value == "❤️") {
+			$("#likeBtn" + prdseq).val("🖤");
+		} else {
+			$("#likeBtn" + prdseq).val("❤️");
+			}
+		}
+	}
+	
 </script>
 
 
@@ -161,21 +192,25 @@
 		font-size: 18px;
 		border-right: solid 1px silver;
 		font-weight: bold;
+		padding: 10px 20px; 
 
 	}
 	
 	.endDatePick {
 		font-size: 18px;
 		font-weight: bold;
+		padding: 10px 20px; 
 
 	}
 	
 	.sdatekeyin {
 		font-size: 15px;
 		border-right: solid 1px silver;
+		
 	}
 	.edatekeyin {
 		font-size: 15px;
+		
 	}
 	
 	.brwBtn {
@@ -315,7 +350,15 @@
 			<div class="borrow">
 				<div class="brwHead">
 					<div class="price">${pdDetail.price } 원 / 일</div>
-					<div class="etcInfo">${pdDetail.liked} / ${pdDetail.view }</div>
+					<div class="etcInfo">
+					<c:choose>
+			<c:when test="${pdDetail.liked eq 1}">
+				<td><input  type="button" id="likeBtn${pdDetail.prdseq}" value="❤️" onclick="like(${pdDetail.prdseq}, <jsp:getProperty property="userseq" name="userdata"/>, this)" style="flat:right;border: none; background-color:white"></td>
+				</c:when>
+				<c:otherwise>
+				<td><input  type="button" id="likeBtn${pdDetail.prdseq}" value="🖤️" onclick="like(${pdDetail.prdseq}, <jsp:getProperty property="userseq" name="userdata"/>, this)" style="flat:right;border: none; background-color:white"></td>
+				</c:otherwise>
+				</c:choose> / ${pdDetail.view }</div>
 				</div>
 				<form name="brwform" action="" method="post">
 				<div class="date">
