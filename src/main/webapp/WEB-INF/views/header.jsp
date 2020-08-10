@@ -141,6 +141,8 @@
 		</div>
 	</center>
 	
-
+<script>
+	console.log(<jsp:getProperty property="userseq" name="userdata"/>);
+</script>
 </body>
 </html>

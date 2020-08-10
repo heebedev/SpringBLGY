@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.springblgy.dao.MyPageDao">
+
+	<!-- 등록 상품 목록  -->
+	<select id="MyProductList" resultType="com.springblgy.dto.ProductDetailDto">
+		SELECT PRDSEQ, UPLOADERSEQ, TITLE, PRICE, DATE1, DATE2, INFO, IMAGE1, HASH FROM PRODUCT WHERE UPLOADERSEQ = #{param1}
+	</select>
+
+	<!-- 대여 상품 목록 -->
+	<select id="MyBorrowList" resultType="com.springblgy.dto.BorrowDto">
+		SELECT P.PRDSEQ, P.TITLE, P.PRICE, P.IMAGE1, B.DATE1, B.DATE2 FROM PRODUCT AS P LEFT JOIN BORROW AS B ON P.PRDSEQ = B.PRDSEQ WHERE B.USERSEQ = #{param1}
+	</select>
+	
+	<!-- 관심 상품 목록 -->
+	<select id="MyLikeList" resultType="com.springblgy.dto.LikeDto">
+		SELECT P.PRDSEQ, P.TITLE, P.PRICE, P.IMAGE1, P.DATE1, P.DATE2, P.VIEW FROM PRODUCT AS P LEFT JOIN INTERACTION AS I ON P.PRDSEQ = I.PRDSEQ WHERE I.USERSEQ = #{param1} ORDER BY LASTACTION DESC
+	</select>
+	
+
+
+
+</mapper>
+	
