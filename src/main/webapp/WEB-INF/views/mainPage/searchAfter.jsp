@@ -35,14 +35,11 @@
 				<td >${SearchDTO.price}원</td>
 				<td style="font-size:0.8em;">조회수 ${SearchDTO.view}</td>
 				<c:choose>
-				<c:when test="${SearchDTO.liked eq 1}">
-			
-<%-- 				<td><input type="button"  value="❤️" onclick="like(${SearchDTO.prdseq}, 1)" style="flat:right;border: none; background-color:white;"></td> --%>
-				<td><input  type="button" value="❤️" onclick="location.href='like.bill?liked=1&prdseq=${SearchDTO.prdseq}&search=${search}&date1=${date1}&date2=${date2}&userseq=<jsp:getProperty property="userseq" name="userdata"/>&select=${select}'" style="flat:right;border: none; background-color:white"></td>
+			<c:when test="${SearchDTO.liked eq 1}">
+				<td><input  type="button" id="likeBtn${SearchDTO.prdseq}" value="❤️" onclick="like(${SearchDTO.prdseq}, <jsp:getProperty property="userseq" name="userdata"/>, this)" style="flat:right;border: none; background-color:white"></td>
 				</c:when>
 				<c:otherwise>
-<%-- 				<td><input type="button"  value="🖤️" onclick="like(${SearchDTO.prdseq}, 0)" style="flat:right;border: none; background-color:white;"></td> --%>
-				<td><input  type="button" value="🖤️" onclick="location.href='like.bill?liked=0&prdseq=${SearchDTO.prdseq}&search=${search}&date1=${date1}&date2=${date2}&userseq=<jsp:getProperty property="userseq" name="userdata"/>&select=${select}'" style="flat:right;border: none; background-color:white"></td>
+				<td><input  type="button" id="likeBtn${SearchDTO.prdseq}" value="🖤️" onclick="like(${SearchDTO.prdseq}, <jsp:getProperty property="userseq" name="userdata"/>, this)" style="flat:right;border: none; background-color:white"></td>
 				</c:otherwise>
 				</c:choose>
 			</tr>
@@ -50,10 +47,41 @@
 	</div>
 	</c:forEach>
 	<br><br><br>
-<!-- 	<script> --> 
-<!--	alert("로그인후 찜해주시기 바랍니다."); -->
-<!-- 	</script> --> 
 
+	<script>
+		
+	function like(prdseq, userseq, likeBtn) {		
+		console.log(prdseq);
+		console.log(userseq);
+		
+		if(userseq == "" || userseq == 0 || userseq == null){
+			
+			alert("로그인후 이용 가능합니다.");
+		}else{
+		$.ajax({
+			url : "like.bill",
+			type : "GET",
+			dataType : "text", 
+			data : {
+				prdseq : prdseq,
+				userseq : userseq
+			},
+			success:function (args) {
+			}, 
+			error:function (e) {
+				console.log(e);
+			}
+		});
+		
+		if (likeBtn.value == "❤️") {
+			$("#likeBtn" + prdseq).val("🖤");
+		} else {
+			$("#likeBtn" + prdseq).val("❤️");
+			}ß
+		}
+	}
+	
+	</script>
 </body>
 </html>
 
