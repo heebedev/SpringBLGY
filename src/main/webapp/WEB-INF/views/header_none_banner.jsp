@@ -84,13 +84,8 @@
 		border: solid 2px black;
 		border-radius: 8px; 
 	}
-	/* div.banner {position: relative; width: 100%; height: 210px; top: 50px;  margin:0 auto; padding:0; overflow: hidden;}
-	div.banner ul {position: absolute; margin: 0px; padding:0; list-style: none; }
-	div.banner ul li {float: left; width: 1000px; height: 210px; margin:0; padding:0;} */
 	
-	
-	
-	
+		
 </style>
 </head>
 <body>
@@ -131,17 +126,8 @@
 
 	</center> 
 	</form>
-<%-- 	<center>
-	
-	<!-- 	<div class="banner" >
-			<ul>
-				<li><img src="https://media.bunjang.co.kr/images/nocrop/471722706.jpg" width="100%" height="210px"></li>
-				<li><img src="https://media.bunjang.co.kr/images/nocrop/465890574.jpg" width="100%" height="210px"></li>
-				<li><img src="https://media.bunjang.co.kr/images/nocrop/415809298.jpg" width="100%" height="210px"></li>
-				<li><img src="https://media.bunjang.co.kr/images/nocrop/472834031.jpg" width="100%" height="210px"></li>
-			</ul>
-		</div> -->
-	</center> --%>
+	<br><br>
+
 	
 
 </body>
