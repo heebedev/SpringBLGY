@@ -23,6 +23,7 @@ public class ProductDetailDto {
 	String yaxis;
 	
 	int view;
+	int liked;
 	
 	int uploaderCheck;
 	
@@ -33,7 +34,7 @@ public class ProductDetailDto {
 	
 	public ProductDetailDto(int prdseq, int uploaderseq, String nickname, String title, String price, String info, String insertdate, String date1,
 			String date2, String image1, String hash,
-			String xaxis, String yaxis, int view, int uploaderCheck) {
+			String xaxis, String yaxis, int view, int liked, int uploaderCheck) {
 		super();
 		this.prdseq = prdseq;
 		this.uploaderseq = uploaderseq;
@@ -49,6 +50,7 @@ public class ProductDetailDto {
 		this.xaxis = xaxis;
 		this.yaxis = yaxis;
 		this.view = view;
+		this.liked = liked;
 		this.uploaderCheck = uploaderCheck;
 	}
 	
@@ -149,5 +151,17 @@ public class ProductDetailDto {
 	public void setUploaderCheck(int uploaderCheck) {
 		this.uploaderCheck = uploaderCheck;
 	}
+
+
+	public int getLiked() {
+		return liked;
+	}
+
+
+	public void setLiked(int liked) {
+		this.liked = liked;
+	}
+	
+	
 
 }

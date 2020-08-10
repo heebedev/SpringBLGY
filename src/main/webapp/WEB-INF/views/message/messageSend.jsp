@@ -51,7 +51,7 @@
 			        <input type="text" class="nick_receive" name="nickname" value=<%= request.getParameter("nickname") %> readonly="readonly" style="width:250px;">
 			      </c:when>
 			      <c:otherwise>
-			         <input type="text" class="nick_receive" name="nickname" style="width:250px;">
+			         <input type="text" class="nick_receive" name="nickname" placeholder ="닉네임을 입력해주세요." style="width:250px;">
 			      </c:otherwise>
 			    </c:choose>
 			</div>

@@ -157,14 +157,14 @@
 		
 	}
 	
-	.startDate {
+	.startDatePick {
 		font-size: 18px;
 		border-right: solid 1px silver;
 		font-weight: bold;
 
 	}
 	
-	.endDate {
+	.endDatePick {
 		font-size: 18px;
 		font-weight: bold;
 
@@ -258,7 +258,7 @@
 		pedding: 20px;
 		font-size: 20px;
 		font-family: sans-serif;
-		width:860px;
+		width:1000px;
 		
 	}
 	
@@ -315,14 +315,14 @@
 			<div class="borrow">
 				<div class="brwHead">
 					<div class="price">${pdDetail.price } 원 / 일</div>
-					<div class="etcInfo">${like} / ${pdDetail.view }</div>
+					<div class="etcInfo">${pdDetail.liked} / ${pdDetail.view }</div>
 				</div>
 				<form name="brwform" action="" method="post">
 				<div class="date">
-					<div class="startDate">시작</div>
+					<div class="startDatePick">시작</div>
 					<div class="sdatekeyin"><input type="date" placeholder="yyyy-mm-dd" name="sdate">
 					</div>
-					<div class="endDate">끝</div>
+					<div class="endDatePick">끝</div>
 					<div class="edatekeyin"><input type="date" placeholder="yyyy-mm-dd" name="edate">
 					</div>
 				</div>
