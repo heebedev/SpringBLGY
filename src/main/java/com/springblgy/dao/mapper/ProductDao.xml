@@ -14,5 +14,9 @@
 	<select id="productCMTDao" resultType="com.springblgy.dto.ProductCommentDto">
 		SELECT C.CMTSEQ, C.USERSEQ, U.NICKNAME, C.COMMENT, C.INSERTDATE, CASE WHEN C.USERSEQ = #{param2} THEN 1 ELSE 0 END AS USERCHECK FROM USERDATA U, COMMENT C WHERE C.USERSEQ = U.USERSEQ AND C.READFT = 1 AND PRDSEQ = #{param1};
 	</select>
+	
+	<update id="updateViewDao">
+		UPDATE PRODUCT SET VIEW = VIEW + 1 WHERE PRDSEQ = #{param1}
+	</update>
 
 </mapper>
