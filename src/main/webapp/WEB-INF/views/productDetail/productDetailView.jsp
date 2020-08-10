@@ -34,17 +34,35 @@
 	}
 	
 	function cmtAdd() { 
-		var gsWin = window.open("about:blank", "COMMENT");
-		var cmtfrm = document.cmtform;
-		cmtfrm.action = "commentAdd.bill";
-		cmtfrm.target = "COMMENT";
-		cmtfrm.submit();
+		
+		var form = document.cmtform;
+	
+		var prdseq = form.prdseq.value;
+		var userseq = form.userseq.value;
+		var cmtTxt = form.cmtTxt.value;
+		
+		if(userseq == "" || userseq == 0 || userseq == null){
+			alert("로그인후 이용 가능합니다.");
+		} else {
+			$.ajax({
+				url : "commentAdd",
+				type : "GET",
+				dataType : "text", 
+				data : {
+					prdseq : prdseq,
+					userseq : userseq,
+					cmtTxt : cmtTxt
+				},
+				success:function (args) {
+				}, 
+				error:function (e) {
+					console.log(e);
+				}
+		});
 		
 	}
 	
 	function like(prdseq, userseq, likeBtn) {		
-		console.log(prdseq);
-		console.log(userseq);
 		
 		if(userseq == "" || userseq == 0 || userseq == null){
 			
@@ -72,6 +90,7 @@
 			}
 		}
 	}
+	
 	
 </script>
 
@@ -398,7 +417,7 @@
 			<div class="commentAdd">
 				<form name="cmtform" action="" method="post" >
 					<INPUT type="hidden" name="prdseq" value="<%=request.getParameter("prdseq")%>">
-					<INPUT type="hidden" name="myseq" value=<jsp:getProperty property="userseq" name="userdata"/>> <!-- !!!!!!!!!!!!!!!!!!10 대신에 나의 userseq !!!!!!!!!! -->
+					<INPUT type="hidden" name="userseq" value=<jsp:getProperty property="userseq" name="userdata"/>> <!-- !!!!!!!!!!!!!!!!!!10 대신에 나의 userseq !!!!!!!!!! -->
 					<div class="cmtAdd" style="margin-top:10px; margin-bottom:10px;">
 						<input type="text" class="cmtTxt" name="cmtTxt" style="border-radius: 8px; border-top: solid 1px silver; vertical-align: middle;">
 						<input type="button" value="등록" onclick="cmtAdd();" style="width: 60px; height:30px; border:solid 1px silver; border-radius: 8px; margin-left:20px; background-color: white;">

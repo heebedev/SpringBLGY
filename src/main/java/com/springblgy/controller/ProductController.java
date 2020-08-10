@@ -38,5 +38,18 @@ public class ProductController {
 		
 		return "productDetail/productDetailView";
 	}
+	
+	@RequestMapping("/commentAdd")
+	public void commentAdd(HttpServletRequest request, Model model) {
+		
+		int prdseq = Integer.parseInt(request.getParameter("prdseq"));
+		System.out.println(prdseq);
+		int userseq = Integer.parseInt(request.getParameter("userseq"));
+		String comment = request.getParameter("cmtTxt");
+		
+		ProductDao dao = sqlSession.getMapper(ProductDao.class);
+		dao.addComment(prdseq, userseq, comment);
+		
+	}
 
 }

@@ -18,5 +18,9 @@
 	<update id="updateViewDao">
 		UPDATE PRODUCT SET VIEW = VIEW + 1 WHERE PRDSEQ = #{param1}
 	</update>
+	
+	<insert id="commentAdd">
+		INSERT COMMENT (PRDSEQ, USERSEQ, COMMENT, INSERTDATE) VALUES (#{param1}, #{param2}, #{param3}, NOW())
+	</insert>
 
 </mapper>

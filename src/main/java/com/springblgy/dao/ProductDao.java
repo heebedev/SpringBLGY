@@ -13,6 +13,8 @@ public interface ProductDao {
 	
 	public ArrayList<ProductCommentDto> productCMTDao(int prdseq, int userseq);
 	public void updateViewDao(int prdseq);
+	
+	public void addComment(int prdseq, int userseq, String comment);
 		
 
 }
