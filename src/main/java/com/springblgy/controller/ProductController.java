@@ -29,6 +29,7 @@ public class ProductController {
 		System.out.println(userseq);
 		
 		ProductDao dao = sqlSession.getMapper(ProductDao.class); // 컨트롤러는  xml을 모르기때문에 IDao.java를 만들었다.
+		dao.updateViewDao(prdseq);
 		
 		model.addAttribute("pdDetail", dao.productDetailDao(prdseq, userseq));
 		model.addAttribute("cmtDetail", dao.productCMTDao(prdseq, userseq));

@@ -12,6 +12,7 @@ public interface ProductDao {
 	public ProductDetailDto productDetailDao(int prdseq, int userseq);
 	
 	public ArrayList<ProductCommentDto> productCMTDao(int prdseq, int userseq);
+	public void updateViewDao(int prdseq);
 		
 
 }
