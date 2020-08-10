@@ -21,6 +21,12 @@ public class UserDataController {
 		return "userdata/Login";
 	}
 	
+	@RequestMapping("/logOut.bill")
+	private String logOut() {
+		return "userdata/LogOut";
+	}
+	
+	
 	@RequestMapping("/checkUser.bill")
 	private String checkUser(HttpServletRequest request, Model model) {
 		
@@ -117,12 +123,12 @@ public class UserDataController {
 	
 	@RequestMapping ("/createAcc.bill")
 	private String createAcc() {
-		return"userdata/CreateAcc1";
+		return "userdata/CreateAcc1";
 	}
 	
 	@RequestMapping ("/createAcc2.bill")
 	private String createAcc2() {
-		return"userdata/CreateAcc2";
+		return "userdata/CreateAcc2";
 	}
 	
 	@RequestMapping ("/checkEmail.bill")
@@ -153,7 +159,6 @@ public class UserDataController {
 		userDataDao.uploadUserData(request.getParameter("email"), request.getParameter("name"), request.getParameter("nickname"), request.getParameter("birthdate"), request.getParameter("telno"), request.getParameter("address"), request.getParameter("addressdt"), request.getParameter("xaxis"), request.getParameter("yaxis"), request.getParameter("pw"));
 		return"userdata/Login";
 	}
-	
 	
 	
 }

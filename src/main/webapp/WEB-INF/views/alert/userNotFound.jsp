@@ -9,7 +9,7 @@
 <body>
 <script>
 window.location.href = './login.bill';
-alert("해당 정보의 이메일이 존재하지 않습니다.");
+alert("존재하지 않는 정보 조합입니다.");
 </script>
 </body>
 </html>
