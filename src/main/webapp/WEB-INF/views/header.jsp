@@ -66,40 +66,51 @@
 		background-color: black;
 		color: white;
 	}
-		}
-		div.wrapper{
-			display:table;
-		}
-		div.box{
-			display:table-cell;
-			vertical-align:middle;
-		}
+	
+	div.wrapper{
+		display:table;
+	}
+	div.box{
+		display:table-cell;
+		vertical-align:middle;
+	}
 		
 		
-		input[type="text"] {
-			width: 300px;
-			height: 25px;
-			padding: 10px 20px; 
-			margin:5px 0;			
-			border: solid 2px black;
-			border-radius: 8px; 
-		}
-		input[type="date"] {
-			width: 175px;
-			height: 25px;
-			padding: 10px 20px; 
-			margin:5px 0;			
-			border: solid 2px black;
-			border-radius: 8px; 
-		}
-		select {
-			width: 100px;
-			height: 12px;
-			padding: 10px 20px; 
-			margin:5px 0;			
-			border: solid 2px black;
-			border-radius: 8px; 
-		}
+	.search {
+		width: 20%;
+		height: 25px;
+		padding: 10px 20px; 
+		margin:5px 0;			
+		border: solid 2px black;
+		border-radius: 8px; 
+	}
+	.date1 {
+		width: 20%;
+		height: 25px;
+		padding: 10px 20px; 
+		margin:5px 0;			
+		border: solid 2px black;
+		border-radius: 8px;
+	 
+	}
+	
+	.date2 {
+		width: 20%;
+		height: 25px;
+		padding: 10px 20px; 
+		margin:5px 0;			
+		border: solid 2px black;
+		border-radius: 8px; 
+	}
+	
+	select {
+		width: 100px;
+		height: 12px;
+		padding: 10px 20px; 
+		margin:5px 0;			
+		border: solid 2px black;
+		border-radius: 8px; 
+	}
 	
 	.searchbox {
 		width: 200px;
@@ -142,17 +153,17 @@
 
 	<form action="searchAfter.bill"> 
 	<h1 style= "text-align: center;"><a class="home" href="mainForm.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img alt="logo" src="resources/logo.png" height="130" width="240"></a></h1>
-	<input type="text" placeholder ="상품명, 제품명, 지역명 입력" name="search">
-	<input type="date" placeholder = "대여 시작일" name="date1" id="date1" />
-	<input type="date" placeholder = "대여 만료일" name="date2" id="date2" />
+	<input type="text" class="search" placeholder ="상품명, 제품명, 지역명 입력" name="search">
+	<input type="date" class="date1" placeholder = "대여 시작일" name="date1" id="date1" />
+	<input type="date" class="date2" placeholder = "대여 만료일" name="date2" id="date2" />
 	<input type="hidden" name="userseq" value ="<jsp:getProperty property="userseq" name="userdata"/>">
 	<input type="hidden" name="xaxis" value ="<jsp:getProperty property="xaxis" name="userdata"/>">
 	<input type="hidden" name="yaxis" value ="<jsp:getProperty property="yaxis" name="userdata"/>">
 	<select name="selectsearch" id="selectsearch" style="width:125px;height:40px; alignment:right; font-size:10pt;">
 		<option value="P.INSERTDATE" selected =true>최신순</option>
 		<option value="P.INSERTDATE DESC" >최신역순</option>
-		<option value="P.VIEW" >조회수순</option>
-		<option value="P.VIEW DESC" >조회수역순</option>
+		<option value="P.VIEW" >조회역순</option>
+		<option value="P.VIEW DESC" >조회수순</option>
 		<option value="P.TITLE" >이름순</option>
 		<option value="P.TITLE DESC" >이름 역순</option>
 		<% if(userseq > 0){ %>

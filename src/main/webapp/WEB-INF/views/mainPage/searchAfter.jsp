@@ -26,7 +26,7 @@
 
 				<td colspan="2" style="height:40px; font-size:1.5em;">${SearchDTO.title}</td>
 				<%if(userdata.getUserseq()>0){ %>		
-				<td  style="height:40px;">${SearchDTO.distance}</td>	
+				<td  style="height:40px;">${SearchDTO.distance} km</td>	
 				<%} %>	
 			</tr>
 			<tr>

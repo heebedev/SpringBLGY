@@ -13,12 +13,6 @@
 		<select id="likeInsert" resultType="int" >
 			SELECT LIKED(#{param1}, #{param2})
 		</select>
-<<<<<<< HEAD
-		<select id="likeInsert" resultType="int" >
-			SELECT LIKED(#{param1}, #{param2})
-		</select>
-=======
 
->>>>>>> e65ccb553e822e4c8652f2643a42d7e9d77b86aa
 		
 	</mapper>
