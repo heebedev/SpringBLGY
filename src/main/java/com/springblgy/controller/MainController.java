@@ -19,6 +19,7 @@ public class MainController {
 	@Autowired
 	private SqlSession sqlSession; // 해줘야함***
 	
+	
 	@RequestMapping("/mainForm.bill")
 	public String mainPage(HttpServletRequest request, Model model) {
 		int userseq = -1;
@@ -82,35 +83,20 @@ public class MainController {
 	}
 	
 	@RequestMapping("/like.bill")
-	public String like(HttpServletRequest request, Model model) {
+	public void like(HttpServletRequest request, Model model) {
 		MainDao dao = sqlSession.getMapper(MainDao.class);
+		
 		int prdseq = Integer.parseInt(request.getParameter("prdseq"));
 		int userseq = Integer.parseInt(request.getParameter("userseq"));
-		int liked = Integer.parseInt(request.getParameter("liked"));
-		String keyword = request.getParameter("search");
-		String date1 = request.getParameter("date1");
-		String date2 = request.getParameter("date2");
-		String select = request.getParameter("select");
-		model.addAttribute("search",keyword);
-		model.addAttribute("date1", date1);
-		model.addAttribute("date2", date2);
-		model.addAttribute("selectsearch", select);
-		model.addAttribute("userseq", userseq);
-		
-		System.out.println(keyword);
+				
 		System.out.println(userseq);
-		System.out.println(liked);
 		System.out.println(prdseq);
-		System.out.println(select);
+		
 		if(userseq == 0 || userseq == -1) {
 			
 		}else {
-			if(liked == 1) {
-				dao.likeDelete(userseq, prdseq, liked);
-			}else {
-				dao.likeInsert(userseq, prdseq, liked);
-			}
+			dao.likeInsert(userseq, prdseq);	
 		}
-		return "redirect:searchAfter.bill";
+		
 	}
 }
