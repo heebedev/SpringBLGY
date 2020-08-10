@@ -47,7 +47,7 @@
 		<form action="messageSendAfter" method="post" text-align = "center">
 			<div width="400px" align="left" class="receive" > 받는 사람 : 
 				<c:choose>
-			      <c:when test="${param.nickname != ''}">
+			      <c:when test="${not empty param.nickname}">
 			        <input type="text" class="nick_receive" name="nickname" value=<%= request.getParameter("nickname") %> readonly="readonly" style="width:250px;">
 			      </c:when>
 			      <c:otherwise>

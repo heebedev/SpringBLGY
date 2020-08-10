@@ -43,6 +43,6 @@
 	
 	<insert id="uploadUserData">
 		INSERT INTO USERDATA (EMAIL, NAME, NICKNAME, BIRTHDATE, TELNO, ADDRESS, ADDRESSDT, XAXIS, YAXIS, PW, INSERTDATE) VALUES (#{0}, #{1}, #{2}, #{3}, #{4}, #{5} ,#{6}, #{7}, #{8}, #{9}, NOW())
-	</insert>	
+	</insert>
 	
 </mapper>

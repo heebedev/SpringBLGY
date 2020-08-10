@@ -5,14 +5,13 @@ public class MessageDto {
 	int userseq;
 	int textseq;
 	String nickname;
-	String nickname_send;
-	String nickname_receive;
+	String nick_send;
+	String nick_receive;
 	String xaxis;
 	String yaxis;
 	String email;
 	String date;
 	String message;
-	int myseq;
 	
 	
 	public MessageDto() {
@@ -32,10 +31,10 @@ public class MessageDto {
 
 
 
-	public MessageDto(String nickname_send, String nickname_receive, String message, String date) {
+	public MessageDto(String nick_receive, String nick_send, String message, String date) {
 		super();
-		this.nickname_send = nickname_send;
-		this.nickname_receive = nickname_receive;
+		this.nick_send = nick_send;
+		this.nick_receive = nick_receive;
 		this.date = date;
 		this.message = message;
 	}
@@ -43,28 +42,28 @@ public class MessageDto {
 
 
 
-	public MessageDto(int textseq, String nickname_send, String nickname_receive, String message, String date) {
+	public MessageDto(int textseq, String nick_receive, String nick_send, String message, String date) {
 		super();
 		this.textseq = textseq;
-		this.nickname_send = nickname_send;
-		this.nickname_receive = nickname_receive;
+		this.nick_send = nick_send;
+		this.nick_receive = nick_receive;
 		this.date = date;
 		this.message = message;
 	}
 
 
 
-	public String getNickname_send() {
-		return nickname_send;
+	public String getNick_send() {
+		return nick_send;
 	}
-	public void setNickname_send(String nickname_send) {
-		this.nickname_send = nickname_send;
+	public void setNick_send(String nick_send) {
+		this.nick_send = nick_send;
 	}
-	public String getNickname_receive() {
-		return nickname_receive;
+	public String getNick_receive() {
+		return nick_receive;
 	}
-	public void setNickname_receive(String nickname_receive) {
-		this.nickname_receive = nickname_receive;
+	public void setNick_receive(String nick_receive) {
+		this.nick_receive = nick_receive;
 	}
 
 	public int getUserseq() {
@@ -108,12 +107,6 @@ public class MessageDto {
 	}
 	public void setMessage(String message) {
 		this.message = message;
-	}
-	public int getMyseq() {
-		return myseq;
-	}
-	public void setMyseq(int myseq) {
-		this.myseq = myseq;
 	}
 	public int getTextseq() {
 		return textseq;

@@ -2,7 +2,6 @@ package com.springblgy.dto;
 
 public class LikeDto {
 
-<<<<<<< HEAD
 	private int likeseq;
 	private int userseq;
 	private int prdseq;
@@ -17,22 +16,7 @@ public class LikeDto {
 	private String date1;
 	private String date2;
 	private int view;
-=======
-	int likeseq;
-	int userseq;
-	int prdseq;
-	int liked;
-	int lastaction;
-	
-	
-	//PrdDto 필드값 추가 
-	String title;
-	String price;
-	String image1;
-	String date1;
-	String date2;
-	int view;
->>>>>>> 2388aae44afcdbfca695e7ebbe1c1b3135d0c0be
+
 	
 	//Constructor 
 	public LikeDto() {
