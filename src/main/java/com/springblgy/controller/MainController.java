@@ -48,36 +48,23 @@ public class MainController {
 		String date1 = request.getParameter("date1");
 		String date2 = request.getParameter("date2");
 		String select = request.getParameter("selectsearch");
-		model.addAttribute("search",keyword);
-		model.addAttribute("date1", date1);
-		model.addAttribute("date2", date2);
-		model.addAttribute("select", select);
-
-		System.out.println(keyword);
-		System.out.println(date1);
-		System.out.println(date2);
-		System.out.println(select);
+		int userseq = Integer.parseInt(request.getParameter("userseq"));
 		
-		if(date1 == null || date1.length()<5) {
+		if(date1.length()<5) {
 			date1 = "2100-12-12";
-		}if(date2 == null || date2.length()<5) {
 			date2 = "1945-08-15";
-		}			
-		
-		int userseq = -1;
-		
-		if(request.getParameter("userseq")==null || request.getParameter("userseq").equals("0") || request.getParameter("userseq").equals("null")) {
-			
 		}
-		else {
-			userseq = Integer.parseInt(request.getParameter("userseq"));
-		}
-		request.setAttribute("userseq", userseq);
-		if(select == null || select.equals("조회수순")) {
-			request.setAttribute("SearchList", dao.searchDao(keyword, date1, date2, userseq));
+		
+		if(userseq>0) {
+			int distance = Integer.parseInt(request.getParameter("distance"));
+			String xaxis = request.getParameter("xaxis");
+			String yaxis = request.getParameter("yaxis");
+			request.setAttribute("SearchList", dao.searchDao(keyword, date1, date2, select, userseq, distance, xaxis, yaxis));
 		}else {
-			request.setAttribute("SearchList", dao.searchDao2(keyword, date1, date2, userseq));
+			request.setAttribute("SearchList", dao.searchDao(keyword, date1, date2, select, 0, 500, "127.289195338093", "36.4800685159754"));
 		}
+		
+
 		
 		return "mainPage/searchAfter";
 	}
@@ -88,9 +75,6 @@ public class MainController {
 		
 		int prdseq = Integer.parseInt(request.getParameter("prdseq"));
 		int userseq = Integer.parseInt(request.getParameter("userseq"));
-				
-		System.out.println(userseq);
-		System.out.println(prdseq);
 		
 		if(userseq == 0 || userseq == -1) {
 			

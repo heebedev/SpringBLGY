@@ -359,10 +359,10 @@
 				<form name="brwform" action="" method="post">
 				<div class="date">
 					<div class="startDatePick">시작</div>
-					<div class="sdatekeyin"><input type="date" placeholder="yyyy-mm-dd" name="sdate">
+					<div class="sdatekeyin"><input type="date" name="sdate">
 					</div>
 					<div class="endDatePick">끝</div>
-					<div class="edatekeyin"><input type="date" placeholder="yyyy-mm-dd" name="edate">
+					<div class="edatekeyin"><input type="date" name="edate">
 					</div>
 				</div>
 					<INPUT type="hidden" name="brprdseq" value="<%=request.getParameter("prdseq")%>">
