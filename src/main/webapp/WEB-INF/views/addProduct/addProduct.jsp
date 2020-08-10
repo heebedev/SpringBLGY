@@ -12,6 +12,15 @@
 		border: solid 2px Black;
 		width:500px;
 	}
+	
+	
+	input {
+			width: 100%;
+			padding: 10px 10px;
+			margin: 5px 0;
+			box-sizing: border-box;
+		}
+	
 </style>
 <script>
 
@@ -61,42 +70,39 @@ function check() {
 </head>
 <body>
 <center>
-<h1><a class="home" href="Mainpage.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img src="logo.png" alt="logo" height="130" width="240"></a></h1>
+<h1><a class="home" href="Mainpage.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img src="resources/logo.png" alt="logo" height="130" width="240"></a></h1>
 	
+	<h3>내 상품 등록</h3>
 	<form action="actionAddedProduct.bill" method="post" enctype="Multipart/form-data" name="addProduct" onsubmit="return check()" >
 		<table>
 			<tr>
-				<td style="text-align: right;">title :</td>
-				<td><input type="text" name="title" id="title" size="58" ></td>
+				<td colspan="2"><input type="text" name="title" id="title" placeholder="상품 제목을 입력해 주세요."></td>
 			</tr>
 			<tr>
-				<td style="text-align: right;">price : </td>
-				<td><input type="text" name="price" id="price"></td>
-			</tr>
-			<tr>
-				<td style="text-align: right;">대여시작 :</td>
-				<td> <input type="date" name="date1" id="date1"></td>
-			</tr>
-			<tr>
-				<td style="text-align: right;">대여종료 :</td>
-				<td><input type="date" name="date2" id="date2"></td>
-			</tr>
-			<tr>
-				<td style="text-align: right;">해시태그 :</td>
-				<td> <textarea rows="2" cols="50" name="hash" id="hash"></textarea></td>
+				<td colspan="2"><input type="number" name="price" id="price" placeholder="가격을 입력해 주세요(가격/일)."></td>
 			</tr>
 			
 			<tr>
-				<td style="text-align: right;">상품소개 :</td>
-				<td> <textarea rows="10" cols="50" name="info" id="info"></textarea></td>
+				<td colspan="2">대여 시작일과 종료일을 선택해 주세요.</td>
+			</tr>
+			
+			<tr>
+				<td> <input type="date" name="date1" id="date1"></td>
+				<td> <input type="date" name="date2" id="date2"></td>
+			</tr>
+		
+			<tr>
+				<td colspan="2"><textarea rows="3" cols="60" name="hash" id="hash" placeholder="해시태그를 입력해 주세요."></textarea></td>
+			</tr>
+			
+			<tr>
+				<td colspan="2"> <textarea rows="15" cols="60" name="info" id="info" placeholder="내용을 입력하세요."></textarea></td>
 			</tr>
 			<tr>
-				<td style="text-align: right;">사진 :</td>
-				<td><input type="file" name="productImage"></td>
+				<td colspan="2"><input type="file" name="productImage"></td>
 			</tr>
 			<tr>
-				<td></td>
-				<td><input type="submit" value="상품등록"></td>
+				<td colspan="2"><input type="submit" value="등록" align="center"></td>
 			</tr>
 		</table>
 		</center>
