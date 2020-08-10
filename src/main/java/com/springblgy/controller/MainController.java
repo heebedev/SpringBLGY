@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.springblgy.dao.MainDao;
 import com.springblgy.dto.MainDto;
-import com.springblgy.dto.SearchDto;
 
 @Controller
 public class MainController {
@@ -23,17 +22,19 @@ public class MainController {
 	@RequestMapping("/mainForm.bill")
 	public String mainPage(HttpServletRequest request, Model model) {
 		int userseq = -1;
+
 		if(request.getParameter("userseq") == null || request.getParameter("userseq").equals("0") || request.getParameter("userseq").equals("null")) {
+
 			
 		}
 		else {
 			userseq = Integer.parseInt(request.getParameter("userseq"));
 		}
-		request.setAttribute("userseq", userseq);
+		model.addAttribute("userseq", userseq);
 		System.out.println(userseq);
 		MainDao dao = sqlSession.getMapper(MainDao.class);
 		ArrayList<MainDto> maindtios = dao.mainDao();
-		request.setAttribute("MainList", maindtios);
+		model.addAttribute("MainList", maindtios);
 		
 		return "mainPage/mainForm";
 	}
@@ -46,10 +47,19 @@ public class MainController {
 		String date1 = request.getParameter("date1");
 		String date2 = request.getParameter("date2");
 		String select = request.getParameter("selectsearch");
-		String liked2 = null;
-		if(date1.length()<5) {
+		model.addAttribute("search",keyword);
+		model.addAttribute("date1", date1);
+		model.addAttribute("date2", date2);
+		model.addAttribute("select", select);
+
+		System.out.println(keyword);
+		System.out.println(date1);
+		System.out.println(date2);
+		System.out.println(select);
+		
+		if(date1 == null || date1.length()<5) {
 			date1 = "2100-12-12";
-		}if(date2.length()<5) {
+		}if(date2 == null || date2.length()<5) {
 			date2 = "1945-08-15";
 		}			
 		
@@ -62,8 +72,7 @@ public class MainController {
 			userseq = Integer.parseInt(request.getParameter("userseq"));
 		}
 		request.setAttribute("userseq", userseq);
-		System.out.println(userseq);
-		if(select.equals("조회수순")) {
+		if(select == null || select.equals("조회수순")) {
 			request.setAttribute("SearchList", dao.searchDao(keyword, date1, date2, userseq));
 		}else {
 			request.setAttribute("SearchList", dao.searchDao2(keyword, date1, date2, userseq));
@@ -71,5 +80,37 @@ public class MainController {
 		
 		return "mainPage/searchAfter";
 	}
-
+	
+	@RequestMapping("/like.bill")
+	public String like(HttpServletRequest request, Model model) {
+		MainDao dao = sqlSession.getMapper(MainDao.class);
+		int prdseq = Integer.parseInt(request.getParameter("prdseq"));
+		int userseq = Integer.parseInt(request.getParameter("userseq"));
+		int liked = Integer.parseInt(request.getParameter("liked"));
+		String keyword = request.getParameter("search");
+		String date1 = request.getParameter("date1");
+		String date2 = request.getParameter("date2");
+		String select = request.getParameter("select");
+		model.addAttribute("search",keyword);
+		model.addAttribute("date1", date1);
+		model.addAttribute("date2", date2);
+		model.addAttribute("selectsearch", select);
+		model.addAttribute("userseq", userseq);
+		
+		System.out.println(keyword);
+		System.out.println(userseq);
+		System.out.println(liked);
+		System.out.println(prdseq);
+		System.out.println(select);
+		if(userseq == 0 || userseq == -1) {
+			
+		}else {
+			if(liked == 1) {
+				dao.likeDelete(userseq, prdseq, liked);
+			}else {
+				dao.likeInsert(userseq, prdseq, liked);
+			}
+		}
+		return "redirect:searchAfter.bill";
+	}
 }

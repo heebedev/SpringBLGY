@@ -33,6 +33,7 @@ public class ProductController {
 		model.addAttribute("pdDetail", dao.productDetailDao(prdseq, userseq));
 		model.addAttribute("cmtDetail", dao.productCMTDao(prdseq, userseq));
 		model.addAttribute("userseq", userseq);
+
 		
 		return "productDetail/productDetailView";
 	}
