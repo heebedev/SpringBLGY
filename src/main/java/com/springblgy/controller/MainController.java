@@ -25,14 +25,12 @@ public class MainController {
 		int userseq = -1;
 
 		if(request.getParameter("userseq") == null || request.getParameter("userseq").equals("0") || request.getParameter("userseq").equals("null")) {
-
-			
+	
 		}
 		else {
 			userseq = Integer.parseInt(request.getParameter("userseq"));
 		}
 		model.addAttribute("userseq", userseq);
-		System.out.println(userseq);
 		MainDao dao = sqlSession.getMapper(MainDao.class);
 		ArrayList<MainDto> maindtios = dao.mainDao();
 		model.addAttribute("MainList", maindtios);

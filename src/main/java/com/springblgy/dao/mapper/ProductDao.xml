@@ -19,8 +19,28 @@
 		UPDATE PRODUCT SET VIEW = VIEW + 1 WHERE PRDSEQ = #{param1}
 	</update>
 	
-	<insert id="commentAdd">
+	<insert id="addComment">
 		INSERT COMMENT (PRDSEQ, USERSEQ, COMMENT, INSERTDATE) VALUES (#{param1}, #{param2}, #{param3}, NOW())
 	</insert>
+	
+	<select id="commentDetail" resultType="com.springblgy.dto.ProductCommentDto">
+		SELECT CMTSEQ, PRDSEQ, COMMENT, INSERTDATE FROM COMMENT WHERE CMTSEQ = #{param1}
+	</select>
+	
+	<update id="commentRevision">
+		UPDATE COMMENT SET COMMENT = #{param2} WHERE CMTSEQ = #{param1}
+	</update>
+	
+	<update id="commentDelete">
+		UPDATE COMMENT SET READFT = 0 WHERE CMTSEQ = #{param1}
+	</update>
+	
+	<update id="productRevision">
+		UPDATE PRODUCT SET TITLE = #{param2}, PRICE = #{param3}, DATE1 = #{param4}, DATE2 = #{param5}, INFO = #{param7}, HASH = #{param6}, IMAGE1 = #{param8}, INSERTDATE = NOW() WHERE PRDSEQ = #{param1}
+	</update>
+	
+	<delete id="productDelete">
+		DELETE FROM PRODUCT WHERE PRDSEQ = #{param1}
+	</delete>
 
 </mapper>

@@ -28,12 +28,10 @@ public class ProductCommentDto {
 
 	}
 	
-	public ProductCommentDto(int cmtseq,  int userseq, int prdseq, String nickname, String comment, String insertdate) {
+	public ProductCommentDto(int cmtseq, int prdseq, String comment, String insertdate) {
 		super();
 		this.cmtseq = cmtseq;
-		this.userseq = userseq;
 		this.prdseq = prdseq;
-		this.nickname = nickname;
 		this.comment = comment;
 		this.insertdate = insertdate;
 	}

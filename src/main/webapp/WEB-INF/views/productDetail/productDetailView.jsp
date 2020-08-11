@@ -33,16 +33,17 @@
 		
 	}
 	
-	function cmtAdd() { 
-		
-		var form = document.cmtform;
-	
-		var prdseq = form.prdseq.value;
-		var userseq = form.userseq.value;
-		var cmtTxt = form.cmtTxt.value;
+	function cmtAddAction() {
+		var ff = document.getElementById("cmtform");
+		var prdseq = ff.elements[0].value;
+		var userseq = ff.elements[1].value;
+		var cmtTxt = ff.elements[2].value;
+		var cmttrim = cmtTxt.trim();
 		
 		if(userseq == "" || userseq == 0 || userseq == null){
 			alert("로그인후 이용 가능합니다.");
+		} else if (cmttrim == "" || cmttrim == null) {
+			alert("내용을 입력해주세요.")
 		} else {
 			$.ajax({
 				url : "commentAdd",
@@ -51,14 +52,17 @@
 				data : {
 					prdseq : prdseq,
 					userseq : userseq,
-					cmtTxt : cmtTxt
+					cmtTxt : cmttrim
 				},
 				success:function (args) {
 				}, 
 				error:function (e) {
 					console.log(e);
 				}
-		});
+			});  
+		}
+		
+		window.location.reload();
 		
 	}
 	
@@ -407,7 +411,7 @@
 						<div class="cmtText" style="word-break:break-all">${cmt.comment} </div>
 						<div class="cmtDate" >${cmt.insertdate} </div>
 						<div class="cmtRev" >
-							<c:if test="${cmt.userCheck eq 1}"><input type="button" class="cmtBtn" value="수정/삭제" onclick="window.open('commentCheck.bill?cmtseq=${cmt.cmtseq}','팝업이름','width=500,height=500');" >
+							<c:if test="${cmt.userCheck eq 1}"><input type="button" class="cmtBtn" value="수정/삭제" onclick="window.open('commentDetail?cmtseq=${cmt.cmtseq}','팝업이름','width=500,height=500');" >
 							</c:if><!-- !!!!!!!!!!!!!!!!!!10 대신에 나의 userseq 받아오게!!!!!!!!!! -->
 						</div>
 					</div>
@@ -415,12 +419,12 @@
 			</div>
 			
 			<div class="commentAdd">
-				<form name="cmtform" action="" method="post" >
-					<INPUT type="hidden" name="prdseq" value="<%=request.getParameter("prdseq")%>">
-					<INPUT type="hidden" name="userseq" value=<jsp:getProperty property="userseq" name="userdata"/>> <!-- !!!!!!!!!!!!!!!!!!10 대신에 나의 userseq !!!!!!!!!! -->
+				<form id="cmtform" method="post" >
+					<INPUT type="hidden" id="cmtprdseq" name="prdseq" value="<%=request.getParameter("prdseq")%>">
+					<INPUT type="hidden" id="cmtuserseq" name="userseq" value=<jsp:getProperty property="userseq" name="userdata"/>> <!-- !!!!!!!!!!!!!!!!!!10 대신에 나의 userseq !!!!!!!!!! -->
 					<div class="cmtAdd" style="margin-top:10px; margin-bottom:10px;">
-						<input type="text" class="cmtTxt" name="cmtTxt" style="border-radius: 8px; border-top: solid 1px silver; vertical-align: middle;">
-						<input type="button" value="등록" onclick="cmtAdd();" style="width: 60px; height:30px; border:solid 1px silver; border-radius: 8px; margin-left:20px; background-color: white;">
+						<input type="text" id="cmtTxt" class="cmtTxt" name="cmtTxt" style="border-radius: 8px; border-top: solid 1px silver; vertical-align: middle;">
+						<input type="button" value="등록" onclick="cmtAddAction()" style="width: 60px; height:30px; border:solid 1px silver; border-radius: 8px; margin-left:20px; background-color: white;">
 					</div>
 				</form>
 			</div>
@@ -434,10 +438,10 @@
 		<c:if test="${pdDetail.uploaderCheck eq 1}">
 			
 			<div class="prdRev">
-				<input type="button" value="수정" onclick="location.href='prdCheck.bill?prdseq=<%=request.getParameter("prdseq")%>'" >
+				<input type="button" value="수정" onclick="location.href='productReviseView?prdseq=<%=request.getParameter("prdseq")%>&userseq=<jsp:getProperty property="userseq" name="userdata"/>'" >
 			</div>
 			<div class="prdDel">
-				<input type="button" value="삭제" onclick="window.open('prdDel.bill?prdseq=<%=request.getParameter("prdseq")%>','게시물 삭제','width=500,height=500');" >
+				<input type="button" value="삭제" onclick="window.open('productDeleteConfirmView?prdseq=<%=request.getParameter("prdseq")%>&userseq=<jsp:getProperty property="userseq" name="userdata"/>','게시물 삭제','width=500,height=500');" >
 			</div>
 		</c:if>
 	

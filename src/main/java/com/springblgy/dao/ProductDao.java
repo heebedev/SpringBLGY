@@ -15,6 +15,17 @@ public interface ProductDao {
 	public void updateViewDao(int prdseq);
 	
 	public void addComment(int prdseq, int userseq, String comment);
+	
+	public ProductCommentDto commentDetail(int cmtseq);
+	
+	public void commentRevision(int cmtseq, String comment);
+	
+	public void commentDelete(int cmtseq);
+	
+	public void productRevision(int prdseq, String title, String price, String date1, String date2, String hash, String info, String image);
+	
+	public void productDelete(int prdseq);
+	
 		
 
 }
