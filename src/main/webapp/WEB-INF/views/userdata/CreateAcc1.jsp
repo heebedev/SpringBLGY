@@ -90,7 +90,7 @@
 	<script src = "//developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 <body>
-	<h1 style= "text-align: center;"><a class="home" href="mainForm.bill"><img src="http://119.207.169.213:8080//ftp/logo_jejukat.png" alt="logo" height="130" width="240"></a></h1>
+	<h1 style= "text-align: center;"><a class="home" href="mainForm.bill"><img src="resources/logo.png" alt="logo" height="130" width="240"></a></h1>
 	<form action ="createAcc2.bill" name="info" id="info" method="post" onsubmit="return checkValue()">
 	<input type ='text' name='email' placeholder = '이메일' id='email'>
 	<input type ='button' name='duplicate'value='중복체크' style="width:58px; height: 38px; border-radius:8px;" onClick="emailCheck();">
