@@ -27,6 +27,7 @@
 	}
 </script>
 <script>
+
 	function borrowAct(prdseq, userseq, sdate, edate) {
 		
 		if(userseq == "" || userseq == 0 || userseq == null){
@@ -52,10 +53,7 @@
 		});
 		}	
 	}
-<<<<<<< HEAD
-	</script>
-	<script>
-	
+
 	function cmtAddAction() {
 		var ff = document.getElementById("cmtform");
 		var prdseq = ff.elements[0].value;
@@ -87,7 +85,7 @@
 		
 		window.location.reload();
 		
-=======
+
 	function borrowDelete(prdseq, userseq, rentseq) {
 		
 			$.ajax({
@@ -108,15 +106,13 @@
 			});
 			}	
 		
-</script>
-<script>
+
 	function cmtAdd() { 
 		var gsWin = window.open("about:blank", "COMMENT");
 		var cmtfrm = document.cmtform;
 		cmtfrm.action = "commentAdd.bill";
 		cmtfrm.target = "COMMENT";
 		cmtfrm.submit();
->>>>>>> 8a754e7716132fe20df96401ccd74d2fc5bea847
 	}
 	
 	function like(prdseq, userseq, likeBtn) {		
@@ -551,11 +547,9 @@ function kakaomap(){
 		</c:if>
 	
 	</div>
-<<<<<<< HEAD
+
 	
 	<jsp:include page="../../views/footer.jsp"/>
-=======
-				
->>>>>>> 8a754e7716132fe20df96401ccd74d2fc5bea847
+
 </body>
 </html>
