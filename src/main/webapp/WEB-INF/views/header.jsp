@@ -134,7 +134,7 @@
 			<li><a class="home" href="mainForm.bill">홈</a></li>
 		<ul style="float:right; list-style-type:none;">
 			<li><a href="login.bill">로그인</a></li>
-			<li><a href="signUp.bill">회원가입</a></li>
+			<li><a href="createAcc.bill">회원가입</a></li>
 		</ul>
 	</ul>
 	
@@ -152,7 +152,7 @@
 	<center>
 
 	<form action="searchAfter.bill"> 
-	<h1 style= "text-align: center;"><a class="home" href="mainForm.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img alt="logo" src="resources/logo.png" height="130" width="240"></a></h1>
+	<h1 style= "text-align: center;"><a class="home" href="mainForm.bill"><img alt="logo" src="resources/logo.png" height="130" width="240"></a></h1>
 	<input type="text" class="search" placeholder ="상품명, 제품명, 지역명 입력" name="search">
 	<input type="date" class="date1" placeholder = "대여 시작일" name="date1" id="date1" />
 	<input type="date" class="date2" placeholder = "대여 만료일" name="date2" id="date2" />

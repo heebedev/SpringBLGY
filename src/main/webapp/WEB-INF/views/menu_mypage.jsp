@@ -65,8 +65,8 @@
 	}
 	/* 쪽지함 새창 */
 	function textPopup(){
-		var myseq = document.getElementById('myseq').value;
-		window.open("./message.bill?selection=total&myseq="+myseq, "text","width=850; height=550;");	
+		var myseq = <%=userdata.getUserseq()%>;
+		window.open("./message.bill?selection=total&userseq="+myseq, "text","width=850; height=550;");	
 	}
 </script>
 

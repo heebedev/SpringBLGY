@@ -128,7 +128,7 @@ function checkValue(){
 <title>회원가입</title>
 </head>
 <body onload = "onload();">
-<h1 style= "text-align: center;"><a class="home" href="mainForm.bill"><img src="logo.png" alt="logo" height="130" width="240"></a></h1>
+<h1 style= "text-align: center;"><a class="home" href="mainForm.bill"><img src="resources/logo.png" alt="logo" height="130" width="240"></a></h1>
 <h1 align= "center">개인정보 입력</h1>
 <form action="uploadUserData.bill" name="form" id="form" method="post" onsubmit="return checkValue();">
 	<div id="list"></div>

@@ -70,7 +70,7 @@ width=device-width" />
     <div id="wrap">
         <form name="loginInfo" method="post" action="./checkUser.bill" 
                 onsubmit="return checkValue()">
-            	<h1 style= "text-align: center;"><a class="home" href="mainForm.bill"><img src="http://119.207.169.213:8080//ftp/logo_jejukat.png" alt="logo" height="130" width="240"></a></h1>
+            	<h1 style= "text-align: center;"><a class="home" href="mainForm.bill"><img src="resources/logo.png" alt="logo" height="130" width="240"></a></h1>
  				이메일<br>
  				<input type="text" name="email" maxlength="50"><br>
            		비밀번호<br>
