@@ -159,6 +159,27 @@ public class UserDataController {
 		userDataDao.uploadUserData(request.getParameter("email"), request.getParameter("name"), request.getParameter("nickname"), request.getParameter("birthdate"), request.getParameter("telno"), request.getParameter("address"), request.getParameter("addressdt"), request.getParameter("xaxis"), request.getParameter("yaxis"), request.getParameter("pw"));
 		return"userdata/Login";
 	}
+	@RequestMapping("/authority.bill")
+	private String authority(){
+		return "alert/authority";
+	}
+	@RequestMapping("/authorize.bill")
+	private String authorize(HttpServletRequest request, Model model){
+		UserDataDao userDataDao = sqlSession.getMapper(UserDataDao.class);
+		int validation = userDataDao.authorize(request.getParameter("pw"),request.getParameter("userseq"));
+		if (validation==1) {
+			model.addAttribute("userdata",userDataDao.getUserData2(request.getParameter("userseq")));
+			return "userdata/UpdateAcc";
+		}else {
+			return "alert/wrongPw";
+		}
+	}
+	@RequestMapping("updateUserData.bill")
+	private String updateUserData(HttpServletRequest request) {
+		UserDataDao userDataDao = sqlSession.getMapper(UserDataDao.class);
+		userDataDao.updateUserData(request.getParameter("pw"), request.getParameter("telno"), request.getParameter("address"), request.getParameter("addressdt"), request.getParameter("xaxis"), request.getParameter("yaxis"), request.getParameter("userseq"));
+		return "alert/updated";
+	}
 	
 	
 }

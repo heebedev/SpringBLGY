@@ -9,12 +9,20 @@
 		SELECT COUNT(*) FROM USERDATA WHERE EMAIL = #{0} AND PW = #{1}
 	</select>
 	
+	<select id = "authorize" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM USERDATA WHERE PW = #{0} AND USERSEQ = #{1}
+	</select>
+	
 	<select id = "pass_kakaoUser" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM USERDATA WHERE EMAIL = #{0}
 	</select>
 	
 	<select id = "getUserData" resultType="com.springblgy.dto.UserDataDto">
 		SELECT * FROM USERDATA WHERE EMAIL = #{0}
+	</select>
+	
+	<select id = "getUserData2" resultType="com.springblgy.dto.UserDataDto">
+		SELECT * FROM USERDATA WHERE USERSEQ = #{0}
 	</select>
 	
 	<select id = "lookUpAcc" resultType="java.lang.Integer">
@@ -31,6 +39,10 @@
 	
 	<update id="changePw">
 		UPDATE USERDATA SET PW = #{0} WHERE EMAIL = #{1} 
+	</update>
+	
+	<update id="updateUserData">
+		UPDATE USERDATA SET PW = #{0}, TELNO = #{1}, ADDRESS = #{2}, ADDRESSDT = #{3}, XAXIS = #{4}, YAXIS = #{5} WHERE USERSEQ = #{6} 
 	</update>
 	
 	<select id = "checkEmail" resultType="java.lang.Integer">
