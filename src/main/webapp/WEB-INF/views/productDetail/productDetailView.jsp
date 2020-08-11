@@ -6,6 +6,8 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/JavaScript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=083074288060e279dca45e2827603ef8&libraries=services"></script>
+
 <script>
 	function myFunction() {
 		  document.getElementById("myDropdown").classList.toggle("show");
@@ -32,6 +34,8 @@
 		brwfrm.submit();
 		
 	}
+	</script>
+	<script>
 	
 	function cmtAdd() { 
 		
@@ -90,8 +94,37 @@
 			}
 		}
 	}
+</script>
+
+<script>
+function kakaomap(){
+	var mapContainer = document.getElementById('map'),
+	    mapOption = { 
+	        center: new kakao.maps.LatLng(${pdDetail.yaxis}, ${pdDetail.xaxis}),
+	        level: 8
+	    };
 	
+	var map = new kakao.maps.Map(mapContainer, mapOption);
+	var markerPosition  = new kakao.maps.LatLng(${pdDetail.yaxis}, ${pdDetail.xaxis}); 
+	var marker = new kakao.maps.Marker({
+	    position: markerPosition
+	});
+	marker.setMap(map);
 	
+	var circle = new kakao.maps.Circle({
+	    center : new kakao.maps.LatLng(${pdDetail.yaxis}, ${pdDetail.xaxis}),  // 원의 중심좌표 입니다 
+	    radius: 5*1000, // 미터 단위의 원의 반지름입니다 
+	    strokeWeight: 5, // 선의 두께입니다 
+	    strokeColor: '#75B8FA', // 선의 색깔입니다
+	    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+	    fillColor: '#CFE7FF', // 채우기 색깔입니다
+	    fillOpacity: 0.3  // 채우기 불투명도 입니다   
+	}); 
+
+	// 지도에 원을 표시합니다 
+	circle.setMap(map)
+	map.setZoomable(false);
+	}
 </script>
 
 
@@ -340,11 +373,11 @@
 <meta charset="UTF-8">
 <title>빌릴꼬냥? 상품 세부정보당</title>
 </head>
-<body>
+<body onload="kakaomap();">
 	
 	
 
-	<jsp:include page="../../views/header.jsp"/>
+	<jsp:include page="../../views/header_none_banner.jsp"/>
 	
 	<br><br><br><br><br>
 	
@@ -352,7 +385,7 @@
 		<div class="title">
 			<h2>${pdDetail.title}</h2>
 				<div class="dropdown">
-				  <button onclick="myFunction()" class="dropbtn" style=" height:30px; border-radius: 8px; background-color: rgba(231, 235, 238, 100);">${pdDetail.nickname}</button>
+				  <button onclick="myFunction();" class="dropbtn" style=" height:30px; border-radius: 8px; background-color: rgba(231, 235, 238, 100);">${pdDetail.nickname}</button>
 				  <div id="myDropdown" class="dropdown-content">
 				    <a href="ProductList.bill?userseq=${pdDetail.uploaderseq}" onclick="window.open(this.href,'${pdDetail.nickname}의 정보','width=1000, height=1000'); return false;">사용자 정보</a>
 				    <a href="messageSend?nickname=${pdDetail.nickname}" onclick="window.open(this.href,'${pdDetail.nickname}에게 쪽지 보내기','width=850, height=600'); return false;">쪽지 보내기</a>
@@ -360,9 +393,9 @@
 				</div>
 		</div>
 		<div class="details">
-			<h4>${pdDetail.hash }</h4>
-			<h5>${pdDetail.date1} ~ ${pdDetail.date2}</h5>
+			<h4>${pdDetail.hash}<br>대여기간 : ${pdDetail.date1} ~ ${pdDetail.date2}</h4>
 		</div>
+		<div id="map" style="width:350px%;height:350px;margin-right: 30px; margin-left: 30px"></div>
 		<div class="detailInfo">
 			<div class="prImage"><img src="http://119.207.169.213:8080/blgy/${pdDetail.image1 }" width="400" height="400"></div>
 			<div class="infoText">${pdDetail.info}</div>

@@ -51,7 +51,7 @@ public class MessageController {
 	//쪽지 검
 		@RequestMapping("/message")
 		public String message(HttpServletRequest request, Model model) {
-			
+
 			int userseq = Integer.parseInt(request.getParameter("userseq"));
 			
 			String selection = "";

@@ -100,19 +100,21 @@
 </head>
 <body>
 	
-	<% if(request.getAttribute("userseq")!= null && (Integer.parseInt((request.getAttribute("userseq")).toString()) == -1 || Integer.parseInt((request.getAttribute("userseq")).toString()) == 0)){ %>
+	<% int userseq = 0; 
+	userseq = userdata.getUserseq();
+	if(userseq == 0){ %>
 	<ul>
 			<li><a class="home" href="mainForm.bill">홈</a></li>
 		<ul style="float:right; list-style-type:none;">
 			<li><a href="login.bill">로그인</a></li>
-			<li><a href="createAcc.bill">회원가입</a></li>
+			<li><a href="signUp.bill">회원가입</a></li>
 		</ul>
 	</ul>
 	
 	<%}else{ %>
 	<ul>
 
-			<li><a class="home" href="mainForm.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>">홈</a></li>
+			<li><a class="home" href="mainForm.bill">홈</a></li>
 			<ul style="float:right; list-style-type:none;">
 			<li><a href="./MyProductList.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>"><jsp:getProperty property="nickname" name="userdata"/>의 페이지</a></li>
 			<li><a href="logOut.bill">로그아웃</a></li>
@@ -122,18 +124,36 @@
 	<%} %>
 	<center>
 
-	<form action="searchAfter.bill"> 
-	<h1 style= "text-align: center;"><a class="home" href="mainForm.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img alt="logo" src="resources/logo.png" height="130" width="240"></a></h1>
-	<input type="text" class = "search" placeholder ="상품명, 제품명, 지역명 입력" name="search">
-	<input type="date" class = "date1" placeholder = "대여 시작일" name="date1" id="date1" />
-	<input type="date" class = "date2" placeholder = "대여 만료일" name="date2" id="date2" />
+<form action="searchAfter.bill"> 
+	<h1 style= "text-align: center;"><a class="home" href="mainForm.bill"><img alt="logo" src="resources/logo.png" height="130" width="240"></a></h1>
+	<input type="text" class="search" placeholder ="상품명, 제품명, 지역명 입력" name="search">
+	<input type="date" class="date1" placeholder = "대여 시작일" name="date1" id="date1" />
+	<input type="date" class="date2" placeholder = "대여 만료일" name="date2" id="date2" />
 	<input type="hidden" name="userseq" value ="<jsp:getProperty property="userseq" name="userdata"/>">
-	<input type="submit" value="검색" style="width: 50px; height:40px; border-radius: 8px; color: white; background-color: black;">
-	<select name="selectsearch" id="selectsearch" style="width:100px;height:40px; alignment:right; font-size:10pt;">
-		<option value="최신순" selected =true>최신순</option>
-		<option value="조회수순" >조회수순</option>
+	<input type="hidden" name="xaxis" value ="<jsp:getProperty property="xaxis" name="userdata"/>">
+	<input type="hidden" name="yaxis" value ="<jsp:getProperty property="yaxis" name="userdata"/>">
+	<select name="selectsearch" id="selectsearch" style="width:125px;height:40px; alignment:right; font-size:10pt;">
+		<option value="P.INSERTDATE" selected =true>최신순</option>
+		<option value="P.INSERTDATE DESC" >최신역순</option>
+		<option value="P.VIEW" >조회역순</option>
+		<option value="P.VIEW DESC" >조회수순</option>
+		<option value="P.TITLE" >이름순</option>
+		<option value="P.TITLE DESC" >이름 역순</option>
+		<% if(userseq > 0){ %>
+		<option value="DISTANCE" >가까운 거리순</option>
+		<%}%>
 	</select>
-
+	<input type="submit" value="검색" style="width: 50px; height:40px; border-radius: 8px; color: white; background-color: black;">
+	<br>
+	<% if(userseq > 0){ %>
+	<table style="float: right; height:25px">
+	<td>
+	<span id = "str_distance">50 km</span>
+	<br>
+	<input type="range" id="distance" name="distance" min="10" max="100" onchange="checkvalue();" style="width:150px;height:40px; alignment:right; font-size:10pt;">
+	</td>
+	</table>
+	<%} %>
 	</center> 
 	</form>
 	<br><br>
