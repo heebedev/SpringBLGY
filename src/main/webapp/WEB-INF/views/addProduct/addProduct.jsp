@@ -70,7 +70,7 @@ function check() {
 </head>
 <body>
 <center>
-<h1><a class="home" href="Mainpage.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img src="resources/logo.png" alt="logo" height="130" width="240"></a></h1>
+<h1><a class="home" href="mainForm.bill"><img src="resources/logo.png" alt="logo" height="130" width="240"></a></h1>
 	
 	<h3>내 상품 등록</h3>
 	<form action="actionAddedProduct.bill" method="post" enctype="Multipart/form-data" name="addProduct" onsubmit="return check()" >
