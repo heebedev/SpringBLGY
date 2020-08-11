@@ -25,15 +25,34 @@
 	    }
 	  }
 	}
-	
-	function borrowAct() {
-		var gsWin = window.open("about:blank", "BORROW",  'width=500, height=500');
-		var brwfrm = document.brwform;
-		brwfrm.action = "borrow.bill";
-		brwfrm.target = "BORROW";
-		brwfrm.submit();
+</script>
+<script>
+	function borrowAct(prdseq, userseq, sdate, edate) {
 		
+		if(userseq == "" || userseq == 0 || userseq == null){
+			
+			alert("로그인후 이용 가능합니다.");
+		}else{
+		$.ajax({
+			url : "borrow",
+			type : "GET",
+			dataType : "text", 
+			data : {
+				prdseq : prdseq.value,
+				userseq : userseq,
+				date1 : sdate.value,
+				date2 : edate.value
+			},
+			success:function (args) {
+				location.reload();
+			}, 
+			error:function (e) {
+				console.log(e);
+			}
+		});
+		}	
 	}
+<<<<<<< HEAD
 	</script>
 	<script>
 	
@@ -68,6 +87,36 @@
 		
 		window.location.reload();
 		
+=======
+	function borrowDelete(prdseq, userseq, rentseq) {
+		
+			$.ajax({
+				url : "borrowDelete",
+				type : "GET",
+				dataType : "text", 
+				data : {
+					prdseq : prdseq.value,
+					userseq : userseq,
+					rentseq : rentseq
+				},	
+				success:function (args) {
+					location.reload();
+				}, 	
+				error:function (e) {
+					console.log(e);
+				}
+			});
+			}	
+		
+</script>
+<script>
+	function cmtAdd() { 
+		var gsWin = window.open("about:blank", "COMMENT");
+		var cmtfrm = document.cmtform;
+		cmtfrm.action = "commentAdd.bill";
+		cmtfrm.target = "COMMENT";
+		cmtfrm.submit();
+>>>>>>> 8a754e7716132fe20df96401ccd74d2fc5bea847
 	}
 	
 	function like(prdseq, userseq, likeBtn) {		
@@ -373,7 +422,6 @@ function kakaomap(){
 
 </style>
 
-
 <meta charset="UTF-8">
 <title>빌릴꼬냥? 상품 세부정보당</title>
 </head>
@@ -419,22 +467,46 @@ function kakaomap(){
 				<form name="brwform" action="" method="post">
 				<div class="date">
 					<div class="startDatePick">시작</div>
-					<div class="sdatekeyin"><input type="date" placeholder="yyyy-mm-dd" name="sdate">
+					<div class="sdatekeyin"><input type="date" placeholder="yyyy-mm-dd" value="2019-09-22" min="${pdDetail.date1}" max="${pdDetail.date2}" name="sdate" id="sdate" >
 					</div>
 					<div class="endDatePick">끝</div>
-					<div class="edatekeyin"><input type="date" placeholder="yyyy-mm-dd" name="edate">
+					<div class="edatekeyin"><input type="date" placeholder="yyyy-mm-dd" value="2019-09-22" min="${pdDetail.date1}" max="${pdDetail.date2}" name="edate" id="edate">
 					</div>
 				</div>
-					<INPUT type="hidden" name="brprdseq" value="<%=request.getParameter("prdseq")%>">
+					<INPUT type="hidden" name="brprdseq" value="<%=request.getParameter("prdseq")%>" id="prdseq">
 					<INPUT type="hidden" name="userseq" value=<jsp:getProperty property="userseq" name="userdata"/>>
 				<div class="brwBtn">
-					<input type="button" value="빌리기" onclick="borrowAct();" style="width: 100px; height:30px; border:solid 1px silver; border-radius: 8px; background-color: white;" />
+					<input type="button" value="빌리기" onclick="borrowAct(prdseq, <jsp:getProperty property="userseq" name="userdata"/>, sdate, edate)" style="width: 100px; height:30px; border:solid 1px silver; border-radius: 8px; background-color: white;" />
+					
 				</div>
 				</form>
 			</div>
 		</div>
+		<table  style ="width: 1000px; height:50px; padding:15px; text-align:center; padding:20px;">
+				<tr>
+					<th>대여한사람</th>
+					<th>대여 시작일</th>
+					<th/>
+					<th>대여 마감일</th>
+				</tr>
+				<c:forEach items="${borrowList}" var="borrow">
+				<tr>
+					<td>${borrow.nickname}</td>
+					<td>${borrow.date1}</td>
+					<td>~</td>
+					<td>${borrow.date2}</td>
+					<c:if test="${borrow.usercheck eq 1}">
+					<td><input type="button" value="빌리기취소" onclick="borrowDelete(prdseq, <jsp:getProperty property="userseq" name="userdata"/>, ${borrow.rentseq})" style="width: 100px; height:30px; border:solid 1px silver; border-radius: 8px; background-color: white;" /></td>
+					</c:if>				
+				</tr>
+				</c:forEach>
+		</table>
+			
 	</div> 
 	<br><br>
+		
+
+		
 	<div class="comment">
 		
 			<div class="commentList">
@@ -479,7 +551,11 @@ function kakaomap(){
 		</c:if>
 	
 	</div>
+<<<<<<< HEAD
 	
 	<jsp:include page="../../views/footer.jsp"/>
+=======
+				
+>>>>>>> 8a754e7716132fe20df96401ccd74d2fc5bea847
 </body>
 </html>

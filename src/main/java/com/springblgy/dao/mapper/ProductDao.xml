@@ -43,4 +43,17 @@
 		DELETE FROM PRODUCT WHERE PRDSEQ = #{param1}
 	</delete>
 
+	<insert id="insertBorrowDao">
+		INSERT BORROW (PRDSEQ, USERSEQ, DATE1, DATE2, INSERTDATE) VALUES (#{param1}, #{param2}, #{param3}, #{param4}, NOW())
+	</insert>
+	
+	<select id="borrowListDao" resultType="com.springblgy.dto.BorrowDto">
+		SELECT U.NICKNAME, B.RENTSEQ, B.DATE1, B.DATE2, CASE WHEN B.USERSEQ = #{param2} THEN 1 ELSE 0 END AS USERCHECK FROM USERDATA AS U, BORROW AS B WHERE B.PRDSEQ = #{param1} AND U.USERSEQ = B.USERSEQ;
+	</select>
+	
+	<delete id="deleteBorrowDao">
+		DELETE FROM BORROW WHERE RENTSEQ = #{param1}
+
+	</delete>
+
 </mapper>

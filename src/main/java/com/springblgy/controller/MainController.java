@@ -81,4 +81,9 @@ public class MainController {
 		}
 		
 	}
+	
+	@RequestMapping("/likeForm")
+	public String date(HttpServletRequest request, Model model) {
+		return "mainPage/likeForm";
+	}
 }

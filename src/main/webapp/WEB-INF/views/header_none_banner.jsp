@@ -7,6 +7,33 @@
 <head>
 <meta charset="UTF-8">
 <title>등록 상품 목록</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/JavaScript">
+	$(document).ready(function() {
+		var $banner = $(".banner").find("ul");
+		var $bannerWidth = $banner.children().outerWidth();
+		var $bannerHeight = $banner.children().outerHeight();
+		var $length = $banner.children().length;
+		var rollingId;
+		rollingId = setInterval(function() { rollingStart(); }, 5000);
+    
+		function rollingStart() {
+			$banner.css("width", $bannerWidth * $length + "px");
+			$banner.css("height", $bannerHeight + "px");
+			$banner.animate({left: - $bannerWidth + "px"}, 1500, function() {
+				$(this).append("<li>" + $(this).find("li:first").html() + "</li>");
+				$(this).find("li:first").remove();
+				$(this).css("left", 0);
+			});
+		}
+	}); 
+</script>
+<script type="text/javascript">
+	function checkvalue(){
+	var distance = document.getElementById("str_distance");
+	distance.innerHTML = document.getElementById("distance").value+' km';
+	}
+</script>
 <style>
 	body{			
 		margin:auto;
@@ -124,8 +151,13 @@
 	<%} %>
 	<center>
 
+<<<<<<< HEAD
 <form action="searchAfter.bill"> 
 	<h1 style= "text-align: center;"><a class="home" href="mainForm.bill"><img alt="logo" src="resources/logo.png" height="130" width="240"></a></h1>
+=======
+		<form action="searchAfter.bill"> 
+	<h1 style= "text-align: center;"><a class="home" href="mainForm.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img alt="logo" src="resources/logo.png" height="130" width="240"></a></h1>
+>>>>>>> 8a754e7716132fe20df96401ccd74d2fc5bea847
 	<input type="text" class="search" placeholder ="상품명, 제품명, 지역명 입력" name="search">
 	<input type="date" class="date1" placeholder = "대여 시작일" name="date1" id="date1" />
 	<input type="date" class="date2" placeholder = "대여 만료일" name="date2" id="date2" />
