@@ -8,6 +8,7 @@
 
 	<!-- 헤더 -->
 	<jsp:include page="../../views/header_none_banner.jsp"/>
+	<br><br><br><br>
 	
 	<!-- 메뉴 -->
 	<jsp:include page="../../views/menu_mypage.jsp"/>

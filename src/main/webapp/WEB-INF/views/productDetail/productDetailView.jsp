@@ -479,5 +479,7 @@ function kakaomap(){
 		</c:if>
 	
 	</div>
+	
+	<jsp:include page="../../views/footer.jsp"/>
 </body>
 </html>
