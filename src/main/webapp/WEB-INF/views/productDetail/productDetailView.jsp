@@ -26,9 +26,14 @@
 	  }
 	}
 </script>
+
 <script>
 
 	function borrowAct(prdseq, userseq, sdate, edate) {
+		console.log(prdseq.value);
+		console.log(userseq);
+		console.log(sdate.value);
+		console.log(edate.value);
 		
 		if(userseq == "" || userseq == 0 || userseq == null){
 			
@@ -53,6 +58,59 @@
 		});
 		}	
 	}
+	
+	function like(prdseq, userseq, likeBtn) {		
+		
+		if(userseq == "" || userseq == 0 || userseq == null){
+			
+			alert("로그인후 이용 가능합니다.");
+		} else{
+			$.ajax({
+				url : "like.bill",
+				type : "GET",
+				dataType : "text", 
+				data : {
+					prdseq : prdseq,
+					userseq : userseq
+				},
+				success:function (args) {
+				}, 
+				error:function (e) {
+					console.log(e);
+				}
+			});
+		
+		if (likeBtn.value == "❤️") {
+			$("#likeBtn" + prdseq).val("🖤");
+		} else {
+			$("#likeBtn" + prdseq).val("❤️");
+			}
+		}
+	}
+	
+	
+	function borrowDelete(prdseq, userseq, rentseq) {
+		
+		$.ajax({
+			url : "borrowDelete",
+			type : "GET",
+			dataType : "text", 
+			data : {
+				prdseq : prdseq.value,
+				userseq : userseq,
+				rentseq : rentseq
+			},	
+			success:function (args) {
+				location.reload();
+			}, 	
+			error:function (e) {
+				console.log(e);
+			}
+		});
+		}	
+	
+</script>
+<script>
 
 	function cmtAddAction() {
 		var ff = document.getElementById("cmtform");
@@ -84,95 +142,39 @@
 		}
 		
 		window.location.reload();
-		
-
-	function borrowDelete(prdseq, userseq, rentseq) {
-		
-			$.ajax({
-				url : "borrowDelete",
-				type : "GET",
-				dataType : "text", 
-				data : {
-					prdseq : prdseq.value,
-					userseq : userseq,
-					rentseq : rentseq
-				},	
-				success:function (args) {
-					location.reload();
-				}, 	
-				error:function (e) {
-					console.log(e);
-				}
-			});
-			}	
-		
-
-	function cmtAdd() { 
-		var gsWin = window.open("about:blank", "COMMENT");
-		var cmtfrm = document.cmtform;
-		cmtfrm.action = "commentAdd.bill";
-		cmtfrm.target = "COMMENT";
-		cmtfrm.submit();
 	}
 	
-	function like(prdseq, userseq, likeBtn) {		
-		
-		if(userseq == "" || userseq == 0 || userseq == null){
-			
-			alert("로그인후 이용 가능합니다.");
-		}else{
-		$.ajax({
-			url : "like.bill",
-			type : "GET",
-			dataType : "text", 
-			data : {
-				prdseq : prdseq,
-				userseq : userseq
-			},
-			success:function (args) {
-			}, 
-			error:function (e) {
-				console.log(e);
-			}
-		});
-		
-		if (likeBtn.value == "❤️") {
-			$("#likeBtn" + prdseq).val("🖤");
-		} else {
-			$("#likeBtn" + prdseq).val("❤️");
-			}
-		}
-	}
+	
 </script>
 
 <script>
-function kakaomap(){
-	var mapContainer = document.getElementById('map'),
-	    mapOption = { 
-	        center: new kakao.maps.LatLng(${pdDetail.yaxis}, ${pdDetail.xaxis}),
-	        level: 8
-	    };
+	function kakaomap(){
+		var mapContainer = document.getElementById('map'),
+		    mapOption = { 
+		        center: new kakao.maps.LatLng(${pdDetail.yaxis}, ${pdDetail.xaxis}),
+		        level: 8
+		    };
+		
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+		var markerPosition  = new kakao.maps.LatLng(${pdDetail.yaxis}, ${pdDetail.xaxis}); 
+		var marker = new kakao.maps.Marker({
+		    position: markerPosition
+		});
+		marker.setMap(map);
+		
+		var circle = new kakao.maps.Circle({
+		    center : new kakao.maps.LatLng(${pdDetail.yaxis}, ${pdDetail.xaxis}),  // 원의 중심좌표 입니다 
+		    radius: 5*1000, // 미터 단위의 원의 반지름입니다 
+		    strokeWeight: 5, // 선의 두께입니다 
+		    strokeColor: '#75B8FA', // 선의 색깔입니다
+		    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+		    fillColor: '#CFE7FF', // 채우기 색깔입니다
+		    fillOpacity: 0.3  // 채우기 불투명도 입니다   
+		}); 
 	
-	var map = new kakao.maps.Map(mapContainer, mapOption);
-	var markerPosition  = new kakao.maps.LatLng(${pdDetail.yaxis}, ${pdDetail.xaxis}); 
-	var marker = new kakao.maps.Marker({
-	    position: markerPosition
-	});
-	marker.setMap(map);
-	
-	var circle = new kakao.maps.Circle({
-	    center : new kakao.maps.LatLng(${pdDetail.yaxis}, ${pdDetail.xaxis}),  // 원의 중심좌표 입니다 
-	    radius: 5*1000, // 미터 단위의 원의 반지름입니다 
-	    strokeWeight: 5, // 선의 두께입니다 
-	    strokeColor: '#75B8FA', // 선의 색깔입니다
-	    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-	    fillColor: '#CFE7FF', // 채우기 색깔입니다
-	    fillOpacity: 0.3  // 채우기 불투명도 입니다   
-	}); 
-
-	// 지도에 원을 표시합니다 
-	circle.setMap(map)
-	map.setZoomable(false);
+		// 지도에 원을 표시합니다 
+		circle.setMap(map)
+		map.setZoomable(false);
 	}
 </script>
 
@@ -492,7 +494,7 @@ function kakaomap(){
 					<td>~</td>
 					<td>${borrow.date2}</td>
 					<c:if test="${borrow.usercheck eq 1}">
-					<td><input type="button" value="빌리기취소" onclick="borrowDelete(prdseq, <jsp:getProperty property="userseq" name="userdata"/>, ${borrow.rentseq})" style="width: 100px; height:30px; border:solid 1px silver; border-radius: 8px; background-color: white;" /></td>
+					<td><input type="button" value="빌리기취소" onclick="borrowDelete(prdseq, <jsp:getProperty property="userseq" name="userdata"/>, ${borrow.rentseq})" style=" border:solid 1px silver; border-radius: 5px; background-color: rgba(0,0,0,0);" /></td>
 					</c:if>				
 				</tr>
 				</c:forEach>
