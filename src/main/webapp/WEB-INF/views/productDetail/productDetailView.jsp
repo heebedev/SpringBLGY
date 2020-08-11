@@ -471,7 +471,7 @@
 					<div class="edatekeyin"><input type="date" placeholder="yyyy-mm-dd" value="2019-09-22" min="${pdDetail.date1}" max="${pdDetail.date2}" name="edate" id="edate">
 					</div>
 				</div>
-					<INPUT type="hidden" name="brprdseq" value="<%=request.getParameter("prdseq")%>" id="prdseq">
+					<INPUT type="hidden" name="brprdseq" value="${pdDetail.prdseq}" id="prdseq">
 					<INPUT type="hidden" name="userseq" value=<jsp:getProperty property="userseq" name="userdata"/>>
 				<div class="brwBtn">
 					<input type="button" value="빌리기" onclick="borrowAct(prdseq, <jsp:getProperty property="userseq" name="userdata"/>, sdate, edate)" style="width: 100px; height:30px; border:solid 1px silver; border-radius: 8px; background-color: white;" />
@@ -523,7 +523,7 @@
 			
 			<div class="commentAdd">
 				<form id="cmtform" method="post" >
-					<INPUT type="hidden" id="cmtprdseq" name="prdseq" value="<%=request.getParameter("prdseq")%>">
+					<INPUT type="hidden" id="cmtprdseq" name="prdseq" value="${pdDetail.prdseq}">
 					<INPUT type="hidden" id="cmtuserseq" name="userseq" value=<jsp:getProperty property="userseq" name="userdata"/>> <!-- !!!!!!!!!!!!!!!!!!10 대신에 나의 userseq !!!!!!!!!! -->
 					<div class="cmtAdd" style="margin-top:10px; margin-bottom:10px;">
 						<input type="text" id="cmtTxt" class="cmtTxt" name="cmtTxt" style="border-radius: 8px; border-top: solid 1px silver; vertical-align: middle;">
@@ -541,10 +541,10 @@
 		<c:if test="${pdDetail.uploaderCheck eq 1}">
 			
 			<div class="prdRev">
-				<input type="button" value="수정" onclick="location.href='productReviseView?prdseq=<%=request.getParameter("prdseq")%>&userseq=<jsp:getProperty property="userseq" name="userdata"/>'" >
+				<input type="button" value="수정" onclick="location.href='productReviseView?prdseq=${pdDetail.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>'" >
 			</div>
 			<div class="prdDel">
-				<input type="button" value="삭제" onclick="window.open('productDeleteConfirmView?prdseq=<%=request.getParameter("prdseq")%>&userseq=<jsp:getProperty property="userseq" name="userdata"/>','게시물 삭제','width=500,height=500');" >
+				<input type="button" value="삭제" onclick="window.open('productDeleteConfirmView?prdseq=${pdDetail.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>','게시물 삭제','width=500,height=500');" >
 			</div>
 		</c:if>
 	
