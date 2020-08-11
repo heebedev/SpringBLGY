@@ -5,7 +5,9 @@ public class BorrowDto {
 	int rentseq;
 	int prdseq;
 	int userseq;
-	
+	int  usercheck;
+
+	String nickname;
 	String date1;
 	String date2;
 	
@@ -21,28 +23,76 @@ public class BorrowDto {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public BorrowDto(int rentseq, int prdseq, int userseq, String date1, String date2, String insertdate) {
+
+
+	public BorrowDto(int rentseq, int prdseq, int userseq, int usercheck, String nickname, String date1, String date2,
+			String insertdate, String title, String price, String image1) {
 		super();
 		this.rentseq = rentseq;
 		this.prdseq = prdseq;
 		this.userseq = userseq;
+		this.usercheck = usercheck;
+		this.nickname = nickname;
 		this.date1 = date1;
 		this.date2 = date2;
 		this.insertdate = insertdate;
-	}
-
-	public BorrowDto(int prdseq, String date1, String date2, String title, String price, String image1) {
-		super();
-		this.prdseq = prdseq;
-		this.date1 = date1;
-		this.date2 = date2;
 		this.title = title;
 		this.price = price;
 		this.image1 = image1;
 	}
+
+	
+
+
+	public BorrowDto(int rentseq, String nickname, String date1, String date2) {
+		super();
+		this.rentseq = rentseq;
+		this.nickname = nickname;
+		this.date1 = date1;
+		this.date2 = date2;
+	}
+
+
+
+	//
+//	public BorrowDto(int rentseq, int prdseq, int userseq, String date1, String date2, String insertdate) {
+//		super();
+//		this.rentseq = rentseq;
+//		this.prdseq = prdseq;
+//		this.userseq = userseq;
+//		this.date1 = date1;
+//		this.date2 = date2;
+//		this.insertdate = insertdate;
+//	}
+//
+//	public BorrowDto(int prdseq, String date1, String date2, String title, String price, String image1) {
+//		super();
+//		this.prdseq = prdseq;
+//		this.date1 = date1;
+//		this.date2 = date2;
+//		this.title = title;
+//		this.price = price;
+//		this.image1 = image1;
+//	}
+	public int getUsercheck() {
+		return usercheck;
+	}
+
+	public void setUsercheck(int usercheck) {
+		this.usercheck = usercheck;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
 	public int getRentseq() {
 		return rentseq;
 	}
+
 	public void setRentseq(int rentseq) {
 		this.rentseq = rentseq;
 	}

@@ -32,7 +32,6 @@ public class MainController {
 			userseq = Integer.parseInt(request.getParameter("userseq"));
 		}
 		model.addAttribute("userseq", userseq);
-		System.out.println(userseq);
 		MainDao dao = sqlSession.getMapper(MainDao.class);
 		ArrayList<MainDto> maindtios = dao.mainDao();
 		model.addAttribute("MainList", maindtios);
@@ -82,5 +81,10 @@ public class MainController {
 			dao.likeInsert(userseq, prdseq);	
 		}
 		
+	}
+	
+	@RequestMapping("/likeForm")
+	public String date(HttpServletRequest request, Model model) {
+		return "mainPage/likeForm";
 	}
 }

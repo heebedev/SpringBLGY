@@ -55,7 +55,6 @@ public class HomeController {
 				userseq = Integer.parseInt(request.getParameter("userseq"));
 			}
 			request.setAttribute("userseq", userseq);
-			System.out.println(userseq);
 			MainDao dao = sqlSession.getMapper(MainDao.class);
 			ArrayList<MainDto> maindtios = dao.mainDao();
 			request.setAttribute("MainList", maindtios);

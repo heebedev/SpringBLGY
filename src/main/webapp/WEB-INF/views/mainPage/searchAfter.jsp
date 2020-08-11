@@ -6,7 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../../views/header.jsp"/>
+<jsp:include page="../../views/header_none_banner.jsp"/>
+<style type="text/css">
+	
+</style>
 </head>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -20,7 +23,7 @@
 	
 	<c:forEach items="${SearchList}" var="SearchDTO"> <!— var = 변수이름 —>
 	<div id="table${SearchDTO.prdseq}">
-	<table style ="border: solid gray 1px; border-radius:8px; float: left; width: 500px; height:150px;">
+	<table style ="border: solid gray 1px; border-radius:8px; float: left; width: 500px; height:150px; padding:15px;">
 			<tr>
 				<td rowspan="3" style="width: 200px;"><a href ="productDetail?prdseq=${SearchDTO.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img src="http://119.207.169.213:8080/blgy/${SearchDTO.image1}" width=150 height=150 style="border:solid silver 2px; border-radius:4px;"></a></td>										
 
@@ -80,7 +83,7 @@
 			$("#likeBtn" + prdseq).val("🖤");
 		} else {
 			$("#likeBtn" + prdseq).val("❤️");
-			}ß
+			}
 		}
 	}
 	
