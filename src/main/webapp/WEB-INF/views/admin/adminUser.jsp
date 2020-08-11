@@ -5,165 +5,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+
+<jsp:include page="../../views/admin/layout/admin_menu.jsp"/>
+
+<meta http-equiv="Content-Type"  charset="UTF-8">
 <title>관리자 회원정보</title>
 
-	<style type="text/css">
-		body{			
-			width:1000px;
-			margin:auto;
-			padding: auto;
-			overflow: auto;
+</head>
+	<style>
+		table {
+			margin-top:10px;
+			border-collapse: collapse;
+			width: 100%;
 		}
-		div.page {
-			border: 1px solid gray;
-			overflow: auto;
-		}
-	
-		header{ border: 1px solid gray; }
-		ul {
-			background-color: white;
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-			overflow: hidden;
-		}
-		li { float: left; }
-		li a {
-			display: block;
-			background-color: white;
-			color: #000000;
+		th, td {
 			padding: 8px;
-			text-decoration: none;
+			border: 1px solid;
 			text-align: center;
-			font-weight: bold;
 		}
-		li a:hover:not(.current) {
-			background-color: silver;
-			color: purple;
-			text-decoration:underline;
-		}
-		li a.home{
-			background-color: black;
-			color: white;
-		}
-		input[type="text"] {
-			width: 40%;
-			padding: 10px 20px; 
-			margin:5px 0;			
-			border: solid 2px black;
-			border-radius: 8px; 
-		}
-		div.page nav {
-			width: 150px;
-			float: left;
-		}
-		
-		div.page nav ul {
-			background-color: black;
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-			overflow: hidden;
-		}
-
-		div.page nav li a {
-			display: block;
-			background-color: black;
-			color: white;
-			padding: 8px;
-			text-decoration: none;
-			text-align: center;
-			font-weight: bold;
-		}
-		
-		div.page nav li a:hover {
-			color: purple;
-			text-decoration:underline;
-		}	
+		tr:hover { background-color: #F5F5F5; }
 		
 		
-		section {
-			border: 1px solid gray;
-			margin-left: 150px;
-		}
-		footer{ border: 1px solid gray; }
 	</style>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script language="JavaScript">
-	$(document).ready(function() {
-		var $banner = $(".banner").find("ul");
 
-		var $bannerWidth = $banner.children().outerWidth();
-		var $bannerHeight = $banner.children().outerHeight();
-		var $length = $banner.children().length;
-		var rollingId;
-
-		rollingId = setInterval(function() { rollingStart(); }, 5000);
-    
-		function rollingStart() {
-			$banner.css("width", $bannerWidth * $length + "px");
-			$banner.css("height", $bannerHeight + "px");
-			$banner.animate({left: - $bannerWidth + "px"}, 1500, function() {
-				$(this).append("<li>" + $(this).find("li:first").html() + "</li>");
-				$(this).find("li:first").remove();
-				$(this).css("left", 0);
-				setInterval() >= {
-				}, 5000;
-			});
+	<!-- 페이징 -->
+	<script>
+		function selChange() {
+			var sel = document.getElementById('cntPerPage').value;
+			location.href="adminUser.bill?nowPage=${paging.nowPage}&cntPerPage="+sel;
 		}
-	}); 
-</script>
+	</script>
 
-
-<script type="text/javascript">
-function confirm_alert(node) {
-    return confirm("정말로 삭제하시겠습니까?");
-}
-
-</script>
-</head>
 
 <body>
-<div class="page" align="center">
-		<header>
-			<ul>
-					<li><a class="home" href="./adminmain.bill">홈</a></li>
-				<ul style="float:right; list-style-type:none;">
-					<li><a href="logOut.bill">로그아웃</a></li>
-				</ul>
-			</ul>
-				
-		</header>
-
-		<nav>
-				<ul>
-				<li><a href="./adminUser.bill">회원 관리</a></li>
-				<li><a href="./adminproductlist.bill">상품 관리</a></li>
-				<!-- <li><a href="./adminborrow.bill">대여 관리</a></li> -->
-			</ul>
-		</nav>
-
-
 
 		<section>
-			<h1 style="text-align: center;">빌릴꼬냥 회원 관리</h1>
+			<h1>빌릴꼬냥 회원 관리</h1>
 			<form action="adminusersearch.bill" method ="post">
 				검색 선택: <select name = "selection">
-							<option value="userseq">회원번호</option>
-							<option value="name">이름</option>
-							<option value="nickname">닉네임</option>
+							<option value="USERSEQ">회원번호</option>
+							<option value="NAME">이름</option>
+							<option value="NICKNAME">닉네임</option>
 						</select>
 					<input type="text" placeholder="회원번호, 이름, 닉네임 검색" name="adminUserSearchText">
-					<input type="submit" value="검색" style="width: 50px; height: 40px; border-radius: 8px; color: white; background-color: black;">
+					<input type="submit" value="검색" style="width: 40px; height: 30px; border-radius: 8px; color: white; background-color: black;">
 			</form>
+			<br>
 
+	
+	<!-- 페이징 -->
+	<div>
+	검색결과 : ${countUserList }	
+	<div style="float: right;">
 		
-
-			<table border="1">
+		<select id="cntPerPage" name="sel" onchange="selChange()">
+			<option value="5"
+				<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄 보기</option>
+			<option value="10"
+				<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10줄 보기</option>
+			<option value="15"
+				<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15줄 보기</option>
+			<option value="20"
+				<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄 보기</option>
+		</select>
+	</div> 
+	</div>
+	<!-- 페이징 옵션선택 끝 -->
 			
-				<tr>
+			
+			
+			<table border="1">
+				<tr style="background-color:#E2DFDF">
 					<td>회원번호</td>
 					<td>이름</td>
 					<td>닉네임</td>
@@ -184,9 +97,35 @@ function confirm_alert(node) {
 
 				</c:forEach>
 			</table>
-		
-		</section>
+			
+			<br>
+			
+	<!-- 페이지번호매기기 -->
+	<div style="display: block; text-align: center;">		
+		<c:if test="${paging.startPage != 1 }">
+			<a href="adminUser.bill?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+		</c:if>
+		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<b>${p }</b>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">
+					<a href="adminUser.bill?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${paging.endPage != paging.lastPage}">
+			<a href="adminUser.bill?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+		</c:if>
 	</div>
+			
+			
+			
+			
+		
+</section>
+
 
 </body>
 
