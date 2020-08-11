@@ -111,5 +111,6 @@ function check() {
 <input type = "hidden" name="yaxis" value=<jsp:getProperty property="yaxis" name="userdata"/>>
 	</form>
 	
+<jsp:include page="../../views/footer.jsp"/>
 </body>
 </html>

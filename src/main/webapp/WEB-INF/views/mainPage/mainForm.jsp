@@ -19,5 +19,6 @@
 					</tr>
 					<%}%>
 			</table>
+<jsp:include page="../../views/footer.jsp"/>
 </body>
 </html>

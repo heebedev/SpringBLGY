@@ -18,7 +18,7 @@
 
 	<br><br><br><br>
 	
-	<c:forEach items="${SearchList}" var="SearchDTO"> <!— var = 변수이름 —>
+	<c:forEach items="${SearchList}" var="SearchDTO">
 	<div id="table${SearchDTO.prdseq}">
 	<table style ="margin:5px; border: solid gray 1px; border-radius:8px; float: left; width: 490px; height:150px;">
 			<tr>
@@ -48,7 +48,8 @@
 	</table>
 	</div>
 	</c:forEach>
-	<br><br><br>
+	
+	
 
 	<script>
 		
@@ -84,5 +85,8 @@
 	}
 	
 	</script>
+
+	<jsp:include page="../../views/footer.jsp"/>
+
 </body>
 </html>
