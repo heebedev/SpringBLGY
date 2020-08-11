@@ -29,7 +29,7 @@
 	.item1 { grid-area: header1; height: 40px; width: 100%;}
 	.item2 { grid-area: menu; height: 400px; }
 	.item3 { grid-area: main; height: 410px; }
-	.item4 { grid-area: footer; height: 40px; width: 100%}
+	.item4 { grid-area: footer; height: 40px; width: 100%; padding-top:10px;}
 	.tablenick_send { grid-area: nicksend;}
 	.tablenick_receive { grid-area: nickreceive;}
 	.tabledate { grid-area: date;}
@@ -50,6 +50,8 @@
 	  padding: 20px;
 	  font-family: sans-serif;
 	  width : 800px;
+	  border: solid 2px black;
+	  border-radius: 8px;
 	  }
 	
 	.item2 {
@@ -61,10 +63,12 @@
 	  padding: 5px;
 	  font-family: sans-serif;
 	  overflow: scroll;
+	  background-color: rgba(231, 235, 238, 100);
+	  border-radius: 8px;
+	  
 	}
 	
 	.grid-container > div {
-	  background-color: rgba(231, 235, 238, 100);
 	  text-align: center;
 	  font-size: 15px;
 	}
@@ -108,6 +112,7 @@
 	</style>
 </head>
 <body style="margin:auto;">
+<center>
 		<div class="grid-container">
 		  <div class="item1">
 		  	<div style="float: left; width: 50%;">
@@ -155,7 +160,7 @@
 		  <a href="messageSend"><input type="button" value="새쪽지"></a>
 		  <input type="button" value="닫기" onClick="window.close()"></div>
 		</div>
-	
+</center>	
 
 
 </body>
