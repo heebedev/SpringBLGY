@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springblgy.dao.AdminDao;
+import com.springblgy.dto.PagingVO;
 
 
 @Controller //
@@ -30,13 +32,40 @@ public class AdminController {
 	}
 	
 	//회원 관리 
-	//회원관리 리스트
+//	//회원관리 리스트 
+//	@RequestMapping("/adminUser.bill")
+//	public String adminUser(HttpServletRequest request, Model model) {
+//		AdminDao adminDao = sqlSession.getMapper(AdminDao.class);
+//		model.addAttribute("AdminUserList", adminDao.AdminUserList());
+//		return "admin/adminUser";
+//	}
+	
+	//Paging + 회원관리리스트 //////////////////////
 	@RequestMapping("/adminUser.bill")
-	public String adminUser(HttpServletRequest request, Model model) {
+	public String adminUser(PagingVO vo, Model model
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+		
 		AdminDao adminDao = sqlSession.getMapper(AdminDao.class);
-		model.addAttribute("AdminUserList", adminDao.AdminUserList());
+		
+		int total = adminDao.countUserList();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
+		model.addAttribute("countUserList", total);
+		model.addAttribute("paging", vo);
+		model.addAttribute("AdminUserList", adminDao.AdminUserList(vo));
 		return "admin/adminUser";
 	}
+	/////////////페이징//////
+	
 	
 	//회원검색
 	@RequestMapping("/adminusersearch.bill")
@@ -44,8 +73,37 @@ public class AdminController {
 		AdminDao adminDao = sqlSession.getMapper(AdminDao.class);
 		model.addAttribute("AdminUserSearchList", adminDao.AdminUserSearchList(request.getParameter("selection"), request.getParameter("adminUserSearchText")));
 		return "admin/adminUserSearch";
-
 	}
+	
+	//회원검색+페이징
+//	@RequestMapping("/adminusersearch.bill")
+//	public String adminUserSearch(HttpServletRequest request, PagingVO vo, Model model
+//			, @RequestParam(value="nowPage", required=false)String nowPage
+//			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+//		
+//		AdminDao adminDao = sqlSession.getMapper(AdminDao.class);
+//		
+//		int total = adminDao.countUserSearchList(request.getParameter("selection"), request.getParameter("adminUserSearchText"));
+//		if (nowPage == null && cntPerPage == null) {
+//			nowPage = "1";
+//			cntPerPage = "5";
+//		} else if (nowPage == null) {
+//			nowPage = "1";
+//		} else if (cntPerPage == null) { 
+//			cntPerPage = "5";
+//		}
+//		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+//		
+//		model.addAttribute("countUserSearchList", total);
+//		model.addAttribute("paging", vo);
+//		model.addAttribute("AdminUserSearchList", adminDao.AdminUserSearchList(request.getParameter("selection"), request.getParameter("adminUserSearchText"), vo));
+//		return "admin/adminUserSearch";
+//	}
+	
+	
+	
+	
+	
 
 	//회원정보 수정_view
 	@RequestMapping("/adminuserview.bill")
@@ -119,6 +177,12 @@ public class AdminController {
 		return "redirect:adminproductlist.bill";
 	}
 
+	
+	
+	
+	
+	
+	
 	
 	
 	

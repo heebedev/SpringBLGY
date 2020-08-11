@@ -5,151 +5,33 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<jsp:include page="../../views/admin/layout/admin_menu.jsp"/>
+
 <meta charset="UTF-8">
 <title>관리자 상품관리 검색</title>
 
-	<style type="text/css">
-		body{			
-			width:1000px;
-			margin:auto;
-			padding: auto;
-			overflow: auto;
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
 		}
-		div.page {
-			border: 1px solid gray;
-			overflow: auto;
-		}
-	
-		header{ border: 1px solid gray; }
-		ul {
-			background-color: white;
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-			overflow: hidden;
-		}
-		li { float: left; }
-		li a {
-			display: block;
-			background-color: white;
-			color: #000000;
+		th, td {
 			padding: 8px;
-			text-decoration: none;
+			border: 1px solid;
 			text-align: center;
-			font-weight: bold;
 		}
-		li a:hover:not(.current) {
-			background-color: silver;
-			color: purple;
-			text-decoration:underline;
-		}
-		li a.home{
-			background-color: black;
-			color: white;
-		}
-		input[type="text"] {
-			width: 40%;
-			padding: 10px 20px; 
-			margin:5px 0;			
-			border: solid 2px black;
-			border-radius: 8px; 
-		}
-		div.page nav {
-			width: 150px;
-			float: left;
-		}
-		
-		div.page nav ul {
-			background-color: black;
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-			overflow: hidden;
-		}
-
-		div.page nav li a {
-			display: block;
-			background-color: black;
-			color: white;
-			padding: 8px;
-			text-decoration: none;
-			text-align: center;
-			font-weight: bold;
-		}
-		
-		div.page nav li a:hover {
-			color: purple;
-			text-decoration:underline;
-		}	
-		
-		
-		section {
-			border: 1px solid gray;
-			margin-left: 150px;
-		}
-		footer{ border: 1px solid gray; }
+		tr:hover { background-color: #F5F5F5; }
 	</style>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script language="JavaScript">
-	$(document).ready(function() {
-		var $banner = $(".banner").find("ul");
-
-		var $bannerWidth = $banner.children().outerWidth();
-		var $bannerHeight = $banner.children().outerHeight();
-		var $length = $banner.children().length;
-		var rollingId;
-
-		rollingId = setInterval(function() { rollingStart(); }, 5000);
-    
-		function rollingStart() {
-			$banner.css("width", $bannerWidth * $length + "px");
-			$banner.css("height", $bannerHeight + "px");
-			$banner.animate({left: - $bannerWidth + "px"}, 1500, function() {
-				$(this).append("<li>" + $(this).find("li:first").html() + "</li>");
-				$(this).find("li:first").remove();
-				$(this).css("left", 0);
-				setInterval() >= {
-				}, 5000;
-			});
-		}
-	}); 
-</script>
-
-
-<script type="text/javascript">
-function confirm_alert(node) {
-    return confirm("정말로 삭제하시겠습니까?");
-}
-
-</script>
+	
 </head>
 
 <body>
-<div class="page" align="center">
-		<header>
-			<ul>
-					<li><a class="home" href="./adminmain.bill">홈</a></li>
-				<ul style="float:right; list-style-type:none;">
-					<li><a href="logOut.bill">로그아웃</a></li>
-				</ul>
-			</ul>
-				
-		</header>
-
-		<nav>
-				<ul>
-				<li><a href="./adminUser.bill">회원 관리</a></li>
-				<li><a href="./adminproductlist.bill">상품 관리</a></li>
-				<!-- <li><a href="./adminborrow.bill">대여 관리</a></li> -->
-			</ul>
-		</nav>
 
 
 
 		<section>
-		<!-- 	/////검색아직안함 -->
-			<h1 style="text-align: center;">빌릴꼬냥 상품 관리</h1>
+			<h1>빌릴꼬냥 상품 관리</h1>
 			<form action="adminproductsearch.bill" method ="post">
 				검색 선택: <select name = "selection">
 							<option value="PRDSEQ">상품번호</option>
@@ -157,14 +39,13 @@ function confirm_alert(node) {
 							<option value="NICKNAME">등록회원</option>
 						</select>
 					<input type="text" placeholder="상품번호, 상품명, 등록회원 검색" name="adminProductSearchText" style="width: 200px">
-					<input type="submit" value="검색" style="width: 50px; height: 40px; border-radius: 8px; color: white; background-color: black;">
+					<input type="submit" value="검색" style="width: 40px; height: 30px; border-radius: 8px; color: white; background-color: black;">
 			</form>
-		<!-- 	/////////////검색아직안함///// -->
-
+			<br>
 
 			<table border="1">
 			
-				<tr>
+				<tr style="background-color:#E2DFDF">
 					<td>상품번호</td>
 					<td>사진</td>
 					<td>상품명</td>
@@ -178,10 +59,10 @@ function confirm_alert(node) {
 				<c:forEach items="${AdminProductSearchList}" var="productSearchList">
 					<tr>
 						<td>${productSearchList.prdseq}</td>
-						<td><img src="${productSearchList.image1}" width= "80px" height="80px"></a></td>
+						<td><img src="http://119.207.169.213:8080/blgy/${productSearchList.image1}" width= "80px" height="80px"></a></td>
 						<td>${productSearchList.title}</td>
 						<td>${productSearchList.price}</td>
-						<td>${productSearchList.date1}~${productSearchList.date2}</td>
+						<td>${productSearchList.date1}<br>&nbsp;&nbsp;~${productSearchList.date2}</td>
 						<td>${productSearchList.nickname}</td>
 						<td><a href = "adminproductview.bill?prdseq=${productSearchList.prdseq}">수정</a></td>
 						<td><a href = "adminproductdelete.bill?prdseq=${productSearchList.prdseq}" onclick="return confirm_alert(this);">삭제</td>
@@ -191,7 +72,7 @@ function confirm_alert(node) {
 			</table>
 		
 		</section>
-	</div>
+
 
 </body>
 

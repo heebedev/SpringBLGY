@@ -21,15 +21,44 @@
 		SELECT COUNT(RENTSEQ) AS TODAYBORROW FROM BORROW WHERE DATE(INSERTDATE)= DATE(CURDATE())
 	</select>
 
+
 	<!-- 회원정보불러오기  -->
-	<select id="AdminUserList" resultType="com.springblgy.dto.AdminUserDto">
+	<!-- <select id="AdminUserList" resultType="com.springblgy.dto.AdminUserDto">
 		SELECT U.USERSEQ, U.NAME, U.NICKNAME, COUNT(P.UPLOADERSEQ) AS COUNTPRD FROM USERDATA AS U LEFT OUTER JOIN PRODUCT AS P ON U.USERSEQ = P.UPLOADERSEQ GROUP BY U.USERSEQ
+	</select> -->
+	
+	<!-- 회원정보불러오기 + 페이징 -->
+	<!-- 총 회원 갯수 출력  -->
+	<select id="countUserList" resultType="int">
+		SELECT COUNT(*) FROM USERDATA
 	</select>
+	
+	<select id="AdminUserList" resultType="com.springblgy.dto.AdminUserDto">
+		SELECT * 
+		FROM (SELECT @ROWNUM:=@ROWNUM + 1 AS RN, A.* FROM (SELECT U.USERSEQ, U.NAME, U.NICKNAME, COUNT(P.UPLOADERSEQ) AS COUNTPRD FROM USERDATA AS U LEFT OUTER JOIN PRODUCT AS P ON U.USERSEQ = P.UPLOADERSEQ GROUP BY U.USERSEQ)A, (SELECT @ROWNUM := 0) R)C 
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>	
+	
 
 	<!-- //고객검색 결과 -->
 	<select id="AdminUserSearchList" parameterType="String" resultType="com.springblgy.dto.AdminUserDto">
 		SELECT U.USERSEQ, U.NAME, U.NICKNAME, COUNT(P.UPLOADERSEQ) AS COUNTPRD FROM USERDATA AS U LEFT OUTER JOIN PRODUCT AS P ON U.USERSEQ = P.UPLOADERSEQ WHERE ${param1} LIKE CONCAT('%',#{param2},'%') GROUP BY U.USERSEQ
-	</select>
+	</select> 
+	
+	<!-- 고객검색 결과 + 페이징 -->
+	<!-- <select id="countUserSearchList" resultType="int">
+		SELECT COUNT(*) FROM USERDATA WHERE ${param1} LIKE CONCAT('%',#{param2},'%')
+	</select> -->
+	
+	<!-- <select id="AdminUserSearchList" resultType="com.springblgy.dto.AdminUserDto">
+		SELECT * 
+		FROM (SELECT @ROWNUM:=@ROWNUM + 1 AS RN, A.* FROM (SELECT U.USERSEQ, U.NAME, U.NICKNAME, COUNT(P.UPLOADERSEQ) AS COUNTPRD FROM USERDATA AS U LEFT OUTER JOIN PRODUCT AS P ON U.USERSEQ = P.UPLOADERSEQ WHERE ${param1} LIKE CONCAT('%',#{param2},'%') GROUP BY U.USERSEQ)A, (SELECT @ROWNUM := 0) R)C 
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select> -->
+	
+	
+	
+	
 
 	<!-- //어드민 클릭한 회원정보 불러오기 -->
 	<select id="AdminViewUserInfo" resultType="com.springblgy.dto.AdminUserDto">
@@ -74,10 +103,6 @@
 	</delete>
 	
 	
-
-	
-	
-
 
 
 </mapper>
