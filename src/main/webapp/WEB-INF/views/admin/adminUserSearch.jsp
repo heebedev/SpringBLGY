@@ -10,8 +10,9 @@
 
 <style>
 		table {
+			margin-top:10px;
 			border-collapse: collapse;
-			width: 70%;
+			width: 100%;
 		}
 		th, td {
 			padding: 8px;
@@ -22,12 +23,12 @@
 	</style>
 
 	<!-- 페이징 -->
-	<!-- <script>
+	<script>
 		function selChange() {
 			var sel = document.getElementById('cntPerPage').value;
-			location.href="adminUserSearch.bill?nowPage=${paging.nowPage}&cntPerPage="+sel;
+			location.href="adminusersearch.bill?selection=${selection}&adminUserSearchText=${adminUserSearchText}&nowPage=${paging.nowPage}&cntPerPage="+sel;
 		}
-	</script> -->
+	</script>
 
 
 
@@ -41,11 +42,11 @@
 		<section>
 
 			<h1>빌릴꼬냥 회원 관리</h1>
-			<form action="adminusersearch.bill" method ="post">
+			<form action="adminusersearch.bill" method ="get">
 				검색 선택: <select name = "selection">
 							<option value="USERSEQ">회원번호</option>
 							<option value="NAME">이름</option>
-							<option value="NICKNAME" selected="selected">닉네임</option>
+							<option value="NICKNAME">닉네임</option>
 						</select>
 					<input type="text" name="adminUserSearchText" placeholder="회원번호, 이름, 닉네임 검색">
 					<input type="submit" value="검색" style="width: 40px; height: 30px; border-radius: 8px; color: white; background-color: black;">
@@ -53,7 +54,7 @@
 			<br>
 
 
-<%-- <!-- 페이징 -->
+	<!-- 페이징 -->
 	<div>
 	검색결과 : ${countUserSearchList }	
 	<div style="float: right;">
@@ -70,7 +71,7 @@
 		</select>
 	</div> 
 	</div>
-	<!-- 페이징 옵션선택 끝 --> --%>
+	<!-- 페이징 옵션선택 끝 --> 
 
 
 			<table border="1">
@@ -99,10 +100,10 @@
 			
 			<br>
 			
-			<%-- <!-- 페이지번호매기기 -->
+	<!-- 페이지번호매기기 -->
 	<div style="display: block; text-align: center;">		
 		<c:if test="${paging.startPage != 1 }">
-			<a href="adminUserSearch.bill?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+			<a href="adminusersearch.bill?selection=${selection }&adminUserSearchText=${adminUserSearchText}&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
 		</c:if>
 		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 			<c:choose>
@@ -110,14 +111,14 @@
 					<b>${p }</b>
 				</c:when>
 				<c:when test="${p != paging.nowPage }">
-					<a href="adminUserSearch.bill?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+					<a href="adminusersearch.bill?selection=${selection }&adminUserSearchText=${adminUserSearchText}&nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
 				</c:when>
 			</c:choose>
 		</c:forEach>
 		<c:if test="${paging.endPage != paging.lastPage}">
-			<a href="adminUserSearch.bill?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+			<a href="adminusersearch.bill?selection=${selection }&adminUserSearchText=${adminUserSearchText}&nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
 		</c:if>
-	</div> --%>
+	</div>
 			
 		
 </section>

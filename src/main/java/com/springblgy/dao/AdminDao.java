@@ -19,15 +19,32 @@ public interface AdminDao {
 		//어드민 메인 빌린상품 카운트 
 		public String AdminMainCountBorrow();
 
-		
 		//회원관리
 //		//회원정보 불러오기 -->페이징으로 변경
 //		public ArrayList<AdminUserDto> AdminUserList();
 		
-		// 총 회원 수 카운트 
+		// 총 고객 수 카운트 
 		public int countUserList();
 		// 회원관리 페이징 + 게시글 조회
 		public ArrayList<AdminUserDto> AdminUserList(PagingVO vo);
+		
+		
+		
+//		//고객검색 결과
+//		public ArrayList<AdminUserDto> AdminUserSearchList(String selection, String adminUserSearchText);
+
+		// 고객 검색 수 카운트 
+		public int countUserSearchList(String selection, String adminUserSearchText);
+		
+		// 검색 + 페이징 					
+		public ArrayList<AdminUserDto> AdminUserSearchList(String selection, String adminUserSearchText, PagingVO vo);
+				
+				
+		
+		
+		
+		
+		
 		
 	
 		//어드민 클릭한 회원정보 불러오기
@@ -54,16 +71,6 @@ public interface AdminDao {
 		public void AdminProductDelete(String prdseq);
 		
 		
-		
-		//고객검색 결과
-		public ArrayList<AdminUserDto> AdminUserSearchList(String selection, String adminUserSearchText);
-
-		
-		// 고객 검색 수 카운트 
-		public int countUserSearchList(String selection, String adminUserSearchText);
-//		// 회원관리 페이징 + 게시글 조회
-//		public ArrayList<AdminUserDto> AdminUserSearchList(String selection, String adminUserSearchText, PagingVO vo);
-				
 		
 		
 		
