@@ -136,7 +136,6 @@
 				success:function (args) {
 				}, 
 				error:function (e) {
-					console.log(e);
 				}
 			});  
 		}
@@ -455,12 +454,12 @@
 					<div class="etcInfo">
 					<c:choose>
 			<c:when test="${pdDetail.liked eq 1}">
-				<td><input  type="button" id="likeBtn${pdDetail.prdseq}" value="❤️" onclick="like(${pdDetail.prdseq}, <jsp:getProperty property="userseq" name="userdata"/>, this)" style="flat:right;border: none; background-color:white"></td>
+				<td><input  type="button" id="likeBtn${pdDetail.prdseq}" value="❤️" onclick="like(${pdDetail.prdseq}, <jsp:getProperty property="userseq" name="userdata"/>, this)" style="border: none; background-color:white"></td>
 				</c:when>
 				<c:otherwise>
-				<td><input  type="button" id="likeBtn${pdDetail.prdseq}" value="🖤️" onclick="like(${pdDetail.prdseq}, <jsp:getProperty property="userseq" name="userdata"/>, this)" style="flat:right;border: none; background-color:white"></td>
+				<td><input  type="button" id="likeBtn${pdDetail.prdseq}" value="🖤️" onclick="like(${pdDetail.prdseq}, <jsp:getProperty property="userseq" name="userdata"/>, this)" style="border: none; background-color:white"></td>
 				</c:otherwise>
-				</c:choose> / ${pdDetail.view }</div>
+				</c:choose> / 👀 ${pdDetail.view }</div>
 				</div>
 				<form name="brwform" action="" method="post">
 				<div class="date">

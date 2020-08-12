@@ -41,6 +41,8 @@
 		</table>
 	
 	</section>
+	
+	<jsp:include page="../../views/footer.jsp"/>
 
 </body>
 

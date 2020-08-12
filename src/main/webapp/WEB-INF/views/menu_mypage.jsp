@@ -63,13 +63,15 @@
 	function goPopup(){
 		var pop = window.open("./authority.bill","pop","width=500,height=400, scrollbars=yes, resizable=yes"); 
 	}
+</script>
+<script  type="text/JavaScript">
 	/* 쪽지함 새창 */
 	function textPopup(){
 		var title = "text";
 		window.open("", title ,"width=900; height=800;");
-		var popup = document.post;
-		popup.target=title;
-		popup.action ="message.bill"
+		var popup = document.post_footer;
+		popup.target = title;
+		popup.action = "message.bill";
 		popup.submit();
 	}
 </script>
@@ -86,7 +88,7 @@
 			<li><a onclick="textPopup();">쪽지함</a></li>
 		</ul>
 	</nav>
-	<form name="post" id="post" method="post">
+	<form name="post_footer" id="post_footer" method="post">
 	<input type="hidden" name="userseq" id ="userseq" value="<%=userdata.getUserseq()%>">
 	<input type="hidden" name="selection" id ="selection" value="total">
 	</form>

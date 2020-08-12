@@ -25,7 +25,7 @@
 
 <body>
 
-	<div class="footer">
+	<div class="footer" style="width:1000px">
 		<div class="logoimg">
 		<img alt="logo" src="resources/logo.png" height="80" width="130">
 		</div>
