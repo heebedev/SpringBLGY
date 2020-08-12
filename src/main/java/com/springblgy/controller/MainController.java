@@ -68,7 +68,7 @@ public class MainController {
 	}
 	
 	@RequestMapping("/like.bill")
-	public void like(HttpServletRequest request, Model model) {
+	public String like(HttpServletRequest request, Model model) {
 		MainDao dao = sqlSession.getMapper(MainDao.class);
 		
 		int prdseq = Integer.parseInt(request.getParameter("prdseq"));
@@ -79,11 +79,7 @@ public class MainController {
 		}else {
 			dao.likeInsert(userseq, prdseq);	
 		}
-		
+		return "mainPage/likeChk";
 	}
 	
-	@RequestMapping("/likeForm")
-	public String date(HttpServletRequest request, Model model) {
-		return "mainPage/likeForm";
-	}
 }

@@ -55,5 +55,8 @@
 		DELETE FROM BORROW WHERE RENTSEQ = #{param1}
 
 	</delete>
+	<select id="borrowChkDao" resultType="int">
+		SELECT COUNT(*) FROM BORROW WHERE (DATE1 BETWEEN #{param2} AND #{param3} OR DATE2 BETWEEN #{param2} and #{param3}) AND PRDSEQ = #{param1}
+	</select>
 
 </mapper>

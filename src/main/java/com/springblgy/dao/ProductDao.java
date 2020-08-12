@@ -33,6 +33,8 @@ public interface ProductDao {
 	public ArrayList<BorrowDto> borrowListDao(int prdseq, int userseq);
 	
 	public void deleteBorrowDao(int rentseq);
+	
+	public int borrowChkDao(int prdseq, String date1, String date2);
 
 
 }

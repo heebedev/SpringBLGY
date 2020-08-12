@@ -240,6 +240,21 @@ public class ProductController {
 			
 			return result;
 		}
+		
+	@RequestMapping("/borrowChk")
+	public String borrowChk(HttpServletRequest request, Model model) {
+		
+		int prdseq = Integer.parseInt(request.getParameter("prdseq"));
+		String date1 = request.getParameter("sdate");
+		String date2 = request.getParameter("edate");
+		
+		
+		ProductDao dao = sqlSession.getMapper(ProductDao.class);
+		int count = dao.borrowChkDao(prdseq, date1, date2);
+		model.addAttribute("count",dao.borrowChkDao(prdseq, date1, date2));
+		
+		return "productDetail/borrowChk";
+	}
 
 	@RequestMapping("/borrow")
 	public String borrow(HttpServletRequest request, Model model) {
