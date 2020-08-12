@@ -65,8 +65,12 @@
 	}
 	/* 쪽지함 새창 */
 	function textPopup(){
-		var myseq = <%=userdata.getUserseq()%>;
-		window.open("./message.bill?selection=total&userseq="+myseq, "text","width=900; height=800;");	
+		var title = "text";
+		window.open("", title ,"width=900; height=800;");
+		var popup = document.post;
+		popup.target=title;
+		popup.action ="message.bill"
+		popup.submit();
 	}
 </script>
 
@@ -82,6 +86,10 @@
 			<li><a onclick="textPopup();">쪽지함</a></li>
 		</ul>
 	</nav>
+	<form name="post" id="post" method="post">
+	<input type="hidden" name="userseq" id ="userseq" value="<%=userdata.getUserseq()%>">
+	<input type="hidden" name="selection" id ="selection" value="total">
+	</form>
 	
 		
 </body>
