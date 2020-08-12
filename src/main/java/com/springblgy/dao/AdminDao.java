@@ -28,25 +28,14 @@ public interface AdminDao {
 		// 회원관리 페이징 + 게시글 조회
 		public ArrayList<AdminUserDto> AdminUserList(PagingVO vo);
 		
-		
-		
-//		//고객검색 결과
+//		//고객검색 결과-->페이징으로 변경
 //		public ArrayList<AdminUserDto> AdminUserSearchList(String selection, String adminUserSearchText);
-
 		// 고객 검색 수 카운트 
 		public int countUserSearchList(String selection, String adminUserSearchText);
 		
-		// 검색 + 페이징 					
+		// 고객검색 + 페이징 					
 		public ArrayList<AdminUserDto> AdminUserSearchList(String selection, String adminUserSearchText, PagingVO vo);
 				
-				
-		
-		
-		
-		
-		
-		
-	
 		//어드민 클릭한 회원정보 불러오기
 		public AdminUserDto AdminViewUserInfo(String userseq);
 		
@@ -58,8 +47,26 @@ public interface AdminDao {
 		
 		
 		//상품관리
-		//상품 불러오기  AProductList
-		public  ArrayList<AdminPrdDto> AdminProductList();
+//		//상품 불러오기  -->페이징으로 변경
+//		public ArrayList<AdminPrdDto> AdminProductList();
+		// 총 상품 갯수 카운트 
+		public int countProductList();
+		// 회원관리 페이징 + 게시글 조회
+		public ArrayList<AdminPrdDto> AdminProductList(PagingVO vo);
+		
+		
+//		//상품검색 결과 --> 페이징으로 변경
+//		public ArrayList<AdminPrdDto> AdminProductSearchList(String selection, String adminProductSearchText);
+		
+		//상품검색 결과 + 페이징
+		// 고객 검색 수 카운트 
+		public int countProductSearchList(String selection, String adminProductSearchText);
+						
+		// 고객검색 + 페이징 					
+		public ArrayList<AdminPrdDto> AdminProductSearchList(String selection, String adminProductSearchText, PagingVO vo);
+								
+			
+		
 			
 		//클릭한 상품 정보 불러오기 
 		public AdminPrdDto AdminViewPrdInfo(String prdseq);
@@ -76,12 +83,7 @@ public interface AdminDao {
 		
 		
 		
-		//상품검색 결과 
-		public ArrayList<AdminPrdDto> AdminProductSearchList(String selection, String adminProductSearchText);
-	
 		
-		
-	
 		
 		
 		

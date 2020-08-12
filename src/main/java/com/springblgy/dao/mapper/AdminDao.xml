@@ -22,7 +22,7 @@
 	</select>
 
 
-	<!-- 회원정보불러오기  -->
+	<!-- 회원정보불러오기 페이징으로 변경-->
 	<!-- <select id="AdminUserList" resultType="com.springblgy.dto.AdminUserDto">
 		SELECT U.USERSEQ, U.NAME, U.NICKNAME, COUNT(P.UPLOADERSEQ) AS COUNTPRD FROM USERDATA AS U LEFT OUTER JOIN PRODUCT AS P ON U.USERSEQ = P.UPLOADERSEQ GROUP BY U.USERSEQ
 	</select> -->
@@ -40,7 +40,7 @@
 	</select>	
 	
 
-	<!-- 고객검색 결과 페이징으로 변경중 -->
+	<!-- 고객검색 결과 페이징으로 변경 -->
 <!-- 	<select id="AdminUserSearchList" parameterType="String" resultType="com.springblgy.dto.AdminUserDto">
 		SELECT U.USERSEQ, U.NAME, U.NICKNAME, COUNT(P.UPLOADERSEQ) AS COUNTPRD FROM USERDATA AS U LEFT OUTER JOIN PRODUCT AS P ON U.USERSEQ = P.UPLOADERSEQ WHERE ${param1} LIKE CONCAT('%',#{param2},'%') GROUP BY U.USERSEQ
 	</select>  -->
@@ -56,10 +56,6 @@
 		WHERE RN BETWEEN #{param3.start} AND #{param3.end}
 	</select>
 	
-	
-	
-	
-
 	<!-- //어드민 클릭한 회원정보 불러오기 -->
 	<select id="AdminViewUserInfo" resultType="com.springblgy.dto.AdminUserDto">
 		SELECT * FROM USERDATA WHERE USERSEQ = #{param1}
@@ -77,15 +73,46 @@
 	
 	
 	
-	<!-- //상품 불러오기  -->
-	<select id="AdminProductList" resultType="com.springblgy.dto.AdminPrdDto">
+	
+	
+	
+	<!-- //상품 불러오기 페이징으로 변경  -->
+<!-- 	<select id="AdminProductList" resultType="com.springblgy.dto.AdminPrdDto">
 		SELECT P.*, U.NAME, U.NICKNAME, U.EMAIL FROM PRODUCT AS P LEFT OUTER JOIN USERDATA AS U ON P.UPLOADERSEQ = U.USERSEQ
+	</select> -->
+	
+	<!-- //상품 불러오기 + 페이징  -->
+		<!-- 총 상품 갯수 출력  -->
+	<select id="countProductList" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM PRODUCT
+	</select>
+	<!-- 총 상품 리스트 + 페이징 -->
+	<select id="AdminProductList" resultType="com.springblgy.dto.AdminPrdDto">
+		SELECT * 
+		FROM (SELECT @ROWNUM:=@ROWNUM + 1 AS RN, A.* FROM (SELECT P.*, U.NAME, U.NICKNAME, U.EMAIL FROM PRODUCT AS P LEFT OUTER JOIN USERDATA AS U ON P.UPLOADERSEQ = U.USERSEQ)A, (SELECT @ROWNUM := 0) R)C 
+		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 	
-	<!-- //상품검색 결과  -->
-	<select id="AdminProductSearchList" parameterType="String" resultType="com.springblgy.dto.AdminPrdDto">
+	
+	
+	<!-- //상품검색 결과 페이징으로 변경  -->
+<!-- 	<select id="AdminProductSearchList" parameterType="String" resultType="com.springblgy.dto.AdminPrdDto">
 		SELECT P.*, U.NAME, U.NICKNAME, U.EMAIL FROM PRODUCT AS P LEFT OUTER JOIN USERDATA AS U ON P.UPLOADERSEQ = U.USERSEQ WHERE ${param1} LIKE CONCAT('%',#{param2},'%')
+	</select> -->
+	
+	<!-- 상품검색 결과 + 페이징 ok-->
+	<select id="countProductSearchList" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM PRODUCT AS P LEFT OUTER JOIN USERDATA AS U ON P.UPLOADERSEQ = U.USERSEQ WHERE ${param1} LIKE CONCAT('%',#{param2},'%')
 	</select>
+	
+	<select id="AdminProductSearchList" resultType="com.springblgy.dto.AdminPrdDto">
+		SELECT * 
+		FROM (SELECT @ROWNUM:=@ROWNUM + 1 AS RN, A.* FROM (SELECT P.*, U.NAME, U.NICKNAME, U.EMAIL FROM PRODUCT AS P LEFT OUTER JOIN USERDATA AS U ON P.UPLOADERSEQ = U.USERSEQ WHERE ${param1} LIKE CONCAT('%',#{param2},'%'))A, (SELECT @ROWNUM := 0) R)C 
+		WHERE RN BETWEEN #{param3.start} AND #{param3.end}
+	</select>
+	
+	
+	
 	
 	<!-- // 클릭한 상품 정보 불러오기  -->
 	<select id="AdminViewPrdInfo" resultType="com.springblgy.dto.AdminPrdDto">

@@ -31,7 +31,10 @@ public class AdminController {
 		return "admin/adminMainpage";
 	}
 	
-	//회원 관리 
+	
+	//////////////////////////////
+	//  	   회원관리			//
+	//////////////////////////////
 //	//회원관리 리스트 
 //	@RequestMapping("/adminUser.bill")
 //	public String adminUser(HttpServletRequest request, Model model) {
@@ -82,7 +85,6 @@ public class AdminController {
 			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
 		
 		AdminDao adminDao = sqlSession.getMapper(AdminDao.class);
-		
 		int total = adminDao.countUserSearchList(request.getParameter("selection"), request.getParameter("adminUserSearchText"));
 		
 		if (nowPage == null && cntPerPage == null) {
@@ -106,10 +108,6 @@ public class AdminController {
 	}
 	
 	
-	
-	
-	
-
 	//회원정보 수정_view
 	@RequestMapping("/adminuserview.bill")
 	public String AdminUserModifyGetInfo(HttpServletRequest request, Model model) {
@@ -138,22 +136,86 @@ public class AdminController {
 		return "redirect:adminUser.bill";
 	}
 
-	//상품 관리
+	
+	
+	//////////////////////////////s
+	//  	   상품관리			//
+	//////////////////////////////
+	
 	//어드민 상품관리 리스트
+//	@RequestMapping("/adminproductlist.bill")
+//	public String AdminProduct(HttpServletRequest request, Model model) {
+//		AdminDao adminDao = sqlSession.getMapper(AdminDao.class);
+//		model.addAttribute("AdminProductList" ,adminDao.AdminProductList());
+//		return "admin/adminProductList";
+//	}
+	
+	//어드민 상품관리리스트 +페이징
 	@RequestMapping("/adminproductlist.bill")
-	public String AdminProduct(HttpServletRequest request, Model model) {
+	public String AdminProduct(PagingVO vo, Model model
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+		
 		AdminDao adminDao = sqlSession.getMapper(AdminDao.class);
-		model.addAttribute("AdminProductList" ,adminDao.AdminProductList());
+		int total = adminDao.countProductList();  
+		
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
+		model.addAttribute("countProductList", total);
+		model.addAttribute("paging", vo);
+		model.addAttribute("AdminProductList", adminDao.AdminProductList(vo));
+		
 		return "admin/adminProductList";
 	}
-
-	//상품 검색
+	/////////////페이징//////
+	
+	//상품 검색 --> 페이징으로 변경
+//	@RequestMapping("/adminproductsearch.bill")
+//	public String AdminProductSearch(HttpServletRequest request, Model model) {
+//		AdminDao adminDao = sqlSession.getMapper(AdminDao.class);
+//		model.addAttribute("AdminProductSearchList", adminDao.AdminProductSearchList(request.getParameter("selection"), request.getParameter("adminProductSearchText")));
+//		return "admin/adminProductSearch";
+//	}
+	
+	//상검색+페이징
 	@RequestMapping("/adminproductsearch.bill")
-	public String AdminProductSearch(HttpServletRequest request, Model model) {
-		AdminDao adminDao = sqlSession.getMapper(AdminDao.class);
-		model.addAttribute("AdminProductSearchList", adminDao.AdminProductSearchList(request.getParameter("selection"), request.getParameter("adminProductSearchText")));
-		return "admin/adminProductSearch";
-	}
+	public String AdminProductSearch(HttpServletRequest request, PagingVO vo, Model model
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+			
+			AdminDao adminDao = sqlSession.getMapper(AdminDao.class);
+			int total = adminDao.countProductSearchList(request.getParameter("selection"), request.getParameter("adminProductSearchText"));
+			
+			if (nowPage == null && cntPerPage == null) {
+				nowPage = "1";
+				cntPerPage = "5";
+			} else if (nowPage == null) {
+				nowPage = "1";
+			} else if (cntPerPage == null) { 
+				cntPerPage = "5";
+			}
+			vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			
+			model.addAttribute("countProductSearchList", total);
+			model.addAttribute("paging", vo);
+			model.addAttribute("AdminProductSearchList", 
+					adminDao.AdminProductSearchList(request.getParameter("selection"), request.getParameter("adminProductSearchText"), vo));
+			model.addAttribute("selection", request.getParameter("selection"));
+			model.addAttribute("adminProductSearchText", request.getParameter("adminProductSearchText"));
+			
+			return "admin/adminProductSearch";
+		}
+	
+	
+	
 	
 	//상품관리 수정_view
 	@RequestMapping("/adminproductview.bill")

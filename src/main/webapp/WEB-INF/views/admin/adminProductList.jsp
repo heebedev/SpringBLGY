@@ -13,6 +13,7 @@
 
 	<style>
 		table {
+			margin-top:10px;
 			border-collapse: collapse;
 			width: 100%;
 		}
@@ -23,6 +24,14 @@
 		}
 		tr:hover { background-color: #F5F5F5; }
 	</style>
+
+<!-- 페이징 -->
+	<script>
+		function selChange() {
+			var sel = document.getElementById('cntPerPage').value;
+			location.href="adminproductlist.bill?nowPage=${paging.nowPage}&cntPerPage="+sel;
+		}
+	</script>
 
 
 <body>
@@ -40,6 +49,26 @@
 					<input type="submit" value="검색" style="width: 40px; height: 30px; border-radius: 8px; color: white; background-color: black;">
 			</form>
 			<br>
+
+
+	<!-- 페이징 -->
+	<div>
+	검색결과 : ${countProductList}	
+	<div style="float: right;">
+		
+		<select id="cntPerPage" name="sel" onchange="selChange()">
+			<option value="5"
+				<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄 보기</option>
+			<option value="10"
+				<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10줄 보기</option>
+			<option value="15"
+				<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15줄 보기</option>
+			<option value="20"
+				<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄 보기</option>
+		</select>
+	</div> 
+	</div>
+	<!-- 페이징 옵션선택 끝 -->
 
 
 			<table border="1">
@@ -69,9 +98,35 @@
 
 				</c:forEach>
 			</table>
-		
-		</section>
+			<br>
+			
+			
+			
+	<!-- 페이지번호매기기 a href 변경-->
+	<div style="display: block; text-align: center;">		
+		<c:if test="${paging.startPage != 1 }">
+			<a href="adminproductlist.bill?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+		</c:if>
+		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<b>${p }</b>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">
+					<a href="adminproductlist.bill?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${paging.endPage != paging.lastPage}">
+			<a href="adminproductlist.bill?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+		</c:if>
 	</div>
+			
+			
+			
+			
+</section>
+
 
 </body>
 
