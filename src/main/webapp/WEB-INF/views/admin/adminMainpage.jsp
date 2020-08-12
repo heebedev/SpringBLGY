@@ -13,8 +13,17 @@
 
 
 </head>
+<script type="text/javascript">
+function validation(){
+	var num = <%=request.getParameter("validation")%>+0;
+	if(num==0){
+		alert("잘못된 접근입니다.");
+		window.location.href = './login.bill';
+	}
+}
+</script>
 
-<body>
+<body onload="validation();">
 	<section >
 		<div align="center">
 		<h1 style="text-align: center;">Today's 빌릴꼬냥</h1>
