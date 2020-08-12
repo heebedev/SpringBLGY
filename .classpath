@@ -26,9 +26,9 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/usr/local/apache-tomcat-8.5.57/lib/commons-fileupload-1.2.1.jar"/>
-	<classpathentry kind="lib" path="/usr/local/apache-tomcat-8.5.57/lib/commons-io-1.4.jar"/>
-	<classpathentry kind="lib" path="/usr/local/apache-tomcat-8.5.57/lib/commons-net-3.0.1.jar"/>
-	<classpathentry kind="lib" path="/usr/local/apache-tomcat-8.5.57/lib/cos.jar"/>
+	<classpathentry kind="lib" path="/usr/local/apache-tomcat-8.5.49/lib/commons-fileupload-1.2.1.jar"/>
+	<classpathentry kind="lib" path="/usr/local/apache-tomcat-8.5.49/lib/commons-io-1.4.jar"/>
+	<classpathentry kind="lib" path="/usr/local/apache-tomcat-8.5.49/lib/commons-net-3.0.1.jar"/>
+	<classpathentry kind="lib" path="/usr/local/apache-tomcat-8.5.49/lib/cos.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

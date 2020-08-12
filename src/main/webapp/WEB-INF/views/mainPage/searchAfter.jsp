@@ -69,8 +69,8 @@
 				<td colspan = 2 style="width: 100px; font-size: 0.8em;">${SearchDTO.date1} ~ ${SearchDTO.date2}</td>
 			</tr>
 			<tr>
-				<td >${SearchDTO.price}원</td>
-				<td style="font-size:0.8em;">조회수 ${SearchDTO.view}</td>
+				<td style="width: 70px; font-size:0.8em;">${SearchDTO.price} 원/일</td>
+				<td style="font-size:0.8em; text-align:center;">👀 ${SearchDTO.view}</td>
 				<c:choose>
 			<c:when test="${SearchDTO.liked eq 1}">
 				<td><input  type="button" id="likeBtn${SearchDTO.prdseq}" value="❤️" onclick="like(${SearchDTO.prdseq}, <jsp:getProperty property="userseq" name="userdata"/>, this)" style="flat:right;border: none; background-color:white"></td>
