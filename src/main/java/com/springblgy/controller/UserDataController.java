@@ -33,12 +33,19 @@ public class UserDataController {
 		UserDataDao userDataDao = sqlSession.getMapper(UserDataDao.class);
 		
 		int validation = userDataDao.checkUser(request.getParameter("email"), request.getParameter("pw"));
-		
+		String email = request.getParameter("email");
 		if (validation == 0) {
 			return("alert/userNotFound");
 		}else if (validation == 1) {
-			model.addAttribute("userData", userDataDao.getUserData(request.getParameter("email")));
-			return("userdata/userDataReg");
+			if (email.equals("admin@billil.com")) {
+				model.addAttribute("validation","1");
+				return("redirect:adminmain.bill");
+				}
+				else {
+				model.addAttribute("userData", userDataDao.getUserData(request.getParameter("email")));
+				return("userdata/userDataReg");
+				}
+
 		}else {
 			return("alert/unknownError");
 		}
