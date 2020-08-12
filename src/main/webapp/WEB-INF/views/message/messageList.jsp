@@ -111,7 +111,16 @@
 	}
 	</style>
 </head>
-<body style="margin:auto;">
+<script type="text/javascript">
+function validation(){
+	var num = <%=userdata.getUserseq()%>+0;
+	if(num==0){
+		window.location.href = './loginRedirect';
+	}
+}
+</script>
+
+<body style="margin:auto;" onload="validation();">
 <br><br>
 <center>
 

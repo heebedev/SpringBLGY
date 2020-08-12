@@ -74,6 +74,7 @@
 		popup.action = "message.bill";
 		popup.submit();
 	}
+	
 </script>
 
 </head>
@@ -82,15 +83,24 @@
 	<nav>
 		<ul>
 			<li><a onclick="goPopup();">개인 정보 수정</a></li>
-			<li><a href="./MyProductList.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>">등록 상품 목록</a></li>
-			<li><a href="./MyBorrowList.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>">대여 상품 목록</a></li>
-			<li><a href="./MyInterestList.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>">관심 상품 목록</a></li>
+			<li><a onclick="document.getElementById('mpl').submit();">등록 상품 목록</a></li>
+			<li><a onclick="document.getElementById('mbl').submit();">대여 상품 목록</a></li>
+			<li><a onclick="document.getElementById('mil').submit();">관심 상품 목록</a></li>
 			<li><a onclick="textPopup();">쪽지함</a></li>
 		</ul>
 	</nav>
 	<form name="post_footer" id="post_footer" method="post">
 	<input type="hidden" name="userseq" id ="userseq" value="<%=userdata.getUserseq()%>">
 	<input type="hidden" name="selection" id ="selection" value="total">
+	</form>
+	<form name="mpl" id="mpl" action="MyProductList.bill" method="post">
+	<input type="hidden" name="userseq" id ="userseq" value="<%=userdata.getUserseq()%>">
+	</form>
+	<form name="mbl" id="mbl" action="MyBorrowList.bill" method="post">
+	<input type="hidden" name="userseq" id ="userseq" value="<%=userdata.getUserseq()%>">
+	</form>
+	<form name="mil" id="mil" action="MyInterestList.bill" method="post">
+	<input type="hidden" name="userseq" id ="userseq" value="<%=userdata.getUserseq()%>">
 	</form>
 	
 		

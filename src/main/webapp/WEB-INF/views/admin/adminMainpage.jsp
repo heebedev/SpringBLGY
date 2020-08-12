@@ -22,7 +22,6 @@ function validation(){
 	}
 }
 </script>
-
 <body onload="validation();">
 	<section >
 		<div align="center">

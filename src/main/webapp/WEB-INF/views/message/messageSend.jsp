@@ -40,7 +40,16 @@
 </style>
 
 </head>
-<body>	
+<script type="text/javascript">
+function validation(){
+	var num = <%=userdata.getUserseq()%>+0;
+	if(num==0){
+		window.location.href = './loginRedirect';
+	}
+}
+</script>
+
+<body onload="validation();">
 	<h1 style= "text-align: center;"><a class="home" href="Mainpage.bill"><img src="resources/logo.png" alt="logo" height="130" width="240"></a></h1>
 	<div class="container" align="center">
 	<div class="item1" align="center">

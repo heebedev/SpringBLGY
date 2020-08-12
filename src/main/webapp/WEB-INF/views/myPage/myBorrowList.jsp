@@ -18,8 +18,16 @@
 	<title>대여 상품 목록</title>
 
 </head>
+<script type="text/javascript">
+function validation(){
+	var num = <%=userdata.getUserseq()%>+0;
+	if(num==0){
+		window.location.href = './loginRedirect';
+	}
+}
+</script>
 
-<body>
+<body onload="validation();">
 
 	<section>
 	<h2>&nbsp;&nbsp;&nbsp;&nbsp;대여 상품 목록</h2>
