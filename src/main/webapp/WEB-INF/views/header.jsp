@@ -143,13 +143,18 @@
 
 			<li><a class="home" href="mainForm.bill">홈</a></li>
 			<ul style="float:right; list-style-type:none;">
-			<li><a href="./MyProductList.bill?userseq=<jsp:getProperty property="userseq" name="userdata"/>"><jsp:getProperty property="nickname" name="userdata"/>의 페이지</a></li>
+			<li><a onclick="document.getElementById('post').submit();"><jsp:getProperty property="nickname" name="userdata"/>의 페이지</a></li>
 			<li><a href="logOut.bill">로그아웃</a></li>
 			<li><a href="./AddProduct.bill">게시글 작성하기</a></li>
 		</ul>
 	</ul>
 	<%} %>
 	<center>
+	
+	<form name="post" id="post" action="MyProductList.bill" method="post">
+	<input type="hidden" name="userseq" id ="userseq" value="<%=userdata.getUserseq()%>">
+	</form>
+	
 
 	<form action="searchAfter.bill"> 
 	<h1 style= "text-align: center;"><a class="home" href="mainForm.bill"><img alt="logo" src="resources/logo.png" height="130" width="240"></a></h1>
