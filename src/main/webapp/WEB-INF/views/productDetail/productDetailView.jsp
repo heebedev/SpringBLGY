@@ -28,12 +28,36 @@
 </script>
 
 <script>
-
+	function borrowChk(prdseq, userseq, sdate, edate) {
+		
+		var prdseq = prdseq.value;
+		var userseq = userseq;
+		var sdate = sdate.value;
+		var edate = edate.value;
+	
+		$.ajax({
+			url : "borrowChk",
+			type : "GET",
+			dataType : "text", 
+			data : {
+				prdseq : prdseq,
+				sdate : sdate,
+				edate : edate
+			},
+			success:function (args) {
+				if(args != 0){
+					alert("선택하신 날짜에 대여정보가 이미 존재합니다. 대여현황을 확인하세요.");
+				}
+				else{
+					borrowAct(prdseq, userseq, sdate, edate);
+				}
+			}, 
+			error:function (e) {
+				console.log(e);
+			}
+		});
+	}
 	function borrowAct(prdseq, userseq, sdate, edate) {
-		console.log(prdseq.value);
-		console.log(userseq);
-		console.log(sdate.value);
-		console.log(edate.value);
 		
 		if(userseq == "" || userseq == 0 || userseq == null){
 			
@@ -44,10 +68,10 @@
 			type : "GET",
 			dataType : "text", 
 			data : {
-				prdseq : prdseq.value,
+				prdseq : prdseq,
 				userseq : userseq,
-				date1 : sdate.value,
-				date2 : edate.value
+				date1 : sdate,
+				date2 : edate
 			},
 			success:function (args) {
 				location.reload();
@@ -473,7 +497,7 @@
 					<INPUT type="hidden" name="brprdseq" value="${pdDetail.prdseq}" id="prdseq">
 					<INPUT type="hidden" name="userseq" value=<jsp:getProperty property="userseq" name="userdata"/>>
 				<div class="brwBtn">
-					<input type="button" value="빌리기" onclick="borrowAct(prdseq, <jsp:getProperty property="userseq" name="userdata"/>, sdate, edate)" style="width: 100px; height:30px; border:solid 1px silver; border-radius: 8px; background-color: white;" />
+					<input type="button" value="빌리기" onclick="borrowChk(prdseq, <jsp:getProperty property="userseq" name="userdata"/>, sdate, edate)" style="width: 100px; height:30px; border:solid 1px silver; border-radius: 8px; background-color: white;" />
 					
 				</div>
 				</form>
