@@ -459,15 +459,15 @@
 				<c:otherwise>
 				<td><input  type="button" id="likeBtn${pdDetail.prdseq}" value="🖤️" onclick="like(${pdDetail.prdseq}, <jsp:getProperty property="userseq" name="userdata"/>, this)" style="border: none; background-color:white"></td>
 				</c:otherwise>
-				</c:choose> / 👀 ${pdDetail.view }</div>
+				</c:choose> / &nbsp;&nbsp;&nbsp;👀 ${pdDetail.view }</div>
 				</div>
 				<form name="brwform" action="" method="post">
 				<div class="date">
 					<div class="startDatePick">시작</div>
-					<div class="sdatekeyin"><input type="date" placeholder="yyyy-mm-dd" value="2019-09-22" min="${pdDetail.date1}" max="${pdDetail.date2}" name="sdate" id="sdate" >
+					<div class="sdatekeyin"><input type="date" placeholder="yyyy-mm-dd" min="${pdDetail.date1}" max="${pdDetail.date2}" name="sdate" id="sdate" >
 					</div>
 					<div class="endDatePick">끝</div>
-					<div class="edatekeyin"><input type="date" placeholder="yyyy-mm-dd" value="2019-09-22" min="${pdDetail.date1}" max="${pdDetail.date2}" name="edate" id="edate">
+					<div class="edatekeyin"><input type="date" placeholder="yyyy-mm-dd" min="${pdDetail.date1}" max="${pdDetail.date2}" name="edate" id="edate">
 					</div>
 				</div>
 					<INPUT type="hidden" name="brprdseq" value="${pdDetail.prdseq}" id="prdseq">
