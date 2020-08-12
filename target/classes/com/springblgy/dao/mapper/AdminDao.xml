@@ -32,7 +32,7 @@
 	<select id="countUserList" resultType="int">
 		SELECT COUNT(*) FROM USERDATA
 	</select>
-	
+	<!-- 페이징 -->
 	<select id="AdminUserList" resultType="com.springblgy.dto.AdminUserDto">
 		SELECT * 
 		FROM (SELECT @ROWNUM:=@ROWNUM + 1 AS RN, A.* FROM (SELECT U.USERSEQ, U.NAME, U.NICKNAME, COUNT(P.UPLOADERSEQ) AS COUNTPRD FROM USERDATA AS U LEFT OUTER JOIN PRODUCT AS P ON U.USERSEQ = P.UPLOADERSEQ GROUP BY U.USERSEQ)A, (SELECT @ROWNUM := 0) R)C 
@@ -40,21 +40,21 @@
 	</select>	
 	
 
-	<!-- //고객검색 결과 -->
-	<select id="AdminUserSearchList" parameterType="String" resultType="com.springblgy.dto.AdminUserDto">
+	<!-- 고객검색 결과 페이징으로 변경중 -->
+<!-- 	<select id="AdminUserSearchList" parameterType="String" resultType="com.springblgy.dto.AdminUserDto">
 		SELECT U.USERSEQ, U.NAME, U.NICKNAME, COUNT(P.UPLOADERSEQ) AS COUNTPRD FROM USERDATA AS U LEFT OUTER JOIN PRODUCT AS P ON U.USERSEQ = P.UPLOADERSEQ WHERE ${param1} LIKE CONCAT('%',#{param2},'%') GROUP BY U.USERSEQ
-	</select> 
+	</select>  -->
 	
-	<!-- 고객검색 결과 + 페이징 -->
-	<!-- <select id="countUserSearchList" resultType="int">
+	<!-- 고객검색 결과 + 페이징 ok-->
+	<select id="countUserSearchList" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM USERDATA WHERE ${param1} LIKE CONCAT('%',#{param2},'%')
-	</select> -->
+	</select>
 	
-	<!-- <select id="AdminUserSearchList" resultType="com.springblgy.dto.AdminUserDto">
+	<select id="AdminUserSearchList" resultType="com.springblgy.dto.AdminUserDto">
 		SELECT * 
 		FROM (SELECT @ROWNUM:=@ROWNUM + 1 AS RN, A.* FROM (SELECT U.USERSEQ, U.NAME, U.NICKNAME, COUNT(P.UPLOADERSEQ) AS COUNTPRD FROM USERDATA AS U LEFT OUTER JOIN PRODUCT AS P ON U.USERSEQ = P.UPLOADERSEQ WHERE ${param1} LIKE CONCAT('%',#{param2},'%') GROUP BY U.USERSEQ)A, (SELECT @ROWNUM := 0) R)C 
-		WHERE RN BETWEEN #{start} AND #{end}
-	</select> -->
+		WHERE RN BETWEEN #{param3.start} AND #{param3.end}
+	</select>
 	
 	
 	

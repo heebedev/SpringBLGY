@@ -68,37 +68,42 @@ public class AdminController {
 	
 	
 	//회원검색
-	@RequestMapping("/adminusersearch.bill")
-	public String adminUserSearch(HttpServletRequest request, Model model) {
-		AdminDao adminDao = sqlSession.getMapper(AdminDao.class);
-		model.addAttribute("AdminUserSearchList", adminDao.AdminUserSearchList(request.getParameter("selection"), request.getParameter("adminUserSearchText")));
-		return "admin/adminUserSearch";
-	}
-	
-	//회원검색+페이징
 //	@RequestMapping("/adminusersearch.bill")
-//	public String adminUserSearch(HttpServletRequest request, PagingVO vo, Model model
-//			, @RequestParam(value="nowPage", required=false)String nowPage
-//			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
-//		
+//	public String adminUserSearch(HttpServletRequest request, Model model) {
 //		AdminDao adminDao = sqlSession.getMapper(AdminDao.class);
-//		
-//		int total = adminDao.countUserSearchList(request.getParameter("selection"), request.getParameter("adminUserSearchText"));
-//		if (nowPage == null && cntPerPage == null) {
-//			nowPage = "1";
-//			cntPerPage = "5";
-//		} else if (nowPage == null) {
-//			nowPage = "1";
-//		} else if (cntPerPage == null) { 
-//			cntPerPage = "5";
-//		}
-//		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-//		
-//		model.addAttribute("countUserSearchList", total);
-//		model.addAttribute("paging", vo);
-//		model.addAttribute("AdminUserSearchList", adminDao.AdminUserSearchList(request.getParameter("selection"), request.getParameter("adminUserSearchText"), vo));
+//		model.addAttribute("AdminUserSearchList", adminDao.AdminUserSearchList(request.getParameter("selection"), request.getParameter("adminUserSearchText")));
 //		return "admin/adminUserSearch";
 //	}
+	
+	//회원검색+페이징
+	@RequestMapping("/adminusersearch.bill")
+	public String adminUserSearch(HttpServletRequest request, PagingVO vo, Model model
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+		
+		AdminDao adminDao = sqlSession.getMapper(AdminDao.class);
+		
+		int total = adminDao.countUserSearchList(request.getParameter("selection"), request.getParameter("adminUserSearchText"));
+		
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
+		model.addAttribute("countUserSearchList", total);
+		model.addAttribute("paging", vo);
+		model.addAttribute("AdminUserSearchList", 
+				adminDao.AdminUserSearchList(request.getParameter("selection"), request.getParameter("adminUserSearchText"), vo));
+		model.addAttribute("selection", request.getParameter("selection"));
+		model.addAttribute("adminUserSearchText", request.getParameter("adminUserSearchText"));
+		
+		return "admin/adminUserSearch";
+	}
 	
 	
 	
