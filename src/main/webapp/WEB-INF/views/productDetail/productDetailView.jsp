@@ -198,6 +198,7 @@
 		// 지도에 원을 표시합니다 
 		circle.setMap(map)
 		map.setZoomable(false);
+		map.setDraggable(false);
 	}
 </script>
 
