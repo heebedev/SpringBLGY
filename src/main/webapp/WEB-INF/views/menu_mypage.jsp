@@ -66,7 +66,7 @@
 	/* 쪽지함 새창 */
 	function textPopup(){
 		var myseq = <%=userdata.getUserseq()%>;
-		window.open("./message.bill?selection=total&userseq="+myseq, "text","width=900; height=600;");	
+		window.open("./message.bill?selection=total&userseq="+myseq, "text","width=900; height=800;");	
 	}
 </script>
 

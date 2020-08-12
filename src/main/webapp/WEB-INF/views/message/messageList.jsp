@@ -114,6 +114,9 @@
 <body style="margin:auto;">
 <br><br>
 <center>
+
+<img src="resources/logo.png" alt="logo" height="130" width="240">
+
 		<div class="grid-container">
 		  <div class="item1">
 		  	<div style="float: left; width: 50%;">

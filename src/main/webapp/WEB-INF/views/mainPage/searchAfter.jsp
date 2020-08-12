@@ -6,19 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-
-	.prdlist { grid-area: prdl; }
-	.footer { grid-area: ft; }
-	
-	.totaldiv {
-	  display: grid;
-	  grid-template-areas:
-	    'prdl'
-	    'ft';
-	}
-
-</style>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -65,10 +52,9 @@
     
 	<br><br>
 	
-	<div class="totaldiv">
-		<div class="prdlist">
+		<div class="prdlist" style="width:1000px">
 			<c:forEach items="${SearchList}" var="SearchDTO">
-	<table style ="border: solid gray 1px; border-radius:8px; float: left; width: 500px; height:150px; padding:15px;">
+	<table style ="border: solid gray 1px; border-radius:8px; margin:5px;float:right; width: 490px; height:150px; padding:15px;">
 
 			<tr>
 				<td rowspan="3" style="width: 200px;"><a href ="productDetail?prdseq=${SearchDTO.prdseq}&userseq=<jsp:getProperty property="userseq" name="userdata"/>"><img src="http://119.207.169.213:8080/blgy/${SearchDTO.image1}" width=150 height=150 style="border:solid silver 2px; border-radius:4px;"></a></td>										
@@ -80,7 +66,7 @@
 			</tr>
 			<tr>
 				<td style="width: 70px; font-size:0.8em;">대여가능일  </td>
-				<td colspan = 2 style=" width: 100px; font-size:0.8em;">${SearchDTO.date1} ~ ${SearchDTO.date2}</td>
+				<td colspan = 2 style="width: 100px; font-size: 0.8em;">${SearchDTO.date1} ~ ${SearchDTO.date2}</td>
 			</tr>
 			<tr>
 				<td >${SearchDTO.price}원</td>
@@ -98,12 +84,10 @@
 	</c:forEach>
 		</div>
 	
-	
-	<div class="footer">
+	<div class="footer" style="width:1000px;float:left;margin-top:10px">
 		<jsp:include page="../../views/footer.jsp"/>
 	</div>
 	
-	</div>
 	
 	
 	
